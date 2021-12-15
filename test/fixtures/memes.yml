@@ -1,11 +1,23 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  img: MyString
-  lang: MyString
-  user: one
+##one:
+##  img: MyString
+##  lang: MyString
+##  user: one
 
-two:
+##two:
+##  img: MyString
+##  lang: MyString
+##  user: two
+
+meme1:
   img: MyString
   lang: MyString
-  user: two
+  user: user1
+  tag: tag1
+
+meme2:
+  img: MyString
+  lang: MyString
+  user: user2
+  tag: tag2

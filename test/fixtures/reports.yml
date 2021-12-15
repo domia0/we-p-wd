@@ -1,11 +1,21 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  user: one
+##one:
+##  user: one
+##  reason: 1
+##  open: false
+
+##two:
+##  user: two
+##  reason: 1
+##  open: false
+
+report1:
+  user: user1
   reason: 1
   open: false
 
-two:
-  user: two
+report2:
+  user: user2
   reason: 1
   open: false

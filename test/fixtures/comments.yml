@@ -1,11 +1,22 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  body: MyText
-  user: one
-  meme: one
+##one:
+##  body: MyText
+##  user: one
+##  meme: one
 
-two:
+##two:
+##  body: MyText
+##  user: two
+##  meme: two
+
+
+comment1:
   body: MyText
-  user: two
-  meme: two
+  user: user1
+  meme: meme1
+
+comment2:
+  body: MyText
+  user: user2
+  meme: meme2
