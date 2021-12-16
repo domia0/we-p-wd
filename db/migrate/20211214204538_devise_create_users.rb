@@ -10,7 +10,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.1]
       ## Added fields
       t.string :username,           null: false, default: ""
       t.integer :role
-      t.boolean :blocked,            default: false
+      t.boolean :blocked,           default: false
       t.string :block_reason
 
       ## Recoverable
