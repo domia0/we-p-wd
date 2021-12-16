@@ -22,6 +22,13 @@ gem 'jbuilder', '~> 2.7'
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
+
+# Added by Gleb
+# Templating engine for HTML
+gem 'haml', '~> 5.2.2'
+# Translate
+gem 'rails-i18n', '~> 6'
+
 # Added by Domi
 gem 'devise'
 

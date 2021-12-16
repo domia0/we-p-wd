@@ -1,0 +1,29 @@
+-# Navbar
+- if user_signed_in?
+  = render 'navbar-logged-in'
+- else
+  = render 'navbar-not-logged-in'
+
+-# Main part
+#main-part-memes.container-md.mt-6
+  -# Title and filters
+  = render 'main-part-title-filters'
+
+  -# Memes
+  = render 'main-part-memes'
+
+-# Pagination
+= render 'pagination'
+
+-# - if current_user
+-#  %p 123
+-# - else
+-#  %p 456
+
+-# Footer
+= render 'footer'
+
+-# Modal windows
+= render 'modal-login'
+= render 'modal-sign-up'
+= render 'modal-reset-password'
