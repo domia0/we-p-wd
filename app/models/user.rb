@@ -6,7 +6,7 @@ class User < ApplicationRecord
     self.role ||= :user
   end
 
-  validates :name, presence: true
+  validates :username, presence: true
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
