@@ -8,7 +8,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.1]
       t.string :encrypted_password, null: false, default: ""
 
       ## Added fields
-      t.string :username
+      t.string :username,           null: false, default: ""
       t.integer :role
       t.boolean :blocked,            default: false
       t.string :block_reason
