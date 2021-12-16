@@ -1,0 +1,86 @@
+body {
+    background-image: url('/images/bg-main-1.png');
+}
+
+
+/* * *  Helpers (general)  * * */
+.mt-6 {
+    margin-top: 5rem;
+}
+.pt-es-1 {
+    padding-top: 0.2rem;
+}
+.text-pink {
+    color: #f76868;
+}
+.bg-light-blue {
+    background-color: #d9f5ff;
+}
+.bg-light-gray {
+    background-color: #f9f7f7
+}
+.rounded-5 {
+    border-radius: 0.5rem;
+}
+
+
+/* * *  Menu (Navbar top)  * * */
+@media only screen and (min-width: 1000px) {
+    .offcanvas-body .navbar-nav {
+        align-items: center;
+    }
+}
+.offcanvas-end {
+    width: 200px !important;
+}
+.modal-login-title {
+    font-weight: 300;
+}
+#lang-selector img {
+    height: 25px;
+}
+
+
+/* * *  Main part (memes)  * * */
+@media only screen and (min-width: 1000px) {
+    #row-memes-main {
+        --bs-gutter-x: 3rem;
+    }
+    #main-part-memes {
+        background-color: #ebf9ff;
+        padding: 2rem 2rem;
+        border-radius: 0.5rem;
+    }
+}
+@media only screen and (max-width: 600px) {
+    #main-part-memes {
+        margin-top: 6rem;
+        background-color: #ecf5f9;
+    }
+    #main-part-memes-title {
+        margin-bottom: 2rem !important;
+    }
+}
+#tags a {
+    color: #6a6a6a;
+}
+.bg-main-mem {
+    background-color: #fdfdfd;
+}
+
+
+/* * *  Pagination  * * * * * */
+.page-item a {
+    background-color: #d9f5ff;
+    color: #6b797e;
+}
+
+
+/* * *  Footer (index)  * * * */
+#footer .row{
+    background-image: linear-gradient(to right, #626262 , #707070);
+    height: 130px;
+}
+#footer .col-12 {
+    color: white;
+}
