@@ -30,7 +30,7 @@ gem 'haml', '~> 5.2.2'
 gem 'rails-i18n', '~> 6'
 
 # Added by Domi
-gem 'devise'
+gem 'devise', '~> 4.8.0'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
