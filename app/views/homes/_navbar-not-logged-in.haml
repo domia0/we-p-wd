@@ -33,11 +33,14 @@
                   %img.me-1{:src => "/images/lang-germany.png"}/
                   Germany
           %li.nav-item
-            %a.nav-link.my-0.py-0{"data-bs-target" => "#loginModal",
-                                  "data-bs-toggle" => "modal",
-                                  :href => "#"} Login
+            = link_to t('pages.index.sign_in.title'),
+                        '#',
+                        class: "nav-link my-0 py-0",
+                        "data-bs-target" => "#loginModal",
+                        "data-bs-toggle" => "modal"
           %li.nav-item
-            %a.nav-link.my-0.py-0{"data-bs-target" => "#signupModal",
-                                  "data-bs-toggle" =>
-                                  "modal",
-                                  :href => "#"} Sign Up
+            = link_to t('pages.index.sign_up.title'),
+                        '#',
+                        class: "nav-link my-0 py-0",
+                        "data-bs-target" => "#signupModal",
+                        "data-bs-toggle" => "modal"

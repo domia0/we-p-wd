@@ -10,24 +10,26 @@
                               "data-bs-dismiss" => "modal",
                               :type => "button"}
           .col-12.d-flex.justify-content-center.mb-4
-            %h3.fw-light Sign Up
+            %h3.fw-light
+              = t('pages.index.sign_up.title')
           .col-12.px-5
             = form_with model: User.new, url: registration_path(User.new) do |f|
               .mb-3
-                = f.text_field :username, required: true, placeholder: "Your name", class: "form-control", id: "signupName"
+                = f.text_field :username, required: true, placeholder: t('pages.index.sign_up.name'), class: "form-control", id: "signupName"
               .mb-3
-                = f.email_field :email, required: true, placeholder: "example@example.org", class: "form-control", id: "signupEmail"
+                = f.email_field :email, required: true, placeholder: t('pages.index.sign_up.email'), class: "form-control", id: "signupEmail"
               .mb-3
-                = f.password_field :password, required: true, placeholder: "Your password", minlength: 6, class: "form-control", id: "signupPassword"
+                = f.password_field :password, required: true, placeholder: t('pages.index.sign_up.pass'), minlength: 6, class: "form-control", id: "signupPassword"
               .mb-3
-                = f.password_field :password_confirmation, required: true, placeholder: "Confirm your password", minlength: 6, class: "form-control", id: "signupConfirmPassword"
+                = f.password_field :password_confirmation, required: true, placeholder: t('pages.index.sign_up.pass_c'), minlength: 6, class: "form-control", id: "signupConfirmPassword"
               = f.submit "Sign up", class: "btn btn-primary w-100 rounded-pill"
           .col-12.mt-3
             %hr.w-100/
           .col-12.d-flex.justify-content-center.mb-4.mt-1
             %span
-              Do you already have an account?
-              %a{"data-bs-dismiss" => "#signupModal",
-                 "data-bs-target" => "#loginModal",
-                 "data-bs-toggle" => "modal",
-                 :href => "#"} Sign In.
+              = t('pages.index.sign_up.already_r')
+              = link_to t('pages.index.sign_in.title'),
+                        '#',
+                        "data-bs-dismiss" => "#signupModal",
+                        "data-bs-target" => "#loginModal",
+                        "data-bs-toggle" => "modal"

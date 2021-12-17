@@ -6,10 +6,11 @@ de:
     language:  'Sprache'
     all_users: 'Alle Benutzer'
     log_out:   'Abmelden'
+    edit:      'Edit'
 
   pages:
     index:
-      title:  'Hauptseite'
+      title:  'Die neuesten Memes'
       navbar: 'Navigationsleiste'
 
       sign_up:
@@ -19,6 +20,7 @@ de:
         pass:       'Passwort'
         pass_c:     'Passwort Bestätigung'
         create_btn: 'Benutzer erstellen'
+        already_r:  'Haben Sie bereits ein Konto?'
 
       sign_in:
         title:      'Anmeldung'
@@ -29,9 +31,12 @@ de:
         ref_pasres: 'Passwort vergessen?'
 
       edit_user:
-        title:      'Information bearbeiten über'
-        name:       'Name'
-        email:      'Email'
-        pass:       'Passwort'
-        pass_c:     'Passwort Bestätigung'
-        update_btn: 'Aktualisieren'
+        title:       'Information bearbeiten'
+        name:        'Name'
+        email:       'Email'
+        pass:        'Neues Passwort'
+        pass_c:      'Neues Passwort Bestätigung'
+        curr_pass:   'Dein aktuelles Passwort'
+        rem_acc:     'Möchten Sie Ihr Konto entfernen?'
+        rem_acc_btn: 'Konto löschen'
+        update_btn:  'Aktualisieren'

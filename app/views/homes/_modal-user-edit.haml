@@ -10,27 +10,28 @@
                               "data-bs-dismiss" => "modal",
                               :type => "button"}
           .col-12.d-flex.justify-content-center.mb-4
-            %h3.fw-light Edit account
+            %h3.fw-light
+              = t('pages.index.edit_user.title')
           .col-12.px-5
             = form_with model: @user, url: registration_path(User.new), html: { method: :put } do |f|
               .mb-3
                 = f.text_field :username,
                                required: true,
-                               placeholder: "Your name",
+                               placeholder: t('pages.index.edit_user.name'),
                                autocomplete: "username",
                                class: "form-control",
                                id: "signupName"
               .mb-3
                 = f.email_field :email,
                                 required: true,
-                                placeholder: "example@example.org",
+                                placeholder: t('pages.index.edit_user.email'),
                                 autocomplete: "email",
                                 class: "form-control",
                                 id: "signupEmail"
               .mb-3
                 = f.password_field :password,
                                    required: true,
-                                   placeholder: "New password",
+                                   placeholder: t('pages.index.edit_user.pass'),
                                    minlength: 6,
                                    autocomplete: "new-password",
                                    class: "form-control",
@@ -38,7 +39,7 @@
               .mb-3
                 = f.password_field :password_confirmation,
                                    required: true,
-                                   placeholder: "Confirm new password",
+                                   placeholder: t('pages.index.edit_user.pass_c'),
                                    minlength: 6,
                                    autocomplete: "new-password",
                                    class: "form-control",
@@ -46,19 +47,20 @@
               .mb-3
                 = f.password_field :current_password,
                                    required: true,
-                                   placeholder: "Your current password",
+                                   placeholder: t('pages.index.edit_user.curr_pass'),
                                    minlength: 6,
                                    autocomplete: "current-password",
                                    class: "form-control",
                                    id: "signupOldPassword"
-              = f.submit "Update", class: "btn btn-primary w-100 rounded-pill"
+              = f.submit t('pages.index.edit_user.update_btn'), class: "btn btn-primary w-100 rounded-pill"
           .col-12.mt-3
             %hr.w-100/
           .col-12.d-flex.justify-content-center.mt-1
-            %span Are you unhappy? Cancel my account
+            %span
+              = t('pages.index.edit_user.rem_acc')
           .col-12.d-flex.justify-content-center.mb-4.mt-1.px-5
-            = link_to "Delete account",
-                        registration_path(User.new),
-                        data: { confirm: "Are you sure?" },
-                        method: :delete,
-                        class: "btn btn-danger w-100 rounded-pill"
+            = link_to t('pages.index.edit_user.rem_acc_btn'),
+                      registration_path(User.new),
+                      data: { confirm: "Are you sure?" },
+                      method: :delete,
+                      class: "btn btn-danger w-100 rounded-pill"
