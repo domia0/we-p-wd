@@ -1,0 +1,64 @@
+#editUserModal.modal.fade{"aria-hidden" => "true",
+                        "aria-labelledby" => "editUserModalLabel",
+                        :tabindex => "-1"}
+  .modal-dialog.modal-dialog-centered.modal-fullscreen-sm-down
+    .modal-content
+      .container
+        .row
+          .col-12.d-flex.justify-content-end.mt-3
+            %button.btn-close{"aria-label" => "Close",
+                              "data-bs-dismiss" => "modal",
+                              :type => "button"}
+          .col-12.d-flex.justify-content-center.mb-4
+            %h3.fw-light Edit account
+          .col-12.px-5
+            = form_with model: @user, url: registration_path(User.new), html: { method: :put } do |f|
+              .mb-3
+                = f.text_field :username,
+                               required: true,
+                               placeholder: "Your name",
+                               autocomplete: "username",
+                               class: "form-control",
+                               id: "signupName"
+              .mb-3
+                = f.email_field :email,
+                                required: true,
+                                placeholder: "example@example.org",
+                                autocomplete: "email",
+                                class: "form-control",
+                                id: "signupEmail"
+              .mb-3
+                = f.password_field :password,
+                                   required: true,
+                                   placeholder: "New password",
+                                   minlength: 6,
+                                   autocomplete: "new-password",
+                                   class: "form-control",
+                                   id: "signupPassword"
+              .mb-3
+                = f.password_field :password_confirmation,
+                                   required: true,
+                                   placeholder: "Confirm new password",
+                                   minlength: 6,
+                                   autocomplete: "new-password",
+                                   class: "form-control",
+                                   id: "signupConfirmPassword"
+              .mb-3
+                = f.password_field :current_password,
+                                   required: true,
+                                   placeholder: "Your current password",
+                                   minlength: 6,
+                                   autocomplete: "current-password",
+                                   class: "form-control",
+                                   id: "signupOldPassword"
+              = f.submit "Update", class: "btn btn-primary w-100 rounded-pill"
+          .col-12.mt-3
+            %hr.w-100/
+          .col-12.d-flex.justify-content-center.mt-1
+            %span Are you unhappy? Cancel my account
+          .col-12.d-flex.justify-content-center.mb-4.mt-1.px-5
+            = link_to "Delete account",
+                        registration_path(User.new),
+                        data: { confirm: "Are you sure?" },
+                        method: :delete,
+                        class: "btn btn-danger w-100 rounded-pill"

@@ -30,6 +30,10 @@
                   %img.me-1{:src => "/images/lang-germany.png"}/
                   Germany
           %li.nav-item
+            %a.nav-link.my-0.py-0{"data-bs-target" => "#editUserModal",
+                                  "data-bs-toggle" => "modal",
+                                  :href => "#"} Edit
+          %li.nav-item
             = link_to "Sign Out",
                       destroy_user_session_path,
                       method: :delete,
