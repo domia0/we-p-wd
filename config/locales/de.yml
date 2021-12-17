@@ -1,0 +1,37 @@
+de:
+  en: 'Englisch'
+  de: 'Deutsch'
+
+  menu:
+    language:  'Sprache'
+    all_users: 'Alle Benutzer'
+    log_out:   'Abmelden'
+
+  pages:
+    index:
+      title:  'Hauptseite'
+      navbar: 'Navigationsleiste'
+
+      sign_up:
+        title:      'Registrierung'
+        name:       'Name'
+        email:      'Email'
+        pass:       'Passwort'
+        pass_c:     'Passwort Bestätigung'
+        create_btn: 'Benutzer erstellen'
+
+      sign_in:
+        title:      'Anmeldung'
+        email:      'Email'
+        pass:       'Passwort'
+        sign_btn:   'Anmelden'
+        ref_signup: 'Noch kein Mitglied?'
+        ref_pasres: 'Passwort vergessen?'
+
+      edit_user:
+        title:      'Information bearbeiten über'
+        name:       'Name'
+        email:      'Email'
+        pass:       'Passwort'
+        pass_c:     'Passwort Bestätigung'
+        update_btn: 'Aktualisieren'

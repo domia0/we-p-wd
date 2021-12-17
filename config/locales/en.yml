@@ -30,4 +30,39 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  en: 'English'
+  de: 'German'
+
+  menu:
+    language:  'Language'
+    all_users: 'All Users'
+    log_out:   'Log out'
+
+  pages:
+    index:
+      title:  'Main page'
+      navbar: 'Navigation'
+
+      sign_up:
+        title:      'Sign up'
+        name:       'Name'
+        email:      'Email'
+        pass:       'Password'
+        pass_c:     'Password confirmation'
+        create_btn: 'Create user'
+
+      sign_in:
+        title:      'Sign in'
+        email:      'Email'
+        pass:       'Password'
+        sign_btn:   'Sign in'
+        ref_signup: 'Not a member yet?'
+        ref_pasres: 'Forgot password?'
+
+      edit_user:
+        title:      'Edit information about '
+        name:       'Name'
+        email:      'Email'
+        pass:       'Password'
+        pass_c:     'Password confirmation'
+        update_btn: 'Update'

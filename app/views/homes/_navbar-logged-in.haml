@@ -19,14 +19,17 @@
                                                                "data-bs-toggle" => "dropdown",
                                                                :href => "#",
                                                                :role => "button"}
-              %img{:src => "/images/lang-usa.png"}/
+              - if I18n.locale == :en
+                %img{:src => "/images/lang-usa.png"}/
+              - if I18n.locale == :de
+                %img{:src => "/images/lang-germany.png"}/
             %ul.dropdown-menu.bg-light-blue{"aria-labelledby" => "navbarDropdownMenuLink"}
               %li
-                %a.dropdown-item{:href => "#"}
+                %a.dropdown-item{:href => "/en"}
                   %img.me-1{:src => "/images/lang-usa.png"}/
                   English
               %li
-                %a.dropdown-item{:href => "#"}
+                %a.dropdown-item{:href => "/de"}
                   %img.me-1{:src => "/images/lang-germany.png"}/
                   Germany
           %li.nav-item
