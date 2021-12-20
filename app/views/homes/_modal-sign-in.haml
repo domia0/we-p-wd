@@ -9,11 +9,24 @@
             %h3.fw-light
               = t('pages.index.sign_in.title')
           .col-12.px-5
-            = form_with model: User, url: user_session_path do |f|
+            = form_with model: User, url: user_session_path, class: "sign-in-form" do |f|
               .mb-3
-                = f.email_field :email, required: true, placeholder: t('pages.index.sign_in.email'), class: "form-control", id: "signupEmail"
+                = f.email_field :email,
+                                required: true,
+                                placeholder: t('pages.index.sign_in.email'),
+                                class: "form-control",
+                                id: "signInEmail"
+                %span.sign-in-error
+                  = t('pages.index.sign_in.error')
               .mb-3
-                = f.password_field :password, required: true, placeholder: t('pages.index.sign_in.pass'), minlength: 6, class: "form-control", id: "signupPassword"
+                = f.password_field :password,
+                                   required: true,
+                                   placeholder: t('pages.index.sign_in.pass'),
+                                   minlength: 6,
+                                   class: "form-control",
+                                   id: "signInPassword"
+                %span.sign-in-error
+                  = t('pages.index.sign_in.error')
               = f.submit t('pages.index.sign_in.sign_btn'), class: "btn btn-primary w-100 rounded-pill"
           .col-12.mt-3
             %hr.w-100/
