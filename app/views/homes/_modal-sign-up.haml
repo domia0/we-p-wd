@@ -13,16 +13,38 @@
             %h3.fw-light
               = t('pages.index.sign_up.title')
           .col-12.px-5
-            = form_with model: User.new, url: registration_path(User.new) do |f|
+            = form_with model: User.new, url: registration_path(User.new), class: "sign-up-form" do |f|
               .mb-3
-                = f.text_field :username, required: true, placeholder: t('pages.index.sign_up.name'), class: "form-control", id: "signupName"
+                = f.text_field :username,
+                               required: true,
+                               placeholder: t('pages.index.sign_up.name'),
+                               class: "form-control",
+                               id: "signupName"
+                %span.sign-up-error-name
+                  = t('pages.index.sign_up.error-name')
               .mb-3
-                = f.email_field :email, required: true, placeholder: t('pages.index.sign_up.email'), class: "form-control", id: "signupEmail"
+                = f.email_field :email,
+                                required: true,
+                                placeholder: t('pages.index.sign_up.email'),
+                                class: "form-control",
+                                id: "signupEmail"
+                %span.sign-up-error-email
+                  = t('pages.index.sign_up.error-email')
               .mb-3
-                = f.password_field :password, required: true, placeholder: t('pages.index.sign_up.pass'), minlength: 6, class: "form-control", id: "signupPassword"
+                = f.password_field :password,
+                                   required: true,
+                                   placeholder: t('pages.index.sign_up.pass'),
+                                   minlength: 6,
+                                   class: "form-control",
+                                   id: "signupPassword"
               .mb-3
-                = f.password_field :password_confirmation, required: true, placeholder: t('pages.index.sign_up.pass_c'), minlength: 6, class: "form-control", id: "signupConfirmPassword"
-              = f.submit "Sign up", class: "btn btn-primary w-100 rounded-pill"
+                = f.password_field :password_confirmation,
+                                   required: true,
+                                   placeholder: t('pages.index.sign_up.pass_c'),
+                                   minlength: 6,
+                                   class: "form-control",
+                                   id: "signupConfirmPassword"
+              = f.button "Sign up", class: "btn btn-primary w-100 rounded-pill"
           .col-12.mt-3
             %hr.w-100/
           .col-12.d-flex.justify-content-center.mb-4.mt-1

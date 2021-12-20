@@ -49,6 +49,19 @@ body {
 }
 
 
+/* * *  Modal: Sign Up  * * * */
+.sign-up-error-name {
+    color: red;
+    font-size: 0.8rem;
+    display: none;
+}
+.sign-up-error-email {
+    color: red;
+    font-size: 0.8rem;
+    display: none;
+}
+
+
 /* * *  Main part (memes)  * * */
 @media only screen and (min-width: 1000px) {
     #row-memes-main {

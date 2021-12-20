@@ -14,13 +14,15 @@ de:
       navbar: 'Navigationsleiste'
 
       sign_up:
-        title:      'Registrierung'
-        name:       'Name'
-        email:      'Email'
-        pass:       'Passwort'
-        pass_c:     'Passwort Bestätigung'
-        create_btn: 'Benutzer erstellen'
-        already_r:  'Haben Sie bereits ein Konto?'
+        title:       'Registrierung'
+        name:        'Name'
+        email:       'Email'
+        pass:        'Passwort'
+        pass_c:      'Passwort Bestätigung'
+        create_btn:  'Benutzer erstellen'
+        already_r:   'Haben Sie bereits ein Konto?'
+        error-email: 'E-Mail ist bereits vergeben'
+        error-name:  'Name ist bereits vergeben'
 
       sign_in:
         title:      'Anmeldung'
