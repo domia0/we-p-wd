@@ -15,12 +15,47 @@ $(document).ready(function () {
       data: formData,
       dataType: 'json',
       encode: true,
-    }).done(function (data) { location.reload(); })
-      .fail(function (jqXHR, textStatus, errorThrown) {
+    }).done(function () { location.reload(); })
+      .fail(function (jqXHR) {
         $('.sign-in-error').css('display', 'block');
         $('.sign-in-form > .btn').attr('disabled', false)
       });
+    event.preventDefault();
+  });
 
+  // Sign-up form
+  $('.sign-up-form').submit(function (event) {
+    let formData = {
+      user: {
+        username:              $('#signupName').val(),
+        email:                 $('#signupEmail').val(),
+        password:              $('#signupPassword').val(),
+        password_confirmation: $('#signupConfirmPassword').val(),
+      },
+      authenticity_token: $('.sign-up-form > input').first().val()
+    };
+    console.log('Send ajax');
+    $.ajax({
+      type: 'POST',
+      url: $('.sign-up-form').attr('action'),
+      data: formData,
+      dataType: 'json',
+      encode: true,
+    }).done(function (data) {
+      console.log(data)
+      if (data.status === 'error') {
+        if (data.message === 'email') {
+          $('.sign-up-error-email').css('display', 'block');
+          $('.sign-up-error-name').css('display', 'none');
+        } else {
+          $('.sign-up-error-name').css('display', 'block');
+          $('.sign-up-error-email').css('display', 'none');
+        }
+        $('.sign-up-form > .btn').attr('disabled', false)
+      } else {
+        location.reload();
+      }
+    })
     event.preventDefault();
   });
 });

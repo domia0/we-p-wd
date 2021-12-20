@@ -45,13 +45,15 @@ en:
       navbar: 'Navigation'
 
       sign_up:
-        title:      'Sign up'
-        name:       'Name'
-        email:      'Email'
-        pass:       'Password'
-        pass_c:     'Password confirmation'
-        create_btn: 'Create user'
-        already_r:  'Do you already have an account?'
+        title:       'Sign up'
+        name:        'Name'
+        email:       'Email'
+        pass:        'Password'
+        pass_c:      'Password confirmation'
+        create_btn:  'Create user'
+        already_r:   'Do you already have an account?'
+        error-email: 'Email has already been taken'
+        error-name:  'Name has already been taken'
 
       sign_in:
         title:      'Sign in'
