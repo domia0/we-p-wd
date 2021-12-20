@@ -29,6 +29,7 @@ de:
         sign_btn:   'Anmelden'
         ref_signup: 'Noch kein Mitglied?'
         ref_pasres: 'Passwort vergessen?'
+        error:      'Email oder Passwort ist falsch'
 
       edit_user:
         title:       'Information bearbeiten'

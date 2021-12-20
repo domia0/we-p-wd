@@ -60,6 +60,7 @@ en:
         sign_btn:   'Sign in'
         ref_signup: 'Not a member yet?'
         ref_pasres: 'Forgot password?'
+        error:      'Email or password is incorrect'
 
       edit_user:
         title:       'Edit information about '
