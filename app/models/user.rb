@@ -6,6 +6,10 @@ class User < ApplicationRecord
     self.role ||= :user
   end
 
+  has_many :memes
+  has_many :comments
+  has_many :likes
+
   validates :username, presence: true
 
   # Include default devise modules. Others available are:
