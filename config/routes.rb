@@ -5,10 +5,13 @@ Rails.application.routes.draw do
   scope '(:locale)', locale: /#{I18n.available_locales.join('|')}/ do
     root "homes#index"
 
+    resources :memes do
+      resources :comments
+    end
+
     devise_for :users, controllers: {
       sessions:      "custom_sessions",
       registrations: "custom_registrations"
     }
   end
-
 end

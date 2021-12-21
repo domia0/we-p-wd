@@ -1,0 +1,13 @@
+<h1>Memes</h1>
+
+<ul>
+	<% @memes.each do |meme| %>
+			<li>
+				<p><%= image_tag meme.image %></p>
+				<%= link_to "Comment Meme", meme_path(meme) %>
+				<h2>Comments</h2>
+				<%= render meme.comments %>
+			</li>
+	<% end %>
+</ul>
+<%= link_to "New Meme", new_meme_path %>

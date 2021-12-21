@@ -1,0 +1,17 @@
+<h1>New Meme</h1>
+
+<%= form_with model: @meme do |form| %>
+  <div>
+    <%= form.label :image %><br>
+    <%= form.file_field :image %>
+  </div>
+
+  <div>
+    <%= form.label :lang %><br>
+    <%= form.text_field :lang %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
