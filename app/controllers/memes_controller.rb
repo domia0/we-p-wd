@@ -13,8 +13,17 @@ class MemesController < ApplicationController
     
     def create
         #muss ich hier fehler abfangen?
-        @meme = current_user.memes.create(meme_params)
-        redirect_to @meme
+        lang = params[:meme][:lang]
+        if (current_user) && (lang == "de" || lang == "en")
+            @meme = current_user.memes.create(meme_params)
+            redirect_to @meme
+        elsif !current_user
+            flash[:alert] = "You must be logged in to upload a meme."
+            redirect_to memes_path
+        elsif lang != "de" || lang != "en"
+            flash[:alert] = "Choose language. Either en or de."
+            redirect_to memes_path
+        end
     end
     
     def destroy
