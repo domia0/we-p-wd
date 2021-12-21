@@ -1,17 +1,19 @@
 <h1>New Meme</h1>
 
-<%= form_with model: @meme do |form| %>
+<%= form_with model: @meme do |f| %>
   <div>
-    <%= form.label :image %><br>
-    <%= form.file_field :image %>
+    <%= f.label :image %><br>
+    <%= f.file_field :image %>
   </div>
 
   <div>
-    <%= form.label :lang %><br>
-    <%= form.text_field :lang %>
+    <%= f.radio_button :lang, 'en' %> 
+    <%= f.label :lang, 'en', :value => 'en' %>
+    <%= f.radio_button :lang, 'de' %>
+    <%= f.label :lang, 'de', :value => 'de' %>
   </div>
 
   <div>
-    <%= form.submit %>
+    <%= f.submit %>
   </div>
 <% end %>
