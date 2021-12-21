@@ -1,10 +1,10 @@
 <!--.variant(resize_to_limit: [200,200])-->
-<p><%= image_tag @meme.image %></p>
+<p><%= image_tag Meme.find(params[:id]).image %></p>
 
-<p><%= @meme.lang %></p>
+<p><%= Meme.find(params[:id]).lang %></p>
 
 <h2>Comments</h2>
-<%= render @meme.comments %>
+<%= render Meme.find(params[:id]).comments %>
 
 <h2>Add a comment:</h2>
 <%= render 'comments/form' %>
