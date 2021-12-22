@@ -6,7 +6,8 @@ de:
     language:  'Sprache'
     all_users: 'Alle Benutzer'
     log_out:   'Abmelden'
-    edit:      'Edit'
+    edit:      'Edit Benutzer'
+    addMeme:   'Meme hochladen'
 
   pages:
     index:
@@ -43,3 +44,13 @@ de:
         rem_acc:     'Möchten Sie Ihr Konto entfernen?'
         rem_acc_btn: 'Konto löschen'
         update_btn:  'Aktualisieren'
+
+      add_meme:
+        title:      'Neues Meme hinzufügen'
+        name:       'Name'
+        image:      'Bild auswählen'
+        lang:       'Sprache des Memes auswählen'
+        lang_1:     'Englisch'
+        lang_2:     'Deutsch'
+        upload_btn: 'Hochladen'
+        add_btn:    'Mem erstellen'

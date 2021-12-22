@@ -1,0 +1,97 @@
+#addMemeModal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "addMemeModal", :tabindex => "-1"}
+  .modal-dialog.modal-dialog-centered.modal-fullscreen-sm-down
+    .modal-content
+      .container
+        .row
+          .col-12.d-flex.justify-content-end.mt-3
+            %button.btn-close{"aria-label" => "Close", "data-bs-dismiss" => "modal", :type => "button"}
+          .col-12.d-flex.justify-content-center.mb-4
+            %h3.fw-light
+              = t('pages.index.add_meme.title')
+          .col-12.px-5
+            = form_with model: Meme.new do |f|
+              .mb-3.row
+                %label.col-sm-3.col-form-label{:for => "memeName"}
+                  = t('pages.index.add_meme.name') + ':'
+                .col-sm-9
+                  = f.text_field '',
+                                 disabled: true,
+                                 class: 'form-control',
+                                 id: 'memeName'
+              .mb-3.row
+                %label.col-sm-3.col-form-label{:for => "memeLang"}
+                  = t('pages.index.add_meme.lang') + ':'
+                .col-sm-9.d-flex.align-items-center
+                  .form-check.form-check-inline#memeLang
+                    = f.radio_button :lang,
+                                     'en',
+                                     :class => 'form-check-input',
+                                     :id => 'langEn',
+                                     :checked => true
+                    %label.form-check-label{:for => "langEn"}
+                      = t('pages.index.add_meme.lang_1')
+                  .form-check.form-check-inline#memeLang
+                    = f.radio_button :lang,
+                                     'de',
+                                     :class => 'form-check-input',
+                                     :id => 'langDe'
+                    %label.form-check-label{:for => "langDe"}
+                      = t('pages.index.add_meme.lang_2')
+              .mb-3.row
+                %label.col-sm-3.col-form-label{:for => "memeTag1"} Hashtag 1:
+                .col-sm-9
+                  = f.text_field '', disabled: true, class: 'form-control', id: 'memeTag1'
+              .mb-3.row
+                %label.col-sm-3.col-form-label{:for => "memeTag1"} Hashtag 2:
+                .col-sm-9
+                  = f.text_field '', disabled: true, class: 'form-control', id: 'memeTag2'
+              .mb-3.row
+                %label.col-sm-3.col-form-label{:for => "memeTag1"} Hashtag 3:
+                .col-sm-9
+                  = f.text_field '', disabled: true, class: 'form-control', id: 'memeTag3'
+              .mb-3.row
+                .col-12
+                  .input-group.mb-3
+                    = f.file_field :image, :class => 'form-control', :id => 'memeImage', required: true
+                    %label.input-group-text{:for => "memeImage"} Upload
+              .mb-4.row
+                .col-12.mb-1
+                  = f.submit t('pages.index.add_meme.add_btn'), class: 'btn btn-primary w-100 rounded-pill'
+
+          -#.col-12.px-5
+          -#  = form_with model: User, url: user_session_path, class: "sign-in-form" do |f|
+          -#    .mb-3
+          -#      = f.email_field :email,
+          -#                      required: true,
+          -#                      placeholder: t('pages.index.sign_in.email'),
+          -#                      class: "form-control",
+          -#                      id: "signInEmail"
+          -#      %span.sign-in-error
+          -#        = t('pages.index.sign_in.error')
+          -#    .mb-3
+          -#      = f.password_field :password,
+          -#                         required: true,
+          -#                         placeholder: t('pages.index.sign_in.pass'),
+          -#                         minlength: 6,
+          -#                         class: "form-control",
+          -#                         id: "signInPassword"
+          -#      %span.sign-in-error
+          -#        = t('pages.index.sign_in.error')
+          -#    = f.submit t('pages.index.sign_in.sign_btn'), class: "btn btn-primary w-100 rounded-pill"
+          -#.col-12.mt-3
+          -#  %hr.w-100/
+          -#.col-12.d-flex.justify-content-center.mb-1.mt-1
+          -#  %span
+          -#    = t('pages.index.sign_in.ref_signup')
+          -#    = link_to t('pages.index.sign_up.title'),
+          -#              '#',
+          -#              "data-bs-dismiss" => "#loginModal",
+          -#              "data-bs-target" => "#signupModal",
+          -#              "data-bs-toggle" => "modal"
+          -#.col-12.d-flex.justify-content-center.mb-4.mt-1
+          -#  %span
+          -#    = link_to t('pages.index.sign_in.ref_pasres'),
+          -#              '#',
+          -#              "data-bs-dismiss" => "#loginModal",
+          -#              "data-bs-target" => "#resetPasswordModal",
+          -#              "data-bs-toggle" => "modal"

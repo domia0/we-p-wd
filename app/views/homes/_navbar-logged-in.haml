@@ -33,6 +33,12 @@
                   %img.me-1{:src => "/images/lang-germany.png"}/
                   Germany
           %li.nav-item
+            = link_to t('menu.addMeme'),
+                        '#',
+                        class: "nav-link my-0 py-0",
+                        "data-bs-target" => "#addMemeModal",
+                        "data-bs-toggle" => "modal"
+          %li.nav-item
             = link_to t('menu.edit'),
                         '#',
                         class: "nav-link my-0 py-0",
