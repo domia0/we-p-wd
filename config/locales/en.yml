@@ -37,7 +37,8 @@ en:
     language:  'Language'
     all_users: 'All Users'
     log_out:   'Log out'
-    edit:      'Edit'
+    edit:      'Edit account'
+    addMeme:   'Add meme'
 
   pages:
     index:
@@ -74,3 +75,13 @@ en:
         rem_acc:     'Do you want to remove your account?'
         rem_acc_btn: 'Delete account'
         update_btn:  'Update'
+
+      add_meme:
+        title:      'Add a new meme'
+        name:       'Name'
+        image:      'Select image'
+        lang:       'Language'
+        lang_1:     'English'
+        lang_2:     'German'
+        upload_btn: 'Upload'
+        add_btn:    'Create meme'
