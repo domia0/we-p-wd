@@ -8,6 +8,10 @@ Rails.application.routes.draw do
     resources :memes do
       resources :comments
     end
+    
+    resources :likes do
+      get :do_like, on: :collection
+    end
 
     devise_for :users, controllers: {
       sessions:      "custom_sessions",

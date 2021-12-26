@@ -3,6 +3,17 @@
 
 <p><%= Meme.find(params[:id]).lang %></p>
 
+<p>
+<%= link_to do_like_likes_path, class: "btn btn-default", remote: true do %>
+    <i class="bi bi-heart-fill"></i>
+<% end %>
+<%= Meme.find(params[:id]).likes.count%>
+</p>
+
+<p>
+<%= Like.all%>
+</p>
+
 <h2>Comments</h2>
 <%= render Meme.find(params[:id]).comments %>
 
