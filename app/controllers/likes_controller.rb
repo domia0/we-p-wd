@@ -1,11 +1,10 @@
 class LikesController < ApplicationController
     def new
         @like = Like.new
-      end
+    end
 
-    def do_like
-        @meme = Meme.find(1)
-        @like = current_user.likes.create!(likeable_id: @meme.id, likeable_type: "Meme")
-        #redirect_to root_path
+    def create
+        @meme = Meme.find(params[:meme_id])
+        @like = current_user.likes.create!(likeable: @meme)
     end
 end

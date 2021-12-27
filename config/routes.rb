@@ -6,12 +6,12 @@ Rails.application.routes.draw do
     root "homes#index"
 
     resources :memes do
-      resources :comments
+      resources :comments do
+        resources :likes
+      end
+      resources :likes
     end
-    
-    resources :likes do
-      get :do_like, on: :collection
-    end
+    resources :likes
 
     devise_for :users, controllers: {
       sessions:      "custom_sessions",
