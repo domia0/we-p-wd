@@ -3,8 +3,10 @@
 
 <p><%= @meme.lang %></p>
 
-<p>
-<%= link_to meme_likes_path(@meme), method: :post, class: "btn btn-default", remote: true do %>
+
+<!--polymorphic_path([@meme, @like])-->
+<p> 
+<%= link_to polymorphic_path([@meme, :likes]), method: :post, class: "btn btn-default", remote: true do %>
     <i class="bi bi-heart-fill"></i>
 <% end %>
 <%= Meme.find(@meme.id).likes.count%>
