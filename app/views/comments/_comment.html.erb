@@ -11,4 +11,7 @@
               method: :delete,
               data: { confirm: "Are you sure?" } %>
 </p>
+<p>
+  <li><%= link_to "Edit", model: comment, url: meme_path(comment.meme) %></li>
+</p>
 

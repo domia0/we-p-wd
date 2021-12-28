@@ -1,9 +1,9 @@
 <%= form_with model: [ @meme, @meme.comments.build ] do |f| %>
-  <p>
+  <p class="field">
     <%= f.label :body %><br>
     <%= f.text_area :body %>
   </p>
-  <p>
+  <p class ="actions">
     <%= f.submit %>
   </p>
 <% end %>

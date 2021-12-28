@@ -7,6 +7,17 @@ class CommentsController < ApplicationController
 	    redirect_to meme_path(@meme)
 	end
 
+	def update
+		@meme = Meme.find(params[:meme_id])
+	    @comment = @meme.comments.find(params[:id])
+	
+		if @comment.update(comment_params)
+		  redirect_to meme_path(@meme)
+		else
+		  #render
+		end
+	end
+
 	def destroy
 	    @meme = Meme.find(params[:meme_id])
 	    @comment = @meme.comments.find(params[:id])
