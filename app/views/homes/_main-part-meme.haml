@@ -1,0 +1,32 @@
+.col-md-4
+  .row.bg-main-mem
+    .col-12.d-flex.align-items-center
+      %i.bi.bi-person-circle.fs-2.me-2{style: "color: #808080"}
+      %a{href: "#"}
+        %span
+          = meme.user.username
+    .col-12
+      = image_tag meme.image, class: 'w-100'
+    .col-8.d-flex.align-items-center.tags
+      -#%span.me-2
+      -#  %a{href: "#"} #max
+      -#%span.me-2
+      -#  %a{href: "#"} #3
+      -#%span.me-2
+      -#  %a{href: "#"} #tags
+    .col-4.d-flex.justify-content-end.align-items-center.mt-1
+      - if user_signed_in?
+        .user-signed-in
+      %span.me-1
+        = meme.likes.count
+      - like = Like.where(user_id: current_user&.id, likeable_id: meme.id)
+      - if like.count > 0
+        %i.bi.bi-heart-fill.fs-3.color-light-blue.meme-like-add-remove{:meme_id => meme.id,
+                                                                       :checked => true,
+                                                                       :like_id => like[0].id}
+      - else
+        %i.bi.bi-heart.fs-3.meme-like-add-remove{:meme_id => meme.id,
+                                                 :checked => false}
+      %span.ms-2.me-1
+        = meme.comments.count
+      %i.bi.bi-chat-left-dots.fs-3
