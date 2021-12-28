@@ -1,14 +1,13 @@
-<!--.variant(resize_to_limit: [200,200])-->
+<!--.variant(resize_to_limit: [200,200])    <%=@meme.id.to_s%>   -->
 
 <p><%= image_tag @meme.image %></p>
 
 <p><%= @meme.lang %></p>
 
-
 <!--polymorphic_path([@meme, @like])-->
-<p id='like-count'> 
+<p id='like-count<%= @meme.id %>'> 
  <%= @meme.likes.count%>
-<%= link_to polymorphic_path([@meme, :likes]), method: :post, class: "btn btn-default", remote: true do %>
+<%= link_to polymorphic_path([@meme, :likes]), method: :post, remote: true do %>
     <i class="bi bi-heart-fill"></i>
 <% end %>
 </p>

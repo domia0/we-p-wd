@@ -1,1 +1,0 @@
-$( "#like-count" ).load( window.location.href + " #like-count" );

@@ -33,9 +33,10 @@
             -#%span.me-2
             -#  %a{href: "#"} #tags
           .col-4.d-flex.justify-content-end.align-items-center.mt-1
-            %span.me-1
+            %span.me-1{:id => "like-count#{meme.id}"}
               = meme.likes.count
-            %i.bi.bi-heart.fs-3
+            = link_to polymorphic_path([meme, :likes]), method: :post, remote: true do
+              %i.bi.bi-heart.fs-3
             %span.ms-2.me-1
               = meme.comments.count
             %i.bi.bi-chat-left-dots.fs-3
