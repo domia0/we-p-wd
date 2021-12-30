@@ -54,3 +54,10 @@ de:
         lang_2:     'Deutsch'
         upload_btn: 'Hochladen'
         add_btn:    'Mem erstellen'
+
+      comments:
+        title:        'Kommentare'
+        placeholder:  'Dein Kommentar zum Meme'
+        post_btn:     'Kommentar posten'
+        all_comments: 'Alle Kommentare zu diesem Meme'
+        no_comments:  'Bisher hat sich noch niemand zu diesem Meme geäußert'

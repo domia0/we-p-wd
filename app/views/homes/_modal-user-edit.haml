@@ -20,14 +20,14 @@
                                placeholder: t('pages.index.edit_user.name'),
                                autocomplete: "username",
                                class: "form-control",
-                               id: "signupName"
+                               id: "editName"
               .mb-3
                 = f.email_field :email,
                                 required: true,
                                 placeholder: t('pages.index.edit_user.email'),
                                 autocomplete: "email",
                                 class: "form-control",
-                                id: "signupEmail"
+                                id: "editEmail"
               .mb-3
                 = f.password_field :password,
                                    required: true,
@@ -35,7 +35,7 @@
                                    minlength: 6,
                                    autocomplete: "new-password",
                                    class: "form-control",
-                                   id: "signupPassword"
+                                   id: "editPassword"
               .mb-3
                 = f.password_field :password_confirmation,
                                    required: true,
@@ -43,7 +43,7 @@
                                    minlength: 6,
                                    autocomplete: "new-password",
                                    class: "form-control",
-                                   id: "signupConfirmPassword"
+                                   id: "editConfirmPassword"
               .mb-3
                 = f.password_field :current_password,
                                    required: true,
@@ -51,7 +51,7 @@
                                    minlength: 6,
                                    autocomplete: "current-password",
                                    class: "form-control",
-                                   id: "signupOldPassword"
+                                   id: "editOldPassword"
               = f.submit t('pages.index.edit_user.update_btn'), class: "btn btn-primary w-100 rounded-pill"
           .col-12.mt-3
             %hr.w-100/
