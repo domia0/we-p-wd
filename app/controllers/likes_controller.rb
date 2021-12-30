@@ -5,8 +5,13 @@ class LikesController < ApplicationController
   end
 
   def create
-    @meme = Meme.find(params[:meme_id])
-    @like = current_user.likes.create!(likeable: @meme)
+    if params[:meme_id] != nil
+      @meme = Meme.find(params[:meme_id])
+      @like = current_user.likes.create!(likeable: @meme)
+    elsif params[:comment_id] != nil
+      @comment = Comment.find(params[:comment_id])
+      @like = current_user.likes.create!(likeable: @comment)
+    end
 
     respond_to do |format|
       format.html { redirect_to @meme }
