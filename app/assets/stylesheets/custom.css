@@ -95,6 +95,17 @@ body {
 }
 
 
+/* * *   Comments  * * * * * */
+.all-comments-modal {
+  height: 370px;
+}
+.comment-date {
+  font-size: 0.7rem;
+  padding-top: 0.4rem;
+  color: gray;
+}
+
+
 /* * *  Pagination  * * * * * */
 .page-item a {
   background-color: #d9f5ff;

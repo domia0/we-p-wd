@@ -1,0 +1,29 @@
+#commentsModal.modal.fade{"aria-hidden" => "false", "aria-labelledby" => "commentsModalLabel", :tabindex => "-1"}
+  .modal-dialog.modal-dialog-centered
+    .modal-content
+      .container
+        .row
+          .col-12.d-flex.justify-content-end.mt-3
+            %button.btn-close{"aria-label" => "Close", "data-bs-dismiss" => "modal", :type => "button"}
+          .col-12.d-flex.justify-content-center.mb-4
+            %h3.fw-light
+              = t('pages.index.comments.title')
+          .col-12.px-5
+            = form_with url: '/', class: 'post-comment' do |f|
+              .mb-3
+                = f.text_area :body,
+                              required: true,
+                              placeholder: t('pages.index.comments.placeholder'),
+                              class: "form-control",
+                              id: "commentBody"
+              = f.submit t('pages.index.comments.post_btn'), class: "btn btn-primary w-100 rounded-pill"
+          .col-12.mt-3
+            %hr.w-100/
+          .col-12.d-flex.justify-content-center.mb-1.mt-1
+            %span
+              = t('pages.index.comments.all_comments') + ':'
+          .col-12.d-flex.justify-content-center.mt-1.pt-3.px-3.text-center.fw-bold.d-none.no-comments
+            %div
+              %span
+                = t('pages.index.comments.no_comments') + ' :('
+          .all-comments-modal.mb-3.overflow-scroll

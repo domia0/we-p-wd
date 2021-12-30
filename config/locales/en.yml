@@ -85,3 +85,10 @@ en:
         lang_2:     'German'
         upload_btn: 'Upload'
         add_btn:    'Create meme'
+
+      comments:
+        title:        'Comments'
+        placeholder:  'Your comment for the meme'
+        post_btn:     'Post a comment'
+        all_comments: 'All comments for this meme'
+        no_comments:  'So far no one has commented on this meme'

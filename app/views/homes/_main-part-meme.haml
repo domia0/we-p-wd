@@ -27,6 +27,8 @@
       - else
         %i.bi.bi-heart.fs-3.meme-like-add-remove{:meme_id => meme.id,
                                                  :checked => false}
-      %span.ms-2.me-1
+      %span.ms-2.me-1.comments-count{:meme_id => meme.id,}
         = meme.comments.count
-      %i.bi.bi-chat-left-dots.fs-3
+      %i.bi.bi-chat-left-dots.fs-3.all-comments{:meme_id => meme.id,
+                                                "data-bs-target" => "#commentsModal",
+                                                "data-bs-toggle" => "modal"}
