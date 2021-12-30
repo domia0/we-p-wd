@@ -19,6 +19,8 @@ class MemesController < ApplicationController
       I18n.available_locales.map(&:to_s).include?(meme_params[:lang])
 
       @meme = current_user.memes.create(meme_params)
+      #Hier kommt eine Fehler undefinded user_id obwohl es in der Lnosle funktioniert
+      #@tag = @meme.tags.create({name: params[:tag][:name]})
       redirect_to root_path
     elsif !current_user && current_user.blocked
       # TODO later: send back json with error
