@@ -5,10 +5,10 @@ class LikesController < ApplicationController
   end
 
   def create
-    if params[:meme_id] != nil
+    if params[:comment_id] == nil
       @meme = Meme.find(params[:meme_id])
       @like = current_user.likes.create!(likeable: @meme)
-    elsif params[:comment_id] != nil
+    elsif
       @comment = Comment.find(params[:comment_id])
       @like = current_user.likes.create!(likeable: @comment)
     end
