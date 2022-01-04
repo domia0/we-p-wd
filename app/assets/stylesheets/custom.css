@@ -16,8 +16,14 @@ body {
 .color-light-blue {
   color: #6cd3ff;
 }
+.color-white {
+  color: #fff;
+}
 .bg-light-blue {
   background-color: #d9f5ff;
+}
+.bg-blue {
+  background-color: #6cd3ff !important;
 }
 .bg-light-gray {
   background-color: #f9f7f7
@@ -32,6 +38,9 @@ body {
   .offcanvas-body .navbar-nav {
     align-items: center;
   }
+  .add-meme-btn-mobile-div {
+    display: none;
+  }
 }
 .offcanvas-end {
   width: 200px !important;
@@ -41,6 +50,11 @@ body {
 }
 #lang-selector img {
   height: 25px;
+}
+.add-meme-btn-mobile-div {
+  bottom: 4rem;
+  right: 1rem;
+  z-index: 1;
 }
 
 
@@ -70,7 +84,6 @@ body {
   #row-memes-main {
     --bs-gutter-x: 3rem;
   }
-
   #main-part-memes {
     background-color: #ebf9ff;
     padding: 2rem 2rem;
@@ -82,7 +95,6 @@ body {
     margin-top: 6rem;
     background-color: #ecf5f9;
   }
-
   #main-part-memes-title {
     margin-bottom: 2rem !important;
   }
