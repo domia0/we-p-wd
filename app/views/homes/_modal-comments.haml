@@ -8,7 +8,7 @@
           .col-12.d-flex.justify-content-center.mb-4
             %h3.fw-light
               = t('pages.index.comments.title')
-          .col-12.px-5
+          .col-12.write-new-comment-col
             = form_with url: '/', class: 'post-comment' do |f|
               .mb-3
                 = f.text_area :body,

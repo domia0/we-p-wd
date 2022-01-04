@@ -30,10 +30,12 @@ class CommentsController < ApplicationController
 		@comments.each do |comment|
 			entry = {}
 			entry.store('id', 			comment.id)
+			entry.store('meme_id', 	comment.meme_id)
 			entry.store('userName', comment.user.username)
 			entry.store('comment',  comment.body)
 			entry.store('date', 	  comment.created_at.strftime("%d.%m.%Y"))
 			entry.store('likes', 	  comment.likes.count)
+			entry.store('liked',    'yes') if Comment.find(comment.id).likes.where(user_id: comment.user.id).length > 0
 			@result.push(entry)
 		end
 		render json: @result.reverse
