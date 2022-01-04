@@ -116,27 +116,45 @@ $(document).ready(function () {
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // Modal comments
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  //load all comments by meme_id
+  //load all comments by meme_id + add func to add or remove like
   function loadComments(memeId) {
     $.ajax({
       type: 'GET',
       url: '/all-comments-for-meme/' + memeId,
     }).done(function (comments) {
-      console.log(comments.length === 0)
+      console.log(comments)
       if (comments.length === 0) {
         $('.no-comments').removeClass('d-none')
       } else {
         $('.no-comments').addClass('d-none')
       }
       comments.forEach(function(item){
-        let commentHeaderDiv = $('<div>',   {class: 'comment bg-light-blue m-2 rounded'});
+        let commentHeaderDiv =   $('<div>',  {class: 'comment bg-light-blue m-2 rounded'});
         // Comment's Header
-        let commentHeaderCol = $('<div>',   {class: 'col-12 d-flex justify-content-between mt-1 pt-3 px-3'});
-        let commentHeaderUser = $('<a>',    {href: '#', text: item.userName});
-        let commentHeaderDate = $('<span>', {class: 'comment-date', text: item.date});
+        let commentHeaderCol =   $('<div>',  {class: 'col-12 d-flex justify-content-between mt-1 pt-3 px-3'});
+        let commentHeaderUser =  $('<a>',    {href: '#', text: item.userName});
+        let commentHeaderDate =  $('<span>', {class: 'comment-date', text: item.date});
         // Comment's Body
-        let commentBodyCol = $('<div>',  {class: 'col-12 d-flex justify-content-start mb-1 pb-3 px-3'});
-        let commentBodyText = $('<div>', {text: item.comment});
+        let commentBodyCol  =    $('<div>',  {class: 'col-12 d-flex justify-content-start mb-1 pb-2 px-3'});
+        let commentBodyText =    $('<div>',  {class: 'col-10', text: item.comment});
+        let commentBodyLike =    $('<div>',  {class: 'col-2 d-flex justify-content-end'});
+        let commentBodyLikeBtn = $('<div>');
+        if (item.liked) {
+          commentBodyLikeBtn = $('<i>',
+            {
+              class: 'bi bi-hand-thumbs-up-fill color-light-blue fs-3 add-remove-like-comment',
+              meme_id: item.meme_id,
+              comment_id: item.id
+            });
+        } else {
+          commentBodyLikeBtn = $('<i>',
+            {
+              class: 'bi bi-hand-thumbs-up fs-3 add-remove-like-comment',
+              meme_id: item.meme_id,
+              comment_id: item.id
+            });
+        }
+
         // Create an element complete
         commentHeaderDiv
           .append(commentHeaderCol
@@ -144,12 +162,59 @@ $(document).ready(function () {
             .append(commentHeaderDate)
           ).append(commentBodyCol
           .append(commentBodyText)
-        );
+          .append(commentBodyLike
+            .append(commentBodyLikeBtn))
+          );
         // Add element to parent :)
         $('.all-comments-modal').append(commentHeaderDiv)
       });
+
+      // Add or remove like for comment
+      $('.add-remove-like-comment').click(function() {
+        // // Wenn ein User sich noch nicht eingeloggt hat
+        // if ( $('.user-signed-in').length === 0 ) {
+        //   $('#loginModal').modal('toggle'); return;
+        // }
+        // Ganz normales Verhalten
+        let like = $(this);
+        // remove like
+        console.log($(this));
+        if ($(this).attr('checked')) {
+          // $.ajax({
+          //   type: 'DELETE',
+          //   url: '/en/memes/' + $(this).attr('meme_id') + '/likes/' + $(this).attr('like_id'),
+          //   beforeSend: function(xhr) {
+          //     xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))
+          //   },
+          //   dataType: 'json',
+          //   encode: true,
+          // }).done(function () {
+          //   like.removeClass('bi-heart-fill color-light-blue').addClass('bi-heart');
+          //   like.attr('checked', false);
+          //   like.prev().text(+like.prev().text() - 1);
+          // }).fail(function () {
+          //   console.log('Error, remove like')
+          // })
+        // add like
+        } else {
+          $.ajax({
+            type: 'POST',
+            url: '/en/memes/' + $(this).attr('meme_id') + '/comments/' + $(this).attr('comment_id') + '/likes',
+            beforeSend: function(xhr) {
+              xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))
+            },
+            dataType: 'json',
+            encode: true,
+          }).done(function () {
+            like.removeClass('bi-hand-thumbs-up').addClass('bi-hand-thumbs-up-fill color-light-blue');
+            like.attr('checked', true);
+          }).fail(function () {
+            console.log('Error: add like to comment')
+          })
+        }
+      });
     }).fail(function () {
-      console.log('Error')
+      console.log('Error: can not load comments')
     })
   }
 
@@ -169,10 +234,7 @@ $(document).ready(function () {
     loadComments($(this).attr('meme_id'));
   });
 
-
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // Modal post comment
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   $('.post-comment').submit(function(event) {
     let memeId = $(this).attr('meme_id');
     let comment = {

@@ -116,6 +116,12 @@ body {
   padding-top: 0.4rem;
   color: gray;
 }
+@media only screen and (min-width: 1000px) {
+  .write-new-comment-col {
+    padding-right: 3rem!important;
+    padding-left:  3rem!important;
+  }
+}
 
 
 /* * *  Pagination  * * * * * */
