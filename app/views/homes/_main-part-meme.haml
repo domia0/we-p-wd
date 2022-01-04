@@ -19,7 +19,7 @@
         .user-signed-in
       %span.me-1
         = meme.likes.count
-      - like = Like.where(user_id: current_user&.id, likeable_id: meme.id)
+      - like = Meme.find(meme.id).likes.where(user_id: current_user&.id)
       - if like.count > 0
         %i.bi.bi-heart-fill.fs-3.color-light-blue.meme-like-add-remove{:meme_id => meme.id,
                                                                        :checked => true,

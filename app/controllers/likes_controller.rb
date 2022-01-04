@@ -5,7 +5,6 @@ class LikesController < ApplicationController
   end
 
   def create
-    puts params
     if params[:comment_id] == nil
       @meme = Meme.find(params[:meme_id])
       @like = current_user.likes.create!(likeable: @meme)
@@ -17,14 +16,20 @@ class LikesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to @meme }
       format.js
-      format.json { render json: @meme, location: @meme }
+      format.json { render json: @like, location: @meme }
     end
   end
   
   def destroy
-    @meme = Meme.find(params[:meme_id])
-    @like = Like.where(user_id: current_user.id, likeable_id: @meme.id)
-    @like[0].destroy if @like.count == 1
+    if params[:comment_id] == nil
+      @meme = Meme.find(params[:meme_id])
+      @like = @meme.likes.where(user_id: current_user.id, likeable_id: @meme.id)
+      @like[0].destroy if @like.count == 1
+    else
+      @comment = Comment.find(params[:comment_id])
+      @like = @comment.likes.where(user_id: current_user.id, likeable_id: @comment.id)
+      @like[0].destroy if @like.count == 1
+    end
   end
 
 end

@@ -90,7 +90,7 @@ $(document).ready(function () {
         like.attr('checked', false);
         like.prev().text(+like.prev().text() - 1);
       }).fail(function () {
-        console.log('Error, remove like')
+        console.log('Error: remove like (meme)')
       })
     // add like
     } else {
@@ -107,7 +107,7 @@ $(document).ready(function () {
         like.attr('checked', true);
         like.prev().text(+like.prev().text() + 1);
       }).fail(function () {
-        console.log('Error, add like')
+        console.log('Error: add like (meme)')
       })
     }
   });
@@ -139,12 +139,15 @@ $(document).ready(function () {
         let commentBodyText =    $('<div>',  {class: 'col-10', text: item.comment});
         let commentBodyLike =    $('<div>',  {class: 'col-2 d-flex justify-content-end'});
         let commentBodyLikeBtn = $('<div>');
+        // if (item.liked && parseInt($('.user_id_not_security').attr('user_id')) === item.user_id) {
         if (item.liked) {
           commentBodyLikeBtn = $('<i>',
             {
               class: 'bi bi-hand-thumbs-up-fill color-light-blue fs-3 add-remove-like-comment',
               meme_id: item.meme_id,
-              comment_id: item.id
+              comment_id: item.id,
+              like_id: item.like_id,
+              checked: true
             });
         } else {
           commentBodyLikeBtn = $('<i>',
@@ -172,29 +175,30 @@ $(document).ready(function () {
       // Add or remove like for comment
       $('.add-remove-like-comment').click(function() {
         // // Wenn ein User sich noch nicht eingeloggt hat
-        // if ( $('.user-signed-in').length === 0 ) {
-        //   $('#loginModal').modal('toggle'); return;
-        // }
+        if ( $('.user-signed-in').length === 0 ) {
+          $('#commentsModal').modal('toggle');
+          $('#loginModal').modal('toggle');
+          return;
+        }
         // Ganz normales Verhalten
         let like = $(this);
         // remove like
-        console.log($(this));
         if ($(this).attr('checked')) {
-          // $.ajax({
-          //   type: 'DELETE',
-          //   url: '/en/memes/' + $(this).attr('meme_id') + '/likes/' + $(this).attr('like_id'),
-          //   beforeSend: function(xhr) {
-          //     xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))
-          //   },
-          //   dataType: 'json',
-          //   encode: true,
-          // }).done(function () {
-          //   like.removeClass('bi-heart-fill color-light-blue').addClass('bi-heart');
-          //   like.attr('checked', false);
-          //   like.prev().text(+like.prev().text() - 1);
-          // }).fail(function () {
-          //   console.log('Error, remove like')
-          // })
+          $.ajax({
+            type: 'DELETE',
+            url: '/en/memes/' + $(this).attr('meme_id') + '/comments/' + $(this).attr('comment_id') + '/likes/' + $(this).attr('like_id'),
+            beforeSend: function(xhr) {
+              xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))
+            },
+            dataType: 'json',
+            encode: true,
+          }).done(function () {
+            like.removeClass('bi-hand-thumbs-up-fill color-light-blue').addClass('bi-hand-thumbs-up');
+            like.removeAttr('like_id');
+            like.attr('checked', false);
+          }).fail(function () {
+            console.log('Error, remove like')
+          })
         // add like
         } else {
           $.ajax({
@@ -205,8 +209,10 @@ $(document).ready(function () {
             },
             dataType: 'json',
             encode: true,
-          }).done(function () {
+          }).done(function (data) {
+            console.log(data);
             like.removeClass('bi-hand-thumbs-up').addClass('bi-hand-thumbs-up-fill color-light-blue');
+            like.attr('like_id', data.id);
             like.attr('checked', true);
           }).fail(function () {
             console.log('Error: add like to comment')

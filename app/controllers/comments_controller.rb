@@ -35,7 +35,12 @@ class CommentsController < ApplicationController
 			entry.store('comment',  comment.body)
 			entry.store('date', 	  comment.created_at.strftime("%d.%m.%Y"))
 			entry.store('likes', 	  comment.likes.count)
-			entry.store('liked',    'yes') if Comment.find(comment.id).likes.where(user_id: comment.user.id).length > 0
+			likes = Comment.find(comment.id).likes.where(user_id: current_user&.id)
+			if likes.length > 0
+				entry.store('liked',   'yes')
+				entry.store('like_id', likes[0].id)
+				entry.store('user_id', likes[0].user_id)
+			end
 			@result.push(entry)
 		end
 		render json: @result.reverse
