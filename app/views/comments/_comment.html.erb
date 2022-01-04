@@ -6,6 +6,12 @@
   <strong>Comment:</strong>
   <%= comment.body %>
 </p>
+<p id='like-count-comment<%= comment.id %>'> 
+ <%= comment.likes.count%>
+<%= link_to polymorphic_path([comment.meme, comment, :likes]), method: :post, remote: true do %>
+    <i class="bi bi-heart-fill"></i>
+<% end %>
+</p>
 <p>
   <%= link_to 'Destroy Comment', [comment.meme, comment],
               method: :delete,

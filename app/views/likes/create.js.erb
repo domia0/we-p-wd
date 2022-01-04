@@ -1,1 +1,2 @@
-$( "#like-count" + <%= @meme.id.to_s %> ).load( window.location.href + " #like-count" + <%= @meme.id.to_s %> );
+//$( "#like-count" + <%= @meme.id.to_s %> ).load( window.location.href + " #like-count" + <%= @meme.id.to_s %> );
+$( "#like-count-comment" + <%= @comment.id.to_s %> ).load( window.location.href + " #like-count-comment" + <%= @comment.id.to_s %> );
