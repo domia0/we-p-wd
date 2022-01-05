@@ -105,6 +105,16 @@ body {
 .bg-main-mem {
   background-color: #fdfdfd;
 }
+.filter a {
+  color: #4c4c4c;
+}
+.filter a:hover {
+  color: #000000;
+}
+.filter .selected {
+  background-color: #959595;
+  color: white;
+}
 
 
 /* * *   Comments  * * * * * */
