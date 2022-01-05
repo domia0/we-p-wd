@@ -42,8 +42,12 @@ en:
 
   pages:
     index:
-      title:  'The latest memes'
-      navbar: 'Navigation'
+      filter-main:       'The latest memes'
+      filter-best-today: 'best today'
+      filter-best-week:  'best week'
+      filter-best-month: 'best month'
+      filter-best-all:   'best all time'
+      navbar:            'Navigation'
 
       sign_up:
         title:       'Sign up'

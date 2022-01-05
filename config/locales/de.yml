@@ -11,8 +11,12 @@ de:
 
   pages:
     index:
-      title:  'Die neuesten Memes'
-      navbar: 'Navigationsleiste'
+      filter-main:       'Die neuesten Memes'
+      filter-best-today: 'beste heute'
+      filter-best-week:  'beste Woche'
+      filter-best-month: 'beste Monat'
+      filter-best-all:   'beste aller Zeiten'
+      navbar:            'Navigationsleiste'
 
       sign_up:
         title:       'Registrierung'

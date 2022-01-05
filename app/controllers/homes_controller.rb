@@ -6,21 +6,36 @@ class HomesController < ApplicationController
     if params[:filter]
       case params[:filter]
       when "best_today"
-        # get all meme today and filter then for likes
         @memes = []
+        sort_memes_by_likes(Meme.where(created_at: Date.today.beginning_of_day..Date.today.end_of_day))
+          .each {|item| @memes.push(item["meme"])}
       when "best_week"
-        # get all meme last week and filter then for likes
         @memes = []
+        sort_memes_by_likes(Meme.where(created_at: Date.today - 7..Date.today.end_of_day))
+          .each {|item| @memes.push(item["meme"])}
       when "best_month"
-        # get all meme last month and filter then for likes
         @memes = []
+        sort_memes_by_likes(Meme.where(created_at: Date.today - 30..Date.today.end_of_day))
+          .each {|item| @memes.push(item["meme"])}
       when "best_all_time"
-        # get all meme and filter then for likes
         @memes = []
+        sort_memes_by_likes(Meme.all).each {|item| @memes.push(item["meme"])}
       end
     else
       @memes = Meme.all
     end
+  end
+
+  private
+  def sort_memes_by_likes(array)
+    to_sort = []
+    array.each do |m|
+      new_obj = {}
+      new_obj.store('meme', m)
+      new_obj.store('likes', m.likes.count)
+      to_sort.push(new_obj)
+    end
+    to_sort.sort_by! {|item| item['likes']}.reverse
   end
 
 end
