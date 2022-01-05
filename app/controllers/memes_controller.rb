@@ -17,17 +17,28 @@ class MemesController < ApplicationController
     if current_user &&
       !current_user.blocked &&
       I18n.available_locales.map(&:to_s).include?(meme_params[:lang])
-
       @meme = current_user.memes.create(meme_params)
-      @tag = @meme.tags.create({name: params[:tag][:name]})
-      
+
+      # Create tags if necessary or find tag by name
+      tags = []
+      params[:tags].each do |tag|
+        unless tag[1].empty?
+          if Tag.where(name: tag[1]).count > 0
+            tags.push(Tag.where(name: tag[1])[0])
+          else
+            Tag.new(name: tag[1]).save
+            tags.push(Tag.where(name: tag[1])[0])
+          end
+        end
+      end
+      @meme.tags = tags
+      @meme.save
+
       redirect_to root_path
     elsif !current_user && current_user.blocked
-      # TODO later: send back json with error
       redirect_to root_path
     elsif !current_user
       flash[:alert] = "You must be logged in to upload a meme."
-      # TODO later: send back json with error
       redirect_to root_path
     else
       flash[:alert] = "Choose language. Either en or de."
