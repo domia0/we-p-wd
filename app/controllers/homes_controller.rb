@@ -21,6 +21,8 @@ class HomesController < ApplicationController
         @memes = []
         sort_memes_by_likes(Meme.all).each {|item| @memes.push(item["meme"])}
       end
+    elsif params[:tag]
+      @memes = Tag.where(name: params[:tag])[0].memes
     else
       @memes = Meme.all
     end
