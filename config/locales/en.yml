@@ -96,3 +96,13 @@ en:
         post_btn:     'Post a comment'
         all_comments: 'All comments for this meme'
         no_comments:  'So far no one has commented on this meme'
+
+      report_for_meme:
+        title:    'Report meme'
+        descr:    'The reason for your report'
+        reason1:  'Racism'
+        reason2:  'Violent'
+        reason3:  'Porno content'
+        reason4:  'Religion'
+        reason5:  'Discrimination'
+        send_btn: 'Send report'

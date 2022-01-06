@@ -1,0 +1,59 @@
+#reportMemeModal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "reportMemeModal", :tabindex => "-1"}
+  .modal-dialog.modal-dialog-centered.modal-fullscreen-sm-down
+    .modal-content
+      .container
+        .row
+          .col-12.d-flex.justify-content-end.mt-3
+            %button.btn-close{"aria-label" => "Close", "data-bs-dismiss" => "modal", :type => "button"}
+          .col-12.d-flex.justify-content-center.mb-4
+            %h3.fw-light
+              = t('pages.index.report_for_meme.title')
+          .col-12.px-5
+            = form_with class: "report-for-meme-form" do |f|
+              .mb-3.row
+                .col-sm-7
+                  = t('pages.index.report_for_meme.descr') + ':'
+                .col-sm-5.d-flex.align-items-center
+                  .form-check
+                    = f.radio_button 'report[reason]',
+                                     'racism',
+                                     :class => 'form-check-input',
+                                     :id => 'racism',
+                                     :checked => true
+                    %label.form-check-label{:for => "racism"}
+                      = t('pages.index.report_for_meme.reason1')
+                .col-sm-5.offset-md-7.d-flex.align-items-center
+                  .form-check
+                    = f.radio_button 'report[reason]',
+                                     'violent',
+                                     :class => 'form-check-input',
+                                     :id => 'violent'
+                    %label.form-check-label{:for => "violent"}
+                      = t('pages.index.report_for_meme.reason2')
+                .col-sm-5.offset-md-7.d-flex.align-items-center
+                  .form-check
+                    = f.radio_button 'report[reason]',
+                                     'porno',
+                                     :class => 'form-check-input',
+                                     :id => 'porno'
+                    %label.form-check-label{:for => "porno"}
+                      = t('pages.index.report_for_meme.reason3')
+                .col-sm-5.offset-md-7.d-flex.align-items-center
+                  .form-check
+                    = f.radio_button 'report[reason]',
+                                     'religion',
+                                     :class => 'form-check-input',
+                                     :id => 'religion'
+                    %label.form-check-label{:for => "religion"}
+                      = t('pages.index.report_for_meme.reason4')
+                .col-sm-5.offset-md-7.d-flex.align-items-center
+                  .form-check
+                    = f.radio_button 'report[reason]',
+                                     'discrimination',
+                                     :class => 'form-check-input',
+                                     :id => 'discrimination'
+                    %label.form-check-label{:for => "discrimination"}
+                      = t('pages.index.report_for_meme.reason5')
+              .mb-4.row
+                .col-12.mb-1
+                  = f.button t('pages.index.report_for_meme.send_btn'), class: 'btn btn-primary w-100 rounded-pill send-report-meme-btn'

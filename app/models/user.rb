@@ -9,6 +9,7 @@ class User < ApplicationRecord
   has_many :memes
   has_many :comments
   has_many :likes
+  has_many :reports
 
   validates :username, presence: true
 
