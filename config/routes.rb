@@ -12,6 +12,7 @@ Rails.application.routes.draw do
         resources :likes
       end
       resources :likes
+      resources :reports
     end
     resources :likes
 

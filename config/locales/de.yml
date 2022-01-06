@@ -65,3 +65,13 @@ de:
         post_btn:     'Kommentar posten'
         all_comments: 'Alle Kommentare zu diesem Meme'
         no_comments:  'Bisher hat sich noch niemand zu diesem Meme geäußert'
+
+      report_for_meme:
+        title:    'Meme melden'
+        descr:    'Der Grund für die Meldung'
+        reason1:  'Rassismus'
+        reason2:  'Gewalt'
+        reason3:  'Porno-Inhalte'
+        reason4:  'Religion'
+        reason5:  'Diskriminierung'
+        send_btn: 'Report senden'

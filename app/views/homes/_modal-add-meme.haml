@@ -40,8 +40,6 @@
               .mb-3.row
                 %label.col-sm-3.col-form-label{:for => "memeTag1"} Hashtag 1:
                 .col-sm-9
-                  -# = fields_for :tag, @meme.tags do |tag_f|
-                  -#   = tag_f.text_field :name, disabled: false, class: 'form-control', id: 'memeTag1'
                   = f.text_field '', class: 'form-control', id: 'memeTag1', name: 'tags[tag1]'
               .mb-3.row
                 %label.col-sm-3.col-form-label{:for => "memeTag1"} Hashtag 2:
@@ -59,41 +57,3 @@
               .mb-4.row
                 .col-12.mb-1
                   = f.submit t('pages.index.add_meme.add_btn'), class: 'btn btn-primary w-100 rounded-pill'
-
-          -#.col-12.px-5
-          -#  = form_with model: User, url: user_session_path, class: "sign-in-form" do |f|
-          -#    .mb-3
-          -#      = f.email_field :email,
-          -#                      required: true,
-          -#                      placeholder: t('pages.index.sign_in.email'),
-          -#                      class: "form-control",
-          -#                      id: "signInEmail"
-          -#      %span.sign-in-error
-          -#        = t('pages.index.sign_in.error')
-          -#    .mb-3
-          -#      = f.password_field :password,
-          -#                         required: true,
-          -#                         placeholder: t('pages.index.sign_in.pass'),
-          -#                         minlength: 6,
-          -#                         class: "form-control",
-          -#                         id: "signInPassword"
-          -#      %span.sign-in-error
-          -#        = t('pages.index.sign_in.error')
-          -#    = f.submit t('pages.index.sign_in.sign_btn'), class: "btn btn-primary w-100 rounded-pill"
-          -#.col-12.mt-3
-          -#  %hr.w-100/
-          -#.col-12.d-flex.justify-content-center.mb-1.mt-1
-          -#  %span
-          -#    = t('pages.index.sign_in.ref_signup')
-          -#    = link_to t('pages.index.sign_up.title'),
-          -#              '#',
-          -#              "data-bs-dismiss" => "#loginModal",
-          -#              "data-bs-target" => "#signupModal",
-          -#              "data-bs-toggle" => "modal"
-          -#.col-12.d-flex.justify-content-center.mb-4.mt-1
-          -#  %span
-          -#    = link_to t('pages.index.sign_in.ref_pasres'),
-          -#              '#',
-          -#              "data-bs-dismiss" => "#loginModal",
-          -#              "data-bs-target" => "#resetPasswordModal",
-          -#              "data-bs-toggle" => "modal"
