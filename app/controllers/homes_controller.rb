@@ -24,7 +24,7 @@ class HomesController < ApplicationController
     elsif params[:tag]
       @memes = Tag.where(name: params[:tag])[0].memes
     else
-      @memes = Meme.all
+      @memes = Meme.all.order(created_at: :desc)
     end
   end
 
