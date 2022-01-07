@@ -3,6 +3,11 @@
 <p><%= image_tag @meme.image %></p>
 
 <p><%= @meme.lang %></p>
+<p>
+  <%= link_to 'Destroy Meme', @meme,
+              method: :delete,
+              data: { confirm: "Are you sure?" } %>
+</p>
 
 <!--polymorphic_path([@meme, @like])-->
 <p id='like-count<%= @meme.id %>'> 

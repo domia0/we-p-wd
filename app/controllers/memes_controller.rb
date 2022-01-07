@@ -47,10 +47,12 @@ class MemesController < ApplicationController
   end
 
   def destroy
-    # TODO check ob ein User einen Meme loeschen darf
     @meme = Meme.find(params[:id])
-    @meme.destroy
-    redirect_to root_path
+
+		if current_user && current_user.id == @meme.user_id
+      @meme.destroy
+			#redirect_to meme_path(@meme)
+		end
   end
 
   private

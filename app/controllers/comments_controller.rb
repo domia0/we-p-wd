@@ -20,8 +20,11 @@ class CommentsController < ApplicationController
 	def destroy
 		@meme = Meme.find(params[:meme_id])
 		@comment = @meme.comments.find(params[:id])
-		@comment.destroy
-		redirect_to meme_path(@meme)
+
+		if current_user && current_user.id == @comment.user_id
+			@comment.destroy
+			#redirect_to meme_path(@meme)
+		end
 	end
 
 	def show_all_comments_for_meme

@@ -11,7 +11,7 @@ class User < ApplicationRecord
   has_many :likes
   has_many :reports
 
-  validates :username, presence: true
+  validates :username, presence: true, uniqueness: true
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
