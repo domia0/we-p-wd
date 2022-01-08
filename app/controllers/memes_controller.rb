@@ -19,22 +19,35 @@ class MemesController < ApplicationController
       I18n.available_locales.map(&:to_s).include?(meme_params[:lang])
       @meme = current_user.memes.create(meme_params)
 
-      # Create tags if necessary or find tag by name
-      tags = []
-      params[:tags].each do |tag|
-        unless tag[1].empty?
-          if Tag.where(name: tag[1]).count > 0
-            tags.push(Tag.where(name: tag[1])[0])
-          else
-            Tag.new(name: tag[1]).save
-            tags.push(Tag.where(name: tag[1])[0])
+      params[:tag].each do |t,n|
+        @tag = Tag.find_by(name: n[:name])
+        if @tag != nil
+          if !@meme.tags.exists?(@tag[:id])
+            @meme.tags << @tag
           end
-        end
+        else
+          @meme.tags.create({name: n[:name]})
+        end   
       end
-      @meme.tags = tags
-      @meme.save
-
       redirect_to root_path
+      # Create tags if necessary or find tag by name
+      #tags = []
+      #params[:tags].each do |tag|
+       # unless tag[1].empty?
+        #  if Tag.where(name: tag[1]).count > 0
+         #   tags.push(Tag.where(name: tag[1])[0])
+         # else
+          #  Tag.new(name: tag[1]).save
+           # tags.push(Tag.where(name: tag[1])[0])
+        #  end
+       # end
+      #end
+      #@meme.tags = tags
+      #if @meme.save
+       # redirect_to root_path
+      #elsif
+       # render :new
+      #end
     elsif !current_user && current_user.blocked
       redirect_to root_path
     elsif !current_user
