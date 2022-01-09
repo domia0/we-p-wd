@@ -5,6 +5,7 @@ class HomesController < ApplicationController
     @meme = Meme.new
     @tag = Tag.new
     
+    
     if params[:filter]
       case params[:filter]
       when "best_today"
@@ -28,7 +29,7 @@ class HomesController < ApplicationController
     else
       @memes = Meme.all.order(created_at: :desc)
     end
-    #@memes = pagination(@memes)
+    @memes = pagination(@memes)
   end
 
   private
@@ -43,15 +44,22 @@ class HomesController < ApplicationController
     to_sort.sort_by! {|item| item['likes']}.reverse
   end
 
-  def pagination(collection)
-    page = params[:page] || 1
-    limit = params[:limit] || 10
-    page = page.to_i
-    limit = limit.to_i
-    #max_page = (collection.count + 1) / limit + 1
+  def sort_like
+    g = Like.where(likeable_type: 'memes').group(:likeable_id).count
+    g.to_a.sort{|a, b| a.last <=> b.last}.map(&:first)
+    @memes = Meme.find(g)
+  end
+
+  def pagination(array)
+    @page = params[:page] || 1
+    @limit = params[:limit] || 2
+    @page = @page.to_i
+    @limit = @limit.to_f
+    @max_page = (array.count.to_f / @limit).ceil
     #, max_page: max_page
     #return {page: :page, limit: :limit}#,
-    return collection.offset((page - 1) * limit).limit(limit)
+    return array[(@page -1) * @limit, @limit]
+   # .offset((page - 1) * limit).limit(limit)
   end
 
 end
