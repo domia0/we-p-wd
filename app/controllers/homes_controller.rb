@@ -45,12 +45,6 @@ class HomesController < ApplicationController
     to_sort.sort_by! {|item| item['likes']}.reverse
   end
 
-  def sort_like
-    g = Like.where(likeable_type: 'memes').group(:likeable_id).count
-    g.to_a.sort{|a, b| a.last <=> b.last}.map(&:first)
-    @memes = Meme.find(g)
-  end
-
   def pagination(array)
     @page = params[:page] || 1
     @limit = params[:limit] || 2
