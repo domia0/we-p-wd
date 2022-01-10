@@ -1,5 +1,7 @@
 class MemesController < ApplicationController
 
+  before_action :authenticate_user!, except: [:index]
+
   def index
     @memes = Meme.all
   end
@@ -19,16 +21,18 @@ class MemesController < ApplicationController
       I18n.available_locales.map(&:to_s).include?(meme_params[:lang])
       @meme = current_user.memes.create(meme_params)
 
+      # Create tag
       params[:tag].each do |t,n|
         @tag = Tag.find_by(name: n[:name])
         if @tag != nil
-          if !@meme.tags.exists?(@tag[:id])
-            @meme.tags << @tag
-          end
+            if !@meme.tags.exists?(@tag[:id])
+                @meme.tags << @tag
+            end
         else
-          @meme.tags.create({name: n[:name]})
+            @meme.tags.create({name: n[:name]})
         end   
-      end
+    end
+      
       redirect_to root_path
       # Create tags if necessary or find tag by name
       #tags = []

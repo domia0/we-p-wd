@@ -13,8 +13,8 @@ Rails.application.routes.draw do
       end
       resources :likes
       resources :reports
+      resources :tags
     end
-    resources :likes
 
     devise_for :users, controllers: {
       sessions:      "custom_sessions",
