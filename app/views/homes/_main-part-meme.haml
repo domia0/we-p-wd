@@ -3,7 +3,7 @@
     .col-12.d-flex.justify-content-between
       %div.d-flex.align-items-center
         %i.bi.bi-person-circle.fs-2.me-2{style: "color: #808080"}
-        %a{href: "#"}
+        %a{href: "#{'/?user=' + meme.user.username}"}
           %span
             = meme.user.username
       %div.d-flex.align-items-center.meme-more

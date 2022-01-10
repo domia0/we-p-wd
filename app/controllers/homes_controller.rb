@@ -27,6 +27,9 @@ class HomesController < ApplicationController
       end
     elsif params[:tag]
       @memes = Tag.where(name: params[:tag])[0].memes
+    elsif params[:user]
+      user_id = User.where(username: params[:user])[0].id
+      @memes = Meme.where(user_id: user_id)
     else
       @memes = Meme.all.order(created_at: :desc)
     end
@@ -47,14 +50,11 @@ class HomesController < ApplicationController
 
   def pagination(array)
     @page = params[:page] || 1
-    @limit = params[:limit] || 2
+    @limit = params[:limit] || 3
     @page = @page.to_i
     @limit = @limit.to_f
     @max_page = (array.count.to_f / @limit).ceil
-    #, max_page: max_page
-    #return {page: :page, limit: :limit}#,
     return array[(@page -1) * @limit, @limit]
-   # .offset((page - 1) * limit).limit(limit)
   end
 
 end

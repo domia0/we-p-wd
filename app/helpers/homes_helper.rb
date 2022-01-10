@@ -11,6 +11,10 @@ module HomesHelper
             url_params = url_params + "&tag="+params[:tag].to_s
         end
 
+        if params[:user] != nil
+            url_params = url_params + "&user="+params[:user].to_s
+        end
+
         return url_params
 
     end

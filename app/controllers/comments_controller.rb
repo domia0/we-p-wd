@@ -2,7 +2,7 @@ class CommentsController < ApplicationController
 
 	def create
 	  @meme = Meme.find(params[:meme_id])
-		body = params[:comment][:body]
+	  body = params[:comment][:body]
 	  @comment = current_user.comments.create!(body: body, meme_id: @meme.id)
 	  # redirect_to meme_path(@meme)
 	end
