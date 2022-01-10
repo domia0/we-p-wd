@@ -17,6 +17,7 @@ class MemesController < ApplicationController
     if current_user &&
       !current_user.blocked &&
       I18n.available_locales.map(&:to_s).include?(meme_params[:lang])
+      #Muss hier auch params gefiltert werden? --security
       @meme = current_user.memes.create(meme_params)
 
       # Create tag

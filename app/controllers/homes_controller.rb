@@ -2,6 +2,7 @@ class HomesController < ApplicationController
   #raise params.inspect
 
   def index
+    MemesCleanupJob.perform_later
     @user = User.find(current_user.id) if current_user
     @meme = Meme.new
     @tag = Tag.new
@@ -26,9 +27,9 @@ class HomesController < ApplicationController
         sort_memes_by_likes(Meme.all).each {|item| @memes.push(item["meme"])}
       end
     elsif params[:tag]
-      @memes = Tag.where(name: params[:tag])[0].memes
+      @memes = Tag.find_by(name: params[:tag]).memes
     elsif params[:user]
-      user_id = User.where(username: params[:user])[0].id
+      user_id = User.find_by(username: params[:user]).id
       @memes = Meme.where(user_id: user_id)
     else
       @memes = Meme.all.order(created_at: :desc)
