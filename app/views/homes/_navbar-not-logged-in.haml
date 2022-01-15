@@ -1,6 +1,7 @@
 %nav.navbar.navbar-light.bg-light-blue.navbar-expand-lg.fixed-top.hidden-xs.hidden-sm
   .container-fluid
-    %a#h-logo.navbar-brand{:href => "/"} Home
+    %a#h-logo.navbar-brand{:href => "/"} 
+      = t('pages.index.home')
     %button.navbar-toggler{"aria-controls"  => "offcanvasNavbar",
                            "data-bs-target" => "#offcanvasNavbar",
                            "data-bs-toggle" => "offcanvas",
@@ -8,7 +9,8 @@
       %span#h-toggler-icon.navbar-toggler-icon
     #offcanvasNavbar.offcanvas.offcanvas-end.bg-light-blue{"aria-labelledby" => "offcanvasNavbarLabel", :tabindex => "-1"}
       .offcanvas-header.mb-0.pb-0
-        %h5#offcanvasNavbarLabel.offcanvas-title Menu
+        %h5#offcanvasNavbarLabel.offcanvas-title
+          = t('pages.index.menu')
         %button.btn-close.text-reset{"aria-label" => "Close",
                                      "data-bs-dismiss" => "offcanvas",
                                      :type => "button"}
@@ -27,11 +29,11 @@
               %li
                 %a.dropdown-item{:href => "/en"}
                   %img.me-1{:src => "/images/lang-usa.png"}/
-                  English
+                  = t('pages.index.navbar-lang-en')
               %li
                 %a.dropdown-item{:href => "/de"}
                   %img.me-1{:src => "/images/lang-germany.png"}/
-                  Germany
+                  = t('pages.index.navbar-lang-de')
           %li.nav-item
             = link_to t('pages.index.sign_in.title'),
                         '#',

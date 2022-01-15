@@ -17,6 +17,11 @@ de:
       filter-best-month: 'beste Monat'
       filter-best-all:   'beste aller Zeiten'
       navbar:            'Navigationsleiste'
+      navbar-lang-en:    'Englisch'
+      navbar-lang-de:    'Deutsch'
+      home:              'Start'
+      menu:              'Menü'
+
 
       sign_up:
         title:       'Registrierung'
@@ -57,7 +62,7 @@ de:
         lang_1:     'Englisch'
         lang_2:     'Deutsch'
         upload_btn: 'Hochladen'
-        add_btn:    'Mem erstellen'
+        add_btn:    'Meme erstellen'
 
       comments:
         title:        'Kommentare'

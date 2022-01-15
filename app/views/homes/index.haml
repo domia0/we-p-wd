@@ -1,11 +1,11 @@
 = javascript_pack_tag 'index.js'
 
 -# Navbar
-- if user_signed_in?
+-# if user_signed_in?
   = render 'navbar-logged-in'
-- else
+-# else
   = render 'navbar-not-logged-in'
-
+= render 'navbar'
 -# Main part
 #main-part-memes.container-md.mt-6
   -# Title and filters

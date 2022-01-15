@@ -48,6 +48,10 @@ en:
       filter-best-month: 'best month'
       filter-best-all:   'best all time'
       navbar:            'Navigation'
+      navbar-lang-en:    'English'
+      navbar-lang-de:    'German'
+      home:              'Home'
+      menu:              'Menu'
 
       sign_up:
         title:       'Sign up'
