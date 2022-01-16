@@ -9,7 +9,7 @@
             %h3.fw-light
               = t('pages.index.sign_in.title')
           .col-12.px-5
-            = form_with model: User, url: user_session_path, class: "sign-in-form" do |f|
+            = form_with model: resource, url: user_session_path, class: "sign-in-form" do |f|
               .mb-3
                 = f.email_field :email,
                                 required: true,

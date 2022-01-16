@@ -13,7 +13,7 @@
             %h3.fw-light
               = t('pages.index.sign_up.title')
           .col-12.px-5
-            = form_with model: User.new, url: registration_path(User.new), class: "sign-up-form" do |f|
+            = form_with model: resource, url: registration_path(resource), class: "sign-up-form" do |f|
               .mb-3
                 = f.text_field :username,
                                required: true,
