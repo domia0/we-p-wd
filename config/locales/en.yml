@@ -83,6 +83,7 @@ en:
         rem_acc:     'Do you want to remove your account?'
         rem_acc_btn: 'Delete account'
         update_btn:  'Update'
+        #reset_pw:    'Reset password'
 
       add_meme:
         title:      'Add a new meme'

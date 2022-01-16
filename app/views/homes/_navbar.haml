@@ -12,8 +12,7 @@
       .offcanvas-header.mb-0.pb-0
         - if user_signed_in? 
           .user_id_not_security{"user_id" => current_user.id}
-        %h5#offcanvasNavbarLabel.offcanvas-title
-          = t('pages.index.menu') 
+        %h5#offcanvasNavbarLabel.offcanvas-title Menu
         %button.btn-close.text-reset{"aria-label" => "Close",
                                      "data-bs-dismiss" => "offcanvas",
                                      :type => "button"}

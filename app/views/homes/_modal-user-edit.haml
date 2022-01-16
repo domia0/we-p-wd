@@ -13,7 +13,7 @@
             %h3.fw-light
               = t('pages.index.edit_user.title')
           .col-12.px-5
-            = form_with model: @user, url: registration_path(User.new), html: { method: :put } do |f|
+            = form_with model: resource, url: registration_path(resource), html: { method: :put } do |f|
               .mb-3
                 = f.text_field :username,
                                required: true,
