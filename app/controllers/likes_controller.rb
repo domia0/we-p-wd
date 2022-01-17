@@ -23,12 +23,12 @@ class LikesController < ApplicationController
   def destroy
     if params[:comment_id] == nil
       @meme = Meme.find(params[:meme_id])
-      @like = @meme.likes.find_by(user_id: current_user.id, likeable: @meme)
-      @like.destroy
+      @like = @meme.likes.where(user_id: current_user.id, likeable_id: @meme.id)
+      @like[0].destroy if @like.count == 1
     else
       @comment = Comment.find(params[:comment_id])
-      @like = @comment.likes.find_by(user_id: current_user.id, likeable: @comment)
-      @like.destroy
+      @like = @comment.likes.where(user_id: current_user.id, likeable_id: @comment.id)
+      @like[0].destroy if @like.count == 1
     end
   end
 
