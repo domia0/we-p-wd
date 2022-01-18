@@ -1,21 +1,21 @@
 #main-part-memes-title.row.mb-4
   .col-12
     %span.fs-1.filter
-      %a.main{:href => "/", class: "#{'selected' unless params[:filter]}"}
+      %a.main{:href => "/" + I18n.locale.to_s, class: "#{'selected' unless params[:filter]}"}
         = t('pages.index.filter-main')
     %span.mx-2 /
     %span.filter
-      %a.best-today{:href => "/?filter=best_today", class: "#{'selected' if params[:filter] == 'best_today'}"}
+      %a.best-today{:href => "?filter=best_today", class: "#{'selected' if params[:filter] == 'best_today'}"}
         = t('pages.index.filter-best-today')
     %span.mx-2 /
     %span.filter
-      %a.best-week{:href => "/?filter=best_week", class: "#{'selected' if params[:filter] == 'best_week'}"}
+      %a.best-week{:href => "?filter=best_week", class: "#{'selected' if params[:filter] == 'best_week'}"}
         = t('pages.index.filter-best-week')
     %span.mx-2 /
     %span.filter
-      %a.best-month{:href => "/?filter=best_month", class: "#{'selected' if params[:filter] == 'best_month'}"}
+      %a.best-month{:href => "?filter=best_month", class: "#{'selected' if params[:filter] == 'best_month'}"}
         = t('pages.index.filter-best-month')
     %span.mx-2 /
     %span.filter
-      %a.best-all-time{:href => "/?filter=best_all_time", class: "#{'selected' if params[:filter] == 'best_all_time'}"}
+      %a.best-all-time{:href => "?filter=best_all_time", class: "#{'selected' if params[:filter] == 'best_all_time'}"}
         = t('pages.index.filter-best-all')

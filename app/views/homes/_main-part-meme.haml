@@ -1,35 +1,41 @@
 .col-md-4
-  .row.bg-main-mem
+  .row.bg-main-meme
     .col-12.d-flex.justify-content-between
-      %div.d-flex.align-items-center
+      %div.d-flex.align-items-center.user-name
         %i.bi.bi-person-circle.fs-2.me-2{style: "color: #808080"}
-        %a{href: "#{'/?user=' + meme.user.username}"}
+        %a{href: "#{'?user=' + meme.user.username}"}
           %span
             = meme.user.username
       %div.d-flex.align-items-center.meme-more
 
         .dropdown
-          %button.more-btn#dropdownMenuButton1{"aria-expanded" => "false", "data-bs-toggle" => "dropdown", :type => "button"}
+          %button.more-btn#dropdownMenuButton1{"aria-expanded" => "false",
+                                               "data-bs-toggle" => "dropdown",
+                                               :type => "button"}
             %i.bi.bi-three-dots.fs-2.ms-2
           %ul.dropdown-menu{"aria-labelledby" => "dropdownMenuButton1"}
             %li
-              -#%a.dropdown-item{:href => "#"} Report
               = link_to 'Report',
                         '#',
                         class: "dropdown-item open-report-window-meme-btn",
                         "data-bs-target" => "#reportMemeModal",
                         "data-bs-toggle" => "modal",
                         "meme_id" => meme.id
-            %li
-              %a.dropdown-item.disabled{:href => "#"} Delete meme
-
+            - if user_signed_in? && @user.id == meme.user_id
+              %li
+                %hr.dropdown-divider
+              %li
+                = link_to t('pages.index.delete_meme.btn-menu'),
+                          {controller: "memes", action: "destroy", id: meme.id},
+                          class: "dropdown-item text-danger",
+                          method: :delete
 
     .col-12
       = image_tag meme.image, class: 'w-100'
     .col-8.d-flex.align-items-center.tags
       - meme.tags.each do |tag|
         %span.me-2
-          %a{href: "#{'/?tag=' + tag.name}"}
+          %a{href: "#{'?tag=' + tag.name}"}
             = '#' + tag.name
     .col-4.d-flex.justify-content-end.align-items-center.mt-1
       - if user_signed_in?

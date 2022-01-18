@@ -1,7 +1,8 @@
-= render "add-meme-btn-mobile"
+- if user_signed_in?
+  = render "add-meme-btn-mobile"
 %nav.navbar.navbar-light.bg-light-blue.navbar-expand-lg.fixed-top.hidden-xs.hidden-sm
   .container-fluid
-    %a#h-logo.navbar-brand{:href => "/"}
+    %a#h-logo.navbar-brand{:href => "/" + I18n.locale.to_s}
       = t('pages.index.home')
     %button.navbar-toggler{"aria-controls"  => "offcanvasNavbar",
                            "data-bs-target" => "#offcanvasNavbar",

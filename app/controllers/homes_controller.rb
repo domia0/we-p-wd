@@ -1,5 +1,4 @@
 class HomesController < ApplicationController
-  #raise params.inspect
 
   def index
     MemesCleanupJob.perform_later
@@ -7,23 +6,19 @@ class HomesController < ApplicationController
     @meme = Meme.new
     @tag = Tag.new
     
-    
     if params[:filter]
+      @memes = []
       case params[:filter]
       when "best_today"
-        @memes = []
         sort_memes_by_likes(Meme.where(created_at: Date.today.beginning_of_day..Date.today.end_of_day))
           .each {|item| @memes.push(item["meme"])}
       when "best_week"
-        @memes = []
         sort_memes_by_likes(Meme.where(created_at: Date.today - 7..Date.today.end_of_day))
           .each {|item| @memes.push(item["meme"])}
       when "best_month"
-        @memes = []
         sort_memes_by_likes(Meme.where(created_at: Date.today - 30..Date.today.end_of_day))
           .each {|item| @memes.push(item["meme"])}
       when "best_all_time"
-        @memes = []
         sort_memes_by_likes(Meme.all).each {|item| @memes.push(item["meme"])}
       end
     elsif params[:tag]
@@ -51,11 +46,11 @@ class HomesController < ApplicationController
 
   def pagination(array)
     @page = params[:page] || 1
-    @limit = params[:limit] || 3
+    @limit = params[:limit] || 6
     @page = @page.to_i
     @limit = @limit.to_f
     @max_page = (array.count.to_f / @limit).ceil
-    return array[(@page -1) * @limit, @limit]
+    array[(@page -1) * @limit, @limit]
   end
 
 end

@@ -5,19 +5,19 @@
         %ul.pagination
           - if @page > 1
             %li.page-item
-              %a.page-link{"aria-label" => "Previous", :href => "/?page="+(@page-1).to_s+ get_current_url_params}
+              %a.page-link{"aria-label" => "Previous", :href => "?page=" + (@page - 1).to_s + get_current_url_params}
                 %span{"aria-hidden" => "true"} «
           - i = 1
           - while i <= @max_page
             %li.page-numbers
               - if i == @page
-                %a.page-link.active{:href => "/?page="+i.to_s+ get_current_url_params}
+                %a.page-link.active{:href => "?page=" + i.to_s + get_current_url_params}
                   = i.to_s
               - else
-                %a.page-link{:href => "/?page="+i.to_s+ get_current_url_params}
+                %a.page-link{:href => "?page=" + i.to_s + get_current_url_params}
                   = i.to_s
             - i = i + 1
           - if @page < @max_page
             %li.page-item
-              %a.page-link{"aria-label" => "Next", :href => "/?page="+(@page+1).to_s+ get_current_url_params}
+              %a.page-link{"aria-label" => "Next", :href => "?page="+(@page + 1).to_s + get_current_url_params}
                 %span{"aria-hidden" => "true"} »

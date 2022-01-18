@@ -31,26 +31,7 @@ class MemesController < ApplicationController
             @meme.tags.create({name: n[:name]})
         end   
     end
-      
       redirect_to root_path
-      # Create tags if necessary or find tag by name
-      #tags = []
-      #params[:tags].each do |tag|
-       # unless tag[1].empty?
-        #  if Tag.where(name: tag[1]).count > 0
-         #   tags.push(Tag.where(name: tag[1])[0])
-         # else
-          #  Tag.new(name: tag[1]).save
-           # tags.push(Tag.where(name: tag[1])[0])
-        #  end
-       # end
-      #end
-      #@meme.tags = tags
-      #if @meme.save
-       # redirect_to root_path
-      #elsif
-       # render :new
-      #end
     elsif !current_user && current_user.blocked
       redirect_to root_path
     elsif !current_user
@@ -64,10 +45,9 @@ class MemesController < ApplicationController
 
   def destroy
     @meme = Meme.find(params[:id])
-
 		if current_user && current_user.id == @meme.user_id
       @meme.destroy
-			#redirect_to meme_path(@meme)
+			redirect_to root_path
 		end
   end
 
