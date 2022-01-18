@@ -19,8 +19,8 @@ de:
       navbar:            'Navigationsleiste'
       navbar-lang-en:    'Englisch'
       navbar-lang-de:    'Deutsch'
-      home:              'Start'
-      #menu:              'Menü'
+      home:              'ME-ME-ME.de'
+      menu:              'Menü'
 
 
       sign_up:
@@ -53,7 +53,7 @@ de:
         rem_acc:     'Möchten Sie Ihr Konto entfernen?'
         rem_acc_btn: 'Konto löschen'
         update_btn:  'Aktualisieren'
-        #reset_pw:    'Passwort zurücksetzen'
+        reset_pw:    'Passwort zurücksetzen'
 
       add_meme:
         title:      'Neues Meme hinzufügen'
@@ -71,6 +71,9 @@ de:
         post_btn:     'Kommentar posten'
         all_comments: 'Alle Kommentare zu diesem Meme'
         no_comments:  'Bisher hat sich noch niemand zu diesem Meme geäußert'
+
+      delete_meme:
+        btn-menu: 'Meme löschen'
 
       report_for_meme:
         title:    'Meme melden'

@@ -99,10 +99,11 @@ body {
     margin-bottom: 2rem !important;
   }
 }
-#tags a {
-  color: #6a6a6a;
+.user-name a,
+.tags a {
+  color: #347dea !important;
 }
-.bg-main-mem {
+.bg-main-meme {
   background-color: #fdfdfd;
 }
 .filter a {

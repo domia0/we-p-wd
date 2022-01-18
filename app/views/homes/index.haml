@@ -1,10 +1,6 @@
 = javascript_pack_tag 'index.js'
 
 -# Navbar
--# if user_signed_in?
-  = render 'navbar-logged-in'
--# else
-  = render 'navbar-not-logged-in'
 = render 'navbar'
 -# Main part
 #main-part-memes.container-md.mt-6
@@ -12,22 +8,12 @@
   = render 'main-part-title-filters'
 
   -# Memes
-  -##row-memes-main.row.gy-4{"data-masonry" => "{\"percentPosition\": true }"}
   #row-memes-main.row.gy-4
-    -# = render 'main-part-memes'
-    - @memes.each do |meme, index|
+    - @memes.each do |meme|
       = render 'main-part-meme', meme: meme
-
--# For Development!
--# = params.inspect
 
 -# Pagination
 = render 'pagination'
-
--# - if current_user
--#  %p 123
--# - else
--#  %p 456
 
 -# Footer
 = render 'footer'
