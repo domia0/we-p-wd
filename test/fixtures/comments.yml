@@ -12,11 +12,21 @@
 
 
 comment1:
-  body: MyText
+  body: MyText1
   user: user1
   meme: meme1
 
 comment2:
-  body: MyText
+  body: MyText2
+  user: user2
+  meme: meme1
+
+comment3:
+  body: MyText3
+  user: user1
+  meme: meme2
+
+comment4:
+  body: MyText4
   user: user2
   meme: meme2

@@ -70,8 +70,6 @@ ActiveRecord::Schema.define(version: 2021_12_21_151557) do
   create_table "memes_tags", id: false, force: :cascade do |t|
     t.integer "meme_id", null: false
     t.integer "tag_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
     t.index ["meme_id", "tag_id"], name: "index_memes_tags_on_meme_id_and_tag_id", unique: true
   end
 

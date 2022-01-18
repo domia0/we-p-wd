@@ -11,13 +11,11 @@
 ##  user: two
 
 meme1:
-  img: MyString
-  lang: MyString
+  lang: de
   user: user1
-  tag: tag1
+  tags: tag1, tag2
 
 meme2:
-  img: MyString
-  lang: MyString
+  lang: en
   user: user2
-  tag: tag2
+  tags: tag1, tag3

@@ -12,10 +12,12 @@
 
 report1:
   user: user1
+  reportable: meme1 (Meme)
   reason: 1
   open: false
 
 report2:
   user: user2
-  reason: 1
-  open: false
+  reportable: comment1 (Comment)
+  reason: 2
+  open: true

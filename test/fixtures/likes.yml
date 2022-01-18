@@ -13,4 +13,12 @@ like1:
 
 like2:
   user: user2
+  likeable: meme1 (Meme)
+
+like3:
+  user: user1
+  likeable: comment1 (Comment)
+
+like4:
+  user: user2
   likeable: comment1 (Comment)

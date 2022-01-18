@@ -1,0 +1,9 @@
+meme1_image_attachment:
+  name: image
+  record: meme1 (Meme)
+  blob: meme1_image_blob
+
+meme2_image_attachment:
+  name: image
+  record: meme2 (Meme)
+  blob: meme2_image_blob

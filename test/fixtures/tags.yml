@@ -7,9 +7,10 @@
 ##  name: MyString
 
 tag1:
-  name: MyString
-  meme: meme1
+  name: MyTag1
 
 tag2:
-  name: MyString
-  memes: meme1, meme2
+  name: MyTag2
+
+tag3:
+  name: MyTag3
