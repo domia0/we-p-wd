@@ -21,6 +21,8 @@ de:
       navbar-lang-de:    'Deutsch'
       home:              'ME-ME-ME.de'
       menu:              'Menü'
+      navbar-acc-menu:   'Konto'
+      navbar-acc-stat:   'Statistik'
 
 
       sign_up:
@@ -84,3 +86,21 @@ de:
         reason4:  'Religion'
         reason5:  'Diskriminierung'
         send_btn: 'Report senden'
+
+      statistic:
+        title: 'Statistik für'
+        achievements: 'Meilensteine'
+        total_memes: 'Insgesamt hochgeladene Memes'
+        total_comments: 'Insgesamt geschriebene Kommentare'
+        total_likes: 'Anzahl von Likes für andere'
+        best_memes: '5 deiner besten Memes'
+        best_comments: '5 deiner besten Kommentare'
+        earn_achievment: 'Du hast diesen Meilenstein schon verdient:'
+        to_unlock_achievment: 'Um den Meilenstein freizuschalten:'
+        achievment_1_like_memes: 'bekomm 1 Like für deine Memes'
+        achievment_3_like_memes: 'bekomm 3 Like für deine Memes'
+        achievment_10_like_memes: 'bekomm 10 Like für deine Memes'
+        achievment_1_post_memes: 'lade 1 Meme hoch'
+        achievment_3_post_memes: 'lade 3 Meme hoch'
+        achievment_5_post_memes: 'lade 5 Meme hoch'
+        work_in_progess: '- Kommt bald :) -'

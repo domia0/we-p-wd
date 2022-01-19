@@ -38,12 +38,27 @@ body {
   .offcanvas-body .navbar-nav {
     align-items: center;
   }
-  .add-meme-btn-mobile-div {
+  .account-dropdown-menu {
+    display: block;
+  }
+  .add-meme-btn-mobile-div,
+  .account-mobile-menu {
     display: none;
   }
 }
+@media only screen and (max-width: 999px) {
+  .account-dropdown-menu {
+    display: none;
+  }
+  .account-mobile-menu {
+    display: block;
+    font-size: 1.6rem;
+    margin-bottom: 0.6rem;
+    font-weight: 500;
+  }
+}
 .offcanvas-end {
-  width: 200px !important;
+  width: 220px !important;
 }
 .modal-login-title {
   font-weight: 300;
@@ -67,11 +82,7 @@ body {
 
 
 /* * *  Modal: Sign Up  * * * */
-.sign-up-error-name {
-  color: red;
-  font-size: 0.8rem;
-  display: none;
-}
+.sign-up-error-name,
 .sign-up-error-email {
   color: red;
   font-size: 0.8rem;
@@ -138,6 +149,41 @@ body {
     padding-right: 3rem!important;
     padding-left:  3rem!important;
   }
+}
+
+
+/* * *  Statistic  * * * * * */
+.statistic-best-memes {
+  display: block !important;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+.statistic-best-memes .col-md-4 {
+  display: inline-block;
+}
+.statistic-best-memes .col-md-4 > .row {
+  background-color: #f2f2f2b3;
+}
+.statistic-best-memes .meme-more button {
+  background-color: #f2f2f2b3;
+}
+.statistic-sub-title {
+  background-color: #6290a2;
+  padding: 0 2rem;
+  color: white;
+}
+.statistic-achievement .col-md-4 i {
+  font-size: 5rem;
+  color: #f0f0f0;
+}
+.bronze {
+  color: #bf8970 !important;
+}
+.silver {
+  color: #C0C0C0 !important;
+}
+.gold {
+  color: #e4c107 !important;
 }
 
 
