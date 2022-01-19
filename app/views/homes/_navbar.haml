@@ -37,34 +37,74 @@
                 %a.dropdown-item{:href => "/de"}
                   %img.me-1{:src => "/images/lang-germany.png"}/
                   = t('pages.index.navbar-lang-de')
-          - if user_signed_in?        
-            %li.nav-item
+          - if user_signed_in?
+            %li.nav-item.account-dropdown-menu
               = link_to t('menu.addMeme'),
                           '#',
                           class: "nav-link my-0 py-0",
                           "data-bs-target" => "#addMemeModal",
                           "data-bs-toggle" => "modal"
-            %li.nav-item
+            %li.nav-item.dropdown.account-dropdown-menu
+              %a#navbarDropdown.nav-link.dropdown-toggle{"aria-expanded" => "false",
+                                                         "data-bs-toggle" => "dropdown",
+                                                         :href => "#",
+                                                         :role => "button"}
+                = t('pages.index.navbar-acc-menu')
+              %ul.dropdown-menu{"aria-labelledby" => "navbarDropdown", :style => "left: -3.7rem !important"}
+                %li
+                  = link_to t('pages.index.navbar-acc-stat'),
+                            '#',
+                            class: "dropdown-item",
+                            "data-bs-target" => "#statisticModal",
+                            "data-bs-toggle" => "modal"
+                %li
+                  = link_to t('menu.edit'),
+                            '#',
+                            class: "dropdown-item my-0 py-0",
+                            "data-bs-target" => "#editUserModal",
+                            "data-bs-toggle" => "modal"
+                %li
+                  %hr.dropdown-divider/
+                %li
+                  = link_to t('menu.log_out'),
+                            destroy_user_session_path,
+                            method: :delete,
+                            class: "dropdown-item my-0 py-0 text-danger"
+            %li.nav-item.account-mobile-menu
+              = link_to t('menu.addMeme'),
+                          '#',
+                          class: "nav-link my-0 py-0",
+                          "data-bs-target" => "#addMemeModal",
+                          "data-bs-toggle" => "modal"
+            %li.nav-item.account-mobile-menu
+              = link_to t('pages.index.navbar-acc-stat'),
+                           '#',
+                           class: "nav-link my-0 py-0",
+                           "data-bs-target" => "#statisticModal",
+                           "data-bs-toggle" => "modal"
+            %li.nav-item.account-mobile-menu
               = link_to t('menu.edit'),
                           '#',
                           class: "nav-link my-0 py-0",
                           "data-bs-target" => "#editUserModal",
                           "data-bs-toggle" => "modal"
-            %li.nav-item
+            .col-12.mt-3.account-mobile-menu
+              %hr.w-100/
+            %li.nav-item.account-mobile-menu
               = link_to t('menu.log_out'),
-                      destroy_user_session_path,
-                      method: :delete,
-                      class: "nav-link my-0 py-0"
+                        destroy_user_session_path,
+                        method: :delete,
+                        class: "nav-link my-0 py-0 text-danger"
           - else
             %li.nav-item
               = link_to t('pages.index.sign_in.title'),
-                      '#',
-                      class: "nav-link my-0 py-0",
-                      "data-bs-target" => "#loginModal",
-                      "data-bs-toggle" => "modal"
+                        '#',
+                        class: "nav-link my-0 py-0",
+                        "data-bs-target" => "#loginModal",
+                        "data-bs-toggle" => "modal"
             %li.nav-item
               = link_to t('pages.index.sign_up.title'),
-                      '#',
-                      class: "nav-link my-0 py-0",
-                      "data-bs-target" => "#signupModal",
-                      "data-bs-toggle" => "modal"
+                        '#',
+                        class: "nav-link my-0 py-0",
+                        "data-bs-target" => "#signupModal",
+                        "data-bs-toggle" => "modal"
