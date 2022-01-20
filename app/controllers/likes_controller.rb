@@ -14,8 +14,6 @@ class LikesController < ApplicationController
     end
 
     respond_to do |format|
-      format.html { redirect_to @meme }
-      format.js
       format.json { render json: @like, location: @meme }
     end
   end

@@ -3,8 +3,13 @@ class CommentsController < ApplicationController
 	def create
 	  @meme = Meme.find(params[:meme_id])
 	  body = params[:comment][:body]
-	  @comment = current_user.comments.create!(body: body, meme_id: @meme.id)
+	  @comment = current_user.comments.build(body: body, meme_id: @meme.id)
 	  # redirect_to meme_path(@meme)
+    if !@comment.save
+      respond_to do |format|
+        format.json { render json: @comment.errors, error: "Sth went wrong"  }
+      end
+    end
 	end
 
 	def update
