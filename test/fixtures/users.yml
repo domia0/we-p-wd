@@ -28,10 +28,12 @@ user2:
 
 moderator1:
   username: test_moderator1
+  role: 1
   email: test_moderator1@example.org
   encrypted_password: <%= Devise::Encryptor.digest(User, 'password_moderator1') %>
 
 admin1:
   username: test_admin1
+  role: 2
   email: test_admin1@example.org
   encrypted_password: <%= Devise::Encryptor.digest(User, 'password_admin1') %>

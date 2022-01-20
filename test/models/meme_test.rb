@@ -30,7 +30,7 @@ class MemeTest < ActiveSupport::TestCase
     assert_equal 2, @m1.likes.size
   end
 
-  test "has_many report" do
+  test "has_many reports" do
     assert @m1.reports
     assert_equal 2, @m1.reports.size
   end
@@ -65,5 +65,8 @@ class MemeTest < ActiveSupport::TestCase
     @m1.lang = "en"
     assert @m1.valid?
   end
-  
+
+  test "has_one_attached image" do
+    assert @m1.image
+  end
 end

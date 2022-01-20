@@ -94,7 +94,7 @@ ActiveRecord::Schema.define(version: 2021_12_21_151557) do
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "username", default: "", null: false
-    t.integer "role"
+    t.integer "role", default: 0
     t.boolean "blocked", default: false
     t.string "block_reason"
     t.string "reset_password_token"

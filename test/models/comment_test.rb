@@ -36,7 +36,7 @@ class CommentTest < ActiveSupport::TestCase
     assert_equal 2, @c1.likes.size
   end
 
-  test "has_many report" do
+  test "has_many reports" do
     assert @c1.reports
     assert_equal 2, @c1.reports.size
   end
