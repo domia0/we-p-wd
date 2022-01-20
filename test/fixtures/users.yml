@@ -25,3 +25,13 @@ user2:
   username: test2
   email: test2@example.org
   encrypted_password: <%= Devise::Encryptor.digest(User, 'password2') %>
+
+moderator1:
+  username: test_moderator1
+  email: test_moderator1@example.org
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password_moderator1') %>
+
+admin1:
+  username: test_admin1
+  email: test_admin1@example.org
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password_admin1') %>
