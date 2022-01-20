@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     resources :memes do
       resources :comments do
         resources :likes
+        resources :reports
       end
       resources :likes
       resources :reports

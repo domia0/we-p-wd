@@ -6,7 +6,7 @@ class CommentsController < ApplicationController
 	def create
 	  @meme = Meme.find(params[:meme_id])
 	  body = params[:comment][:body]
-	  @comment = current_user.comments.build(body: body, meme_id: @meme.id)
+    @comment = current_user.comments.build(body: body, meme_id: @meme.id)
     if !@comment.save
       flash[:error] = "Sth. went wrong"
       redirect_to root_path
@@ -34,8 +34,8 @@ class CommentsController < ApplicationController
           format.json { render json: @comment.errors, error: "Sth went wrong"  }
         end
 		  end
-	  end
-  end
+		end
+	end
 
 	def show_all_comments_for_meme
 		@comments = Comment.where(meme: params[:meme_id])

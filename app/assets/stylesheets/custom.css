@@ -50,6 +50,8 @@ body {
   .account-dropdown-menu {
     display: none;
   }
+  .sign-in-btn,
+  .sign-up-btn,
   .account-mobile-menu {
     display: block;
     font-size: 1.6rem;
@@ -150,6 +152,17 @@ body {
     padding-left:  3rem!important;
   }
 }
+.comment-more .more-btn {
+  margin: 0;
+  padding: 0;
+  border: none;
+  background-color: #d9f5ff;
+}
+@media only screen and (min-width: 1000px) {
+  .add-remove-like-comment {
+    padding-left: 1.5rem !important;
+  }
+}
 
 
 /* * *  Statistic  * * * * * */
@@ -175,6 +188,9 @@ body {
 .statistic-achievement .col-md-4 i {
   font-size: 5rem;
   color: #f0f0f0;
+}
+.statistic-best-memes .col-md-4 {
+  margin-right: 0.6rem;
 }
 .bronze {
   color: #bf8970 !important;
