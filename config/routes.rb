@@ -15,6 +15,19 @@ Rails.application.routes.draw do
       resources :reports
       resources :tags
     end
+    resources :moderators do
+      member do
+        patch 'change_user_status'
+      end
+    end
+
+    resources :reports do
+      member do
+        patch 'change_status'
+      end
+    end
+    
+    get '/moderators', to: 'moderators#index'
 
     devise_for :users, controllers: {
       sessions:      "custom_sessions",
