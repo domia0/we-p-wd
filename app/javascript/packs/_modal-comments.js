@@ -24,8 +24,8 @@ export function modalComments() {
         let commentReportDrdwUl = $('<ul>', {class: 'dropdown-menu', 'aria-labelledby': 'dropdownMenuButton2'});
         let commentReportDrdwLi = $('<li>');
         let commentReportDrdwA1 = $('<a>', {href: '#', meme_id: item.meme_id, comment_id: item.id, class: 'dropdown-item send-report-comment-btn', text: 'Racism'});
-        let commentReportDrdwA2 = $('<a>', {href: '#', meme_id: item.meme_id, comment_id: item.id, class: 'dropdown-item send-report-comment-btn', text: 'Violent'});
-        let commentReportDrdwA3 = $('<a>', {href: '#', meme_id: item.meme_id, comment_id: item.id, class: 'dropdown-item send-report-comment-btn', text: 'Porno content'});
+        let commentReportDrdwA2 = $('<a>', {href: '#', meme_id: item.meme_id, comment_id: item.id, class: 'dropdown-item send-report-comment-btn', text: 'Violence'});
+        let commentReportDrdwA3 = $('<a>', {href: '#', meme_id: item.meme_id, comment_id: item.id, class: 'dropdown-item send-report-comment-btn', text: 'Pornography'});
         let commentReportDrdwA4 = $('<a>', {href: '#', meme_id: item.meme_id, comment_id: item.id, class: 'dropdown-item send-report-comment-btn', text: 'Religion'});
         let commentReportDrdwA5 = $('<a>', {href: '#', meme_id: item.meme_id, comment_id: item.id, class: 'dropdown-item send-report-comment-btn', text: 'Discrimination'});
 

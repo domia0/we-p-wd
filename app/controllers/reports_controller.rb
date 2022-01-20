@@ -15,7 +15,7 @@ class ReportsController < ApplicationController
     else
       @comment = Comment.find(params[:comment_id])
       reason = params[:report][:reason]
-      @report = current_user.comments.build(reason: reason, open: true, reportable: @comment)
+      @report = current_user.reports.build(reason: reason, open: true, reportable: @comment)
       if !@report.save
         flash[:error] = "Sth. went wrong"
         redirect_to root_path

@@ -25,18 +25,18 @@
                 .col-sm-5.offset-md-7.d-flex.align-items-center
                   .form-check
                     = f.radio_button 'report[reason]',
-                                     'violent',
+                                     'violence',
                                      :class => 'form-check-input',
-                                     :id => 'violent'
-                    %label.form-check-label{:for => "violent"}
+                                     :id => 'violence'
+                    %label.form-check-label{:for => "violence"}
                       = t('pages.index.report_for_meme.reason2')
                 .col-sm-5.offset-md-7.d-flex.align-items-center
                   .form-check
                     = f.radio_button 'report[reason]',
-                                     'porno',
+                                     'pornography',
                                      :class => 'form-check-input',
-                                     :id => 'porno'
-                    %label.form-check-label{:for => "porno"}
+                                     :id => 'pornography'
+                    %label.form-check-label{:for => "pornography"}
                       = t('pages.index.report_for_meme.reason3')
                 .col-sm-5.offset-md-7.d-flex.align-items-center
                   .form-check
