@@ -4,7 +4,6 @@ class CommentsController < ApplicationController
 	  @meme = Meme.find(params[:meme_id])
 	  body = params[:comment][:body]
 	  @comment = current_user.comments.create!(body: body, meme_id: @meme.id)
-	  # redirect_to meme_path(@meme)
 	end
 
 	def update
@@ -23,7 +22,6 @@ class CommentsController < ApplicationController
 
 		if current_user && current_user.id == @comment.user_id
 			@comment.destroy
-			#redirect_to meme_path(@meme)
 		end
 	end
 

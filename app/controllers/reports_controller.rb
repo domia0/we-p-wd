@@ -7,8 +7,7 @@ class ReportsController < ApplicationController
     else
       @comment = Comment.find(params[:comment_id])
       reason = params[:report][:reason]
-      @report = current_user.comments.create!(reason: reason, open: true, reportable: @comment)
-      # redirect_to meme_path(@meme)
+      @report = current_user.reports.create!(reason: reason, open: true, reportable: @comment)
     end
   end
 end

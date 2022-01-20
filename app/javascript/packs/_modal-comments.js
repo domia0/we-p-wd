@@ -11,18 +11,31 @@ export function modalComments() {
         $('.no-comments').addClass('d-none')
       }
       comments.forEach(function(item){
-        let commentHeaderDiv =   $('<div>',  {class: 'comment bg-light-blue m-2 rounded'});
+        let commentHeaderDiv  = $('<div>',  {class: 'comment bg-light-blue m-2 rounded'});
         // Comment's Header
-        let commentHeaderCol =   $('<div>',  {class: 'col-12 d-flex justify-content-between mt-1 pt-3 px-3'});
-        let commentHeaderUser =  $('<a>',    {href: '?user=' + item.userName, text: item.userName});
-        let commentHeaderDate =  $('<span>', {class: 'comment-date', text: item.date});
+        let commentHeaderCol  = $('<div>',  {class: 'col-12 d-flex justify-content-between align-items-center mt-1 pt-1 px-3'});
+        let commentHeaderUser = $('<a>',    {href: '?user=' + item.userName, text: item.userName});
+        let commentHeaderDate = $('<span>', {class: 'comment-date', text: item.date});
+
+        // Report dropdown for comment
+        let commentReportDrdw = $('<div>', {class: 'dropdown comment-more'});
+        let commentReportDrdwBtn = $('<button>', {class: 'more-btn', type: 'button', id: 'dropdownMenuButton2', 'aria-expanded': 'false', 'data-bs-toggle': 'dropdown'});
+        let commentReportDrdwBtnText = $('<i>', {class: 'bi bi-exclamation-diamond fs-2 ms-2 text-warning'});
+        let commentReportDrdwUl = $('<ul>', {class: 'dropdown-menu', 'aria-labelledby': 'dropdownMenuButton2'});
+        let commentReportDrdwLi = $('<li>');
+        let commentReportDrdwA1 = $('<a>', {href: '#', meme_id: item.meme_id, comment_id: item.id, class: 'dropdown-item send-report-comment-btn', text: 'Racism'});
+        let commentReportDrdwA2 = $('<a>', {href: '#', meme_id: item.meme_id, comment_id: item.id, class: 'dropdown-item send-report-comment-btn', text: 'Violent'});
+        let commentReportDrdwA3 = $('<a>', {href: '#', meme_id: item.meme_id, comment_id: item.id, class: 'dropdown-item send-report-comment-btn', text: 'Porno content'});
+        let commentReportDrdwA4 = $('<a>', {href: '#', meme_id: item.meme_id, comment_id: item.id, class: 'dropdown-item send-report-comment-btn', text: 'Religion'});
+        let commentReportDrdwA5 = $('<a>', {href: '#', meme_id: item.meme_id, comment_id: item.id, class: 'dropdown-item send-report-comment-btn', text: 'Discrimination'});
+
         // Comment's Body
         let commentBodyCol  =    $('<div>',  {class: 'col-12 d-flex justify-content-start mb-1 pb-2 px-3'});
         let commentBodyText =    $('<div>',  {class: 'col-10', text: item.comment});
-        let commentBodyLike =    $('<div>',  {class: 'col-2 d-flex justify-content-between align-items-center ps-4 pe-3'});
+        let commentBodyLike =    $('<div>',  {class: 'col-2 d-flex justify-content-between align-items-start ps-4 pe-3'});
         let commentBodyLikeBtn = $('<div>');
-        let commentBodyLikeCnt = $('<div>',  {text: item.likes});
-        // if (item.liked && parseInt($('.user_id_not_security').attr('user_id')) === item.user_id) {
+        let commentBodyLikeCnt = $('<div>',  {class: 'mt-2', text: item.likes});
+
         if (item.liked) {
           commentBodyLikeBtn = $('<i>',
             {
@@ -45,14 +58,54 @@ export function modalComments() {
           .append(commentHeaderCol
             .append(commentHeaderUser)
             .append(commentHeaderDate)
+            .append(commentReportDrdw
+              .append(commentReportDrdwBtn
+                .append(commentReportDrdwBtnText))
+              .append(commentReportDrdwUl
+                .append(commentReportDrdwLi
+                  .append(commentReportDrdwA1))
+                .append(commentReportDrdwLi
+                  .append(commentReportDrdwA2))
+                .append(commentReportDrdwLi
+                  .append(commentReportDrdwA3))
+                .append(commentReportDrdwLi
+                  .append(commentReportDrdwA4))
+                .append(commentReportDrdwLi
+                  .append(commentReportDrdwA5))))
           ).append(commentBodyCol
           .append(commentBodyText)
           .append(commentBodyLike
             .append(commentBodyLikeBtn)
             .append(commentBodyLikeCnt))
         );
-        // Add element to parent :)
+        // Add element to parent
         $('.all-comments-modal').append(commentHeaderDiv)
+      });
+
+      // send report for comment
+      $('.send-report-comment-btn').click(function (event) {
+        event.preventDefault();
+        let data = {
+          report: {
+            reason: $(this).text().toLowerCase(),
+          },
+          comment_id: $(this).attr('comment_id'),
+        };
+        $.ajax({
+          type: 'POST',
+          beforeSend: function(xhr) {
+            xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))
+          },
+          url: '/en/memes/' + $(this).attr('meme_id') + '/comments/' + $(this).attr('comment_id') + '/reports',
+          data: data,
+          dataType: 'json',
+          encode: true,
+        }).done(function () {
+          // pa-pa-ram
+        }).fail(function () {
+          $('#commentsModal').modal('toggle');
+          $('#loginModal').modal('toggle');
+        });
       });
 
       // Add or remove like for comment
