@@ -1,24 +1,18 @@
-<!--.variant(resize_to_limit: [200,200])    <%=@meme.id.to_s%>   -->
-
-<p><%= image_tag @meme.image %></p>
-
-<p><%= @meme.lang %></p>
-<p>
-  <%= link_to 'Destroy Meme', @meme,
-              method: :delete,
-              data: { confirm: "Are you sure?" } %>
-</p>
-
-<!--polymorphic_path([@meme, @like])-->
-<p id='like-count<%= @meme.id %>'> 
- <%= @meme.likes.count%>
-<%= link_to polymorphic_path([@meme, :likes]), method: :post, remote: true do %>
-    <i class="bi bi-heart-fill"></i>
-<% end %>
-</p>
-
-<h2>Comments</h2>
-<%= render @meme.comments %>
-
-<h2>Add a comment:</h2>
-<%= render 'comments/form', meme: @meme %>
+<div class="w3-container">
+  <h1>Meme</h1>
+</div>
+<div class="w3-cell-row">
+  <div class="w3-cell w3-container">
+    <p>
+      <div><%= image_tag @meme.image, style: "width: 500px; height: 400px"  %></div>
+        <div>
+        <%= link_to 'Destroy Meme', @meme,
+                    method: :delete,
+                    data: { confirm: "Are you sure?" } %>
+        </div>
+        <div>Language: <%= @meme.lang %><div>
+        <div>Likes: <%= @meme.likes.count%></div>
+        <div>Comments: <%= render @meme.comments %></div>
+      </p>
+    </div>
+  </div>

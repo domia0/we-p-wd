@@ -48,8 +48,7 @@ class ApplicationController < ActionController::Base
   def blocked?
     if current_user.blocked
       flash[:error] = "You are blocked!"
-      render 'homes/index'
-      #redirect_to root_path
+      redirect_to root_path
     end
   end
 end

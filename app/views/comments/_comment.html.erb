@@ -1,23 +1,13 @@
-<p>
-  <strong>Commenter:</strong>
-  <%= comment.user.username %>
-</p>
-<p>
-  <strong>Comment:</strong>
-  <%= comment.body %>
-</p>
-<p id='like-count-comment<%= comment.id %>'> 
- <%= comment.likes.count%>
-<%= link_to polymorphic_path([comment.meme, comment, :likes]), method: :post, remote: true do %>
-    <i class="bi bi-heart-fill"></i>
-<% end %>
-</p>
-<p>
-  <%= link_to 'Destroy Comment', [comment.meme, comment],
-              method: :delete,
-              data: { confirm: "Are you sure?" } %>
-</p>
-<p>
-  <li><%= link_to "Edit", model: comment, url: meme_path(comment.meme) %></li>
-</p>
-
+<div class="w3-cell-row">
+  <div class="w3-cell w3-container">
+    <p>
+      <div>Commenter: <%= comment.user.username %></div>
+      <div>Comment: <%= comment.body %></div>
+      <div>Likes: <%= comment.likes.count%></div>
+      <div><%= link_to 'Destroy Comment', [comment.meme, comment],
+                  method: :delete,
+                  data: { confirm: "Are you sure?" } %>
+      </div>
+    </p>
+  </div>
+</div>
