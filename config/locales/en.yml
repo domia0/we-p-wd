@@ -21,6 +21,8 @@ en:
       navbar-lang-de:    'German'
       home:              'ME-ME-ME.de'
       menu:              'Menu'
+      navbar-acc-menu:   'Account'
+      navbar-acc-stat:   'Statistic'
 
       sign_up:
         title:       'Sign up'
@@ -83,3 +85,21 @@ en:
         reason4:  'Religion'
         reason5:  'Discrimination'
         send_btn: 'Send report'
+
+      statistic:
+        title: 'Statistic for'
+        achievements: 'Achievements'
+        total_memes: 'Total memes uploaded'
+        total_comments: 'Total comments written'
+        total_likes: 'Total likes for others'
+        best_memes: '5 of your best memes'
+        best_comments: '5 of your best comments'
+        earn_achievment: 'You earned this achievement for'
+        to_unlock_achievment: 'To unlock the achievement get'
+        achievment_1_like_memes: '1 like for your memes'
+        achievment_3_like_memes: '3 likes for your memes'
+        achievment_10_like_memes: '10 likes for your memes'
+        achievment_1_post_memes: 'post 1 meme'
+        achievment_3_post_memes: 'post 3 memes'
+        achievment_5_post_memes: 'post 5 memes'
+        work_in_progess: '- Work in progress -'

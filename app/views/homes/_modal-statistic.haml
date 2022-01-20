@@ -1,0 +1,112 @@
+#statisticModal.modal.fade{"aria-hidden" => "false", "aria-labelledby" => "commentsModalLabel", :tabindex => "-1"}
+  .modal-dialog.modal-dialog-centered.modal-lg
+    .modal-content
+      .container
+        .row
+          - if user_signed_in?
+            .col-12.d-flex.justify-content-end.mt-3
+              %button.btn-close{"aria-label" => "Close", "data-bs-dismiss" => "modal", :type => "button"}
+            .col-12.d-flex.justify-content-center
+              %h3.fw-light
+                = t('pages.index.statistic.title') + ' ' + @user.username
+            .col-12.d-flex.justify-content-center
+              - unless @user.blocked
+                %span.text-success
+                  active
+              - else
+                %span.text-danger
+                  blocked
+            .col-12.d-flex.justify-content-center.text-center.mt-3
+              %span
+                = t('pages.index.statistic.total_memes') + ': '
+                %b
+                  = @user.memes.count.to_s
+              %span.mx-5
+                = t('pages.index.statistic.total_comments') + ': '
+                %b
+                  = @user.comments.count.to_s
+              %span
+                = t('pages.index.statistic.total_likes') + ': '
+                %b
+                  = @user.likes.count.to_s
+
+            .col-12.mt-3
+              %hr.w-100/
+            .col-12.d-flex.justify-content-center.mb-1.mt-3
+              .row.statistic-achievement
+                .col-12.d-flex.justify-content-center.mb-3
+                  %span.fs-4.statistic-sub-title
+                    = t('pages.index.statistic.achievements')
+
+                -# calculate total likes, first line of achievement
+                - likes_for_memes = 0
+                - @statistic_best_memes.each {|e| likes_for_memes += e['likes']}
+                .col-md-4.d-flex.align-items-center
+                  %i.bi.bi-trophy-fill{class: "#{'bronze' if likes_for_memes > 0}"}
+                  %span.ms-2
+                    - if @user.memes.count > 0
+                      = t('pages.index.statistic.earn_achievment')
+                    - else
+                      = t('pages.index.statistic.to_unlock_achievment')
+                    = t('pages.index.statistic.achievment_1_like_memes')
+                .col-md-4.d-flex.align-items-center
+                  %i.bi.bi-trophy-fill{class: "#{'silver' if likes_for_memes > 2}"}
+                  %span.ms-2
+                    - if @user.memes.count > 2
+                      = t('pages.index.statistic.earn_achievment')
+                    - else
+                      = t('pages.index.statistic.to_unlock_achievment')
+                    = t('pages.index.statistic.achievment_3_like_memes')
+                .col-md-4.d-flex.align-items-center
+                  %i.bi.bi-trophy-fill{class: "#{'gold'   if likes_for_memes > 9}"}
+                  %span.ms-2
+                    - if @user.memes.count > 9
+                      = t('pages.index.statistic.earn_achievment')
+                    - else
+                      = t('pages.index.statistic.to_unlock_achievment')
+                    = t('pages.index.statistic.achievment_10_like_memes')
+
+                -# calculate total memes, second line of achievement
+                .col-md-4.d-flex.align-items-center
+                  %i.bi.bi-emoji-laughing-fill{class: "#{'bronze' if @user.memes.count > 0}"}
+                  %span.ms-2
+                    - if @user.memes.count > 0
+                      = t('pages.index.statistic.earn_achievment')
+                    - else
+                      = t('pages.index.statistic.to_unlock_achievment')
+                    = t('pages.index.statistic.achievment_1_post_memes')
+                .col-md-4.d-flex.align-items-center
+                  %i.bi.bi-emoji-laughing-fill{class: "#{'silver' if @user.memes.count > 2}"}
+                  %span.ms-2
+                    - if @user.memes.count > 2
+                      = t('pages.index.statistic.earn_achievment')
+                    - else
+                      = t('pages.index.statistic.to_unlock_achievment')
+                    = t('pages.index.statistic.achievment_3_post_memes')
+                .col-md-4.d-flex.align-items-center
+                  %i.bi.bi-emoji-laughing-fill{class: "#{'gold'   if @user.memes.count > 4}"}
+                  %span.ms-2
+                    - if @user.memes.count > 4
+                      = t('pages.index.statistic.earn_achievment')
+                    - else
+                      = t('pages.index.statistic.to_unlock_achievment')
+                    = t('pages.index.statistic.achievment_5_post_memes')
+
+            .col-12.mt-3.d-flex.justify-content-center
+              %hr.w-50/
+            .col-12.d-flex.justify-content-center.mt-3.mb-3
+              %span.fs-4.statistic-sub-title
+                = t('pages.index.statistic.best_memes')
+            .col-12.d-flex.justify-content-center.mb-1.mt-1
+              .row.statistic-best-memes
+                - @statistic_best_memes.map {|e| e.first.last}.each do |meme|
+                  = render 'main-part-meme', meme: meme
+
+            .col-12.mt-3.d-flex.justify-content-center
+              %hr.w-50/
+            .col-12.d-flex.justify-content-center.mt-3.mb-3
+              %span.fs-4.statistic-sub-title
+                = t('pages.index.statistic.best_comments')
+            .col-12.d-flex.justify-content-center.mb-5
+              %span
+                = t('pages.index.statistic.work_in_progess')
