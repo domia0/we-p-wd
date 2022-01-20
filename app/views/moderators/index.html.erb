@@ -1,0 +1,24 @@
+<h1> Hello Moderator </h1>
+
+<ul>
+	<% @reports.each do |report| %>
+    <p>
+		  <div><h3>Report ID: <%= report.id %></h3></div>
+      <div>Report Creator: ID: <%= report.user.id %> Email: <%= report.user.email %></div>
+      <div>Reportable ID: <%= link_to report.reportable_id, get_object_by_rep(report.reportable) %></div>
+      <div>Reportable Type: <%= report.reportable_type %></div>
+      <div>Reason: <%= report.reason %></div>
+      <div>Open: <%= report.open %></div>
+      <div>Meme/Comment Owner: ID: <%= get_user_by_rep(report.reportable).id %> Email: <%= get_user_by_rep(report.reportable).email %></div>
+      <% if report.reportable.is_a? Meme %>
+        <div><%= image_tag get_object_by_rep(report.reportable).image, style: "width: 500px; height: 400px" %>
+      <% elsif report.reportable.is_a? Comment %></div>
+        <div>Comment Body: <%= get_object_by_rep(report.reportable).body %></div>
+      <% end %>
+      <div>Meme/Comment Owner blocked: <%= get_user_by_rep(report.reportable).blocked %></div>
+      <div><%= link_to "Change Status Report", change_status_report_path(report), method: :patch %></div>
+      <div><%= link_to "Delete Report", report_path(report), method: :delete, data: { confirm: "Are you sure?" } %></div>
+      <div><%= link_to "Change Block Status User(Owner)", change_user_status_moderator_path(get_user_by_rep(report.reportable)), method: :patch %></div>
+    </p>
+	<% end %>
+</ul>

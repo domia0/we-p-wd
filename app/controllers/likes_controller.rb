@@ -1,5 +1,8 @@
 class LikesController < ApplicationController
 
+  before_action :logged_in?
+  before_action :blocked?
+
   def new
     @like = Like.new
   end
@@ -10,11 +13,15 @@ class LikesController < ApplicationController
       @like = current_user.likes.create!(likeable: @meme)
     else
       @comment = Comment.find(params[:comment_id])
-      @like = current_user.likes.create!(likeable: @comment)
+      @like = current_user.likes.build(likeable: @comment)
     end
-
-    respond_to do |format|
-      format.json { render json: @like, location: @meme }
+    if @like.save
+      respond_to do |format|
+        format.json { render json: @like, location: @meme }
+      end
+    else
+      flash[:error] = "Sth. went wrong"
+      redirect_to root_path
     end
   end
   

@@ -1,6 +1,6 @@
 class ModeratorsController < ApplicationController
-  before_action :authenticate_user!
-  #before_actions :logged_in?
+
+  before_action :logged_in?
   before_action :is_moderator?
 
   def index
@@ -17,13 +17,6 @@ class ModeratorsController < ApplicationController
     redirect_to "/moderators"
   end 
 
-  private
 
-  def is_moderator?
-    if !current_user.moderator?
-      flash[:error] = "You must be logged in as a moderator to access this section"
-      redirect_to root_path
-    end
-  end
 
 end

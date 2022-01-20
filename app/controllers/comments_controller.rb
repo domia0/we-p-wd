@@ -1,14 +1,15 @@
 class CommentsController < ApplicationController
 
+  before_action :logged_in?
+  before_action :blocked?
+
 	def create
 	  @meme = Meme.find(params[:meme_id])
 	  body = params[:comment][:body]
 	  @comment = current_user.comments.build(body: body, meme_id: @meme.id)
-	  # redirect_to meme_path(@meme)
     if !@comment.save
-      respond_to do |format|
-        format.json { render json: @comment.errors, error: "Sth went wrong"  }
-      end
+      flash[:error] = "Sth. went wrong"
+      redirect_to root_path
     end
 	end
 
@@ -18,7 +19,8 @@ class CommentsController < ApplicationController
 		if @comment.update(comment_params)
 		  redirect_to meme_path(@meme)
 		else
-		  #render
+		  flash[:error] = "Sth. went wrong"
+      redirect_to root_path
 		end
 	end
 
@@ -27,10 +29,13 @@ class CommentsController < ApplicationController
 		@comment = @meme.comments.find(params[:id])
 
 		if current_user && current_user.id == @comment.user_id
-			@comment.destroy
-			#redirect_to meme_path(@meme)
-		end
-	end
+			if !@comment.destroy
+        respond_to do |format|
+          format.json { render json: @comment.errors, error: "Sth went wrong"  }
+        end
+		  end
+	  end
+  end
 
 	def show_all_comments_for_meme
 		@comments = Comment.where(meme: params[:meme_id])
