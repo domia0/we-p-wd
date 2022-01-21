@@ -30,8 +30,14 @@
                           class: "dropdown-item text-danger",
                           method: :delete
 
-    .col-12
-      = image_tag meme.image, class: 'w-100'
+    - if meme.reports.count > 0
+      .col-12.position-relative
+        %div.position-absolute.top-50.start-50.translate-middle.z-inx-9.w-75.text-center.text-light
+          = t('pages.index.report_for_meme.cnt_mdr')
+        = image_tag meme.image, class: 'w-100 blur-filter'
+    - else
+      .col-12
+        = image_tag meme.image, class: 'w-100'
     .col-8.d-flex.align-items-center.tags
       - meme.tags.each do |tag|
         %span.me-2

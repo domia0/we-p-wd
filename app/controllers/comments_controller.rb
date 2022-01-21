@@ -1,7 +1,7 @@
 class CommentsController < ApplicationController
 
-  before_action :logged_in?
-  before_action :blocked?
+  before_action :logged_in?, :blocked?, only: [:create, :destroy, :update]
+  # before_action :blocked?
 
 	def create
 	  @meme = Meme.find(params[:meme_id])
@@ -48,6 +48,7 @@ class CommentsController < ApplicationController
 			entry.store('comment',  comment.body)
 			entry.store('date', 	  comment.created_at.strftime("%d.%m.%Y"))
 			entry.store('likes', 	  comment.likes.count)
+			entry.store('reports',  comment.reports.count)
 			likes = Comment.find(comment.id).likes.where(user_id: current_user&.id)
 			if likes.length > 0
 				entry.store('liked',   'yes')

@@ -4,12 +4,13 @@ export function modalComments() {
     $.ajax({
       type: 'GET',
       url: '/all-comments-for-meme/' + memeId,
-    }).done(function (comments) {
+    }).done(function(comments) {
       if (comments.length === 0) {
         $('.no-comments').removeClass('d-none')
       } else {
         $('.no-comments').addClass('d-none')
       }
+      console.log(comments);
       comments.forEach(function(item){
         let commentHeaderDiv  = $('<div>',  {class: 'comment bg-light-blue m-2 rounded'});
         // Comment's Header
@@ -18,8 +19,8 @@ export function modalComments() {
         let commentHeaderDate = $('<span>', {class: 'comment-date', text: item.date});
 
         // Report dropdown for comment
-        let commentReportDrdw = $('<div>', {class: 'dropdown comment-more'});
-        let commentReportDrdwBtn = $('<button>', {class: 'more-btn', type: 'button', id: 'dropdownMenuButton2', 'aria-expanded': 'false', 'data-bs-toggle': 'dropdown'});
+        let commentReportDrdw        = $('<div>', {class: 'dropdown comment-more'});
+        let commentReportDrdwBtn     = $('<button>', {class: 'more-btn', type: 'button', id: 'dropdownMenuButton2', 'aria-expanded': 'false', 'data-bs-toggle': 'dropdown'});
         let commentReportDrdwBtnText = $('<i>', {class: 'bi bi-exclamation-diamond fs-2 ms-2 text-warning'});
         let commentReportDrdwUl = $('<ul>', {class: 'dropdown-menu', 'aria-labelledby': 'dropdownMenuButton2'});
         let commentReportDrdwLi = $('<li>');
@@ -31,7 +32,7 @@ export function modalComments() {
 
         // Comment's Body
         let commentBodyCol  =    $('<div>',  {class: 'col-12 d-flex justify-content-start mb-1 pb-2 px-3'});
-        let commentBodyText =    $('<div>',  {class: 'col-10', text: item.comment});
+        let commentBodyText =    $('<div>',  {class: 'col-10 position-relative', text: item.comment});
         let commentBodyLike =    $('<div>',  {class: 'col-2 d-flex justify-content-between align-items-start ps-4 pe-3'});
         let commentBodyLikeBtn = $('<div>');
         let commentBodyLikeCnt = $('<div>',  {class: 'mt-2', text: item.likes});

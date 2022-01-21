@@ -31,6 +31,12 @@ body {
 .rounded-5 {
   border-radius: 0.5rem;
 }
+.blur-filter {
+  filter: blur(0.5rem);
+}
+.z-inx-9 {
+  z-index: 9;
+}
 
 
 /* * *  Menu (Navbar top)  * * */
