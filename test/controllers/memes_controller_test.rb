@@ -1,10 +1,11 @@
 require "test_helper"
 
 class MemesControllerTest < ActionDispatch::IntegrationTest
-  include Devise::Test::ControllerHelpers
+  include Devise::Test::IntegrationHelpers
 
   setup do
     @meme = memes(:meme1)
+    
    # @image = attachments(:meme1_image_attachment)
    # @user_ = users(:user1)
   end
@@ -16,12 +17,18 @@ class MemesControllerTest < ActionDispatch::IntegrationTest
  # end
 
   test "should create meme" do
-    sign_in users(:user1)
+    sign_in FactoryBot.create(:user)
     assert_difference('Meme.count') do
-      post memes_url, params: { meme: {lang: 'de', image: fixture_file_upload("first.jpg", "image/jpg") } }
+      post memes_url, params: { meme: {lang: 'de', image: fixture_file_upload("first.jpg", "image/jpg") }, tag: { "1": {name: "tag1"}, "2": {name: "tag2"}, "3": {name: "tag3"} } }
     end
-    assert_edirect_to root_path
-    #assert_equal 'Article was successfully created.', flash[:notice]
+    assert_redirected_to root_path
+  end
+
+  test "should not create meme" do
+    assert_difference('Meme.count', 0) do
+      post memes_url, params: { meme: {lang: 'de', image: fixture_file_upload("first.jpg", "image/jpg") }, tag: { "1": {name: "tag1"}, "2": {name: "tag2"}, "3": {name: "tag3"} } }
+    end
+    assert_response :found
   end
 
   #test "should destroy meme" do

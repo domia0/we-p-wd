@@ -31,6 +31,7 @@ gem 'rails-i18n', '~> 6'
 
 # Added by Domi
 gem 'devise', '~> 4.8.0'
+gem "factory_bot_rails"
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'

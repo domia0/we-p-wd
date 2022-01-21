@@ -15,22 +15,25 @@ class MemesController < ApplicationController
       @meme = current_user.memes.build(meme_params)
 
       if @meme.save
+        params[:tag].each do |t,n|
+          #If tag already exists in db, get the existing tag and make association with created meme
+          @tag = Tag.find_by(name: n[:name])
+          if @tag != nil
+              if !@meme.tags.exists?(@tag[:id])
+                  @meme.tags << @tag
+              end
+          else
+              @meme.tags.create({name: n[:name]})
+          end 
+        end  
+        
         redirect_to root_path
       else
         flash[:error] = "Sth. went wrong"
         redirect_to root_path
       end
       # Create tag
-      params[:tag].each do |t,n|
-        @tag = Tag.find_by(name: n[:name])
-        if @tag != nil
-            if !@meme.tags.exists?(@tag[:id])
-                @meme.tags << @tag
-            end
-        else
-            @meme.tags.create({name: n[:name]})
-        end 
-      end  
+      
   end
 
   def destroy
