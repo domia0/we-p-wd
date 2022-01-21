@@ -19,7 +19,7 @@ class MemesCleanupJob < ApplicationJob
   end
 
   def offensive_words
-    return off_words = ["shit","fuck", "test"]
+    return off_words = ["shit","fuck"]
   end
 
 end
