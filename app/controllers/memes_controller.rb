@@ -11,10 +11,6 @@ class MemesController < ApplicationController
     @meme = Meme.find(params[:id])
   end
 
-  def new
-    @meme = Meme.new
-  end
-
   def create
       @meme = current_user.memes.build(meme_params)
 
