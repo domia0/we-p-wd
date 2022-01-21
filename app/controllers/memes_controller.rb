@@ -38,7 +38,7 @@ class MemesController < ApplicationController
 
   def destroy
     @meme = Meme.find(params[:id])
-    if current_user.moderator?
+    if current_user.moderator? || current_user.admin?
       @meme.destroy 
       redirect_to "/moderators"
 		elsif current_user.id == @meme.user_id

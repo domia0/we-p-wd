@@ -9,7 +9,7 @@ class LikesController < ApplicationController
   def create
     if params[:comment_id] == nil
       @meme = Meme.find(params[:meme_id])
-      @like = current_user.likes.create!(likeable: @meme)
+      @like = current_user.likes.build(likeable: @meme)
     else
       @comment = Comment.find(params[:comment_id])
       @like = current_user.likes.build(likeable: @comment)
