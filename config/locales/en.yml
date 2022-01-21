@@ -85,6 +85,7 @@ en:
         reason4:  'Religion'
         reason5:  'Discrimination'
         send_btn: 'Send report'
+        cnt_mdr:  'Content is being moderated'
 
       statistic:
         title: 'Statistic for'
