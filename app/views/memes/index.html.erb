@@ -7,7 +7,7 @@
       <p>
       <div><%= image_tag meme.image %></div>
       <div><%= link_to "Show Meme", meme_path(meme) %>
-            <%= link_to 'Destroy Meme', @meme,
+            <%= link_to 'Destroy Meme', meme_path(id: meme.id),
               method: :delete,
               data: { confirm: "Are you sure?" } %>
       </div>

@@ -6,7 +6,7 @@
     <p>
       <div><%= image_tag @meme.image, style: "width: 500px; height: 400px"  %></div>
         <div>
-        <%= link_to 'Destroy Meme', @meme,
+        <%= link_to 'Destroy Meme', meme_path(@meme),
                     method: :delete,
                     data: { confirm: "Are you sure?" } %>
         </div>

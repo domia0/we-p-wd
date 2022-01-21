@@ -1,6 +1,7 @@
 class MemesController < ApplicationController
 
   before_action :logged_in?, :blocked?
+  before_action :is_moderator?, only: [:index, :show]
 
   def index
     @memes = Meme.all
@@ -37,10 +38,13 @@ class MemesController < ApplicationController
 
   def destroy
     @meme = Meme.find(params[:id])
-		if current_user.id == @meme.user_id
+    if current_user.moderator?
+      @meme.destroy 
+      redirect_to "/moderators"
+		elsif current_user.id == @meme.user_id
       @meme.destroy
 			redirect_to root_path
-		end
+    end
   end
 
   private
