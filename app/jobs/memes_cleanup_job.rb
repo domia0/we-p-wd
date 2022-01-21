@@ -14,6 +14,7 @@ class MemesCleanupJob < ApplicationJob
           meme.destroy
         end
       end
+      redirect_to root_path
     end
   end
 
