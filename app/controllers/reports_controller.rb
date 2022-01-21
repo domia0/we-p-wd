@@ -1,7 +1,6 @@
 class ReportsController < ApplicationController
 
-  before_action :logged_in?
-  before_action :blocked?
+  before_action :logged_in?, :blocked?
 
   def create
     if params[:comment_id] == nil

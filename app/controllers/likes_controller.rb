@@ -1,7 +1,6 @@
 class LikesController < ApplicationController
 
-  before_action :logged_in?
-  before_action :blocked?
+  before_action :logged_in?, :blocked?
 
   def new
     @like = Like.new

@@ -1,7 +1,6 @@
 class MemesController < ApplicationController
 
-  before_action :logged_in?
-  before_action :blocked?
+  before_action :logged_in?, :blocked?
 
   def index
     @memes = Meme.all

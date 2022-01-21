@@ -1,7 +1,6 @@
 class ModeratorsController < ApplicationController
 
-  before_action :logged_in?
-  before_action :is_moderator?
+  before_action :logged_in?, :is_moderator?
 
   def index
     @reports = Report.all
