@@ -30,7 +30,7 @@
                           class: "dropdown-item text-danger",
                           method: :delete
 
-    - if meme.reports.count > 0
+    - if meme.reports.count > 3
       .col-12.position-relative
         %div.position-absolute.top-50.start-50.translate-middle.z-inx-9.w-75.text-center.text-light
           = t('pages.index.report_for_meme.cnt_mdr')
