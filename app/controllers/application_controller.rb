@@ -25,7 +25,7 @@ class ApplicationController < ActionController::Base
   end
   
   def is_moderator?
-    if !current_user.moderator? && !current_user.admin?
+    unless current_user.moderator? || current_user.admin?
       flash[:error] = "You must be logged in as a moderator to access this section"
       redirect_to root_path
     end
