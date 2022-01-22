@@ -10,35 +10,34 @@ export function modalComments() {
       } else {
         $('.no-comments').addClass('d-none')
       }
-      console.log(comments);
       comments.forEach(function(item){
-        let commentHeaderDiv  = $('<div>',  {class: 'comment bg-light-blue m-2 rounded'});
+        let headerDiv  = $('<div>',  {class: 'comment bg-light-blue m-2 rounded'});
         // Comment's Header
-        let commentHeaderCol  = $('<div>',  {class: 'col-12 d-flex justify-content-between align-items-center mt-1 pt-1 px-3'});
-        let commentHeaderUser = $('<a>',    {href: '?user=' + item.userName, text: item.userName});
-        let commentHeaderDate = $('<span>', {class: 'comment-date', text: item.date});
+        let headerCol  = $('<div>',  {class: 'col-12 d-flex justify-content-between align-items-center mt-1 pt-1 px-3'});
+        let headerUser = $('<a>',    {href: '?user=' + item.userName, text: item.userName});
+        let headerDate = $('<span>', {class: 'comment-date', text: item.date});
 
         // Report dropdown for comment
-        let commentReportDrdw        = $('<div>', {class: 'dropdown comment-more'});
-        let commentReportDrdwBtn     = $('<button>', {class: 'more-btn', type: 'button', id: 'dropdownMenuButton2', 'aria-expanded': 'false', 'data-bs-toggle': 'dropdown'});
-        let commentReportDrdwBtnText = $('<i>', {class: 'bi bi-exclamation-diamond fs-2 ms-2 text-warning'});
-        let commentReportDrdwUl = $('<ul>', {class: 'dropdown-menu', 'aria-labelledby': 'dropdownMenuButton2'});
-        let commentReportDrdwLi = $('<li>');
-        let commentReportDrdwA1 = $('<a>', {href: '#', meme_id: item.meme_id, comment_id: item.id, class: 'dropdown-item send-report-comment-btn', text: 'Racism'});
-        let commentReportDrdwA2 = $('<a>', {href: '#', meme_id: item.meme_id, comment_id: item.id, class: 'dropdown-item send-report-comment-btn', text: 'Violence'});
-        let commentReportDrdwA3 = $('<a>', {href: '#', meme_id: item.meme_id, comment_id: item.id, class: 'dropdown-item send-report-comment-btn', text: 'Pornography'});
-        let commentReportDrdwA4 = $('<a>', {href: '#', meme_id: item.meme_id, comment_id: item.id, class: 'dropdown-item send-report-comment-btn', text: 'Religion'});
-        let commentReportDrdwA5 = $('<a>', {href: '#', meme_id: item.meme_id, comment_id: item.id, class: 'dropdown-item send-report-comment-btn', text: 'Discrimination'});
+        let reportDrdw        = $('<div>', {class: 'dropdown comment-more'});
+        let reportDrdwBtn     = $('<button>', {class: 'more-btn', type: 'button', id: 'dropdownMenuButton2', 'aria-expanded': 'false', 'data-bs-toggle': 'dropdown'});
+        let reportDrdwBtnText = $('<i>', {class: 'bi bi-exclamation-diamond fs-2 ms-2 text-warning'});
+        let reportDrdwUl = $('<ul>', {class: 'dropdown-menu', 'aria-labelledby': 'dropdownMenuButton2'});
+        let reportDrdwLi = $('<li>');
+        let reportDrdwA1 = $('<a>', {href: '#', meme_id: item.meme_id, comment_id: item.id, class: 'dropdown-item send-report-comment-btn', text: 'Racism'});
+        let reportDrdwA2 = $('<a>', {href: '#', meme_id: item.meme_id, comment_id: item.id, class: 'dropdown-item send-report-comment-btn', text: 'Violence'});
+        let reportDrdwA3 = $('<a>', {href: '#', meme_id: item.meme_id, comment_id: item.id, class: 'dropdown-item send-report-comment-btn', text: 'Pornography'});
+        let reportDrdwA4 = $('<a>', {href: '#', meme_id: item.meme_id, comment_id: item.id, class: 'dropdown-item send-report-comment-btn', text: 'Religion'});
+        let reportDrdwA5 = $('<a>', {href: '#', meme_id: item.meme_id, comment_id: item.id, class: 'dropdown-item send-report-comment-btn', text: 'Discrimination'});
 
         // Comment's Body
-        let commentBodyCol  =    $('<div>',  {class: 'col-12 d-flex justify-content-start mb-1 pb-2 px-3'});
-        let commentBodyText =    $('<div>',  {class: 'col-10 position-relative', text: item.comment});
-        let commentBodyLike =    $('<div>',  {class: 'col-2 d-flex justify-content-between align-items-start ps-4 pe-3'});
-        let commentBodyLikeBtn = $('<div>');
-        let commentBodyLikeCnt = $('<div>',  {class: 'mt-2', text: item.likes});
+        let bodyCol  =    $('<div>',  {class: 'col-12 d-flex justify-content-start mb-1 pb-2 px-3'});
+        let bodyText =    $('<div>',  {class: 'col-10 position-relative', text: item.comment});
+        let bodyLike =    $('<div>',  {class: 'col-2 d-flex justify-content-between align-items-start ps-4 pe-3'});
+        let bodyLikeBtn = $('<div>');
+        let bodyLikeCnt = $('<div>',  {class: 'mt-2', text: item.likes});
 
         if (item.liked) {
-          commentBodyLikeBtn = $('<i>',
+          bodyLikeBtn = $('<i>',
             {
               class: 'bi bi-hand-thumbs-up-fill color-light-blue fs-3 add-remove-like-comment',
               meme_id: item.meme_id,
@@ -47,7 +46,7 @@ export function modalComments() {
               checked: true
             });
         } else {
-          commentBodyLikeBtn = $('<i>',
+          bodyLikeBtn = $('<i>',
             {
               class: 'bi bi-hand-thumbs-up fs-3 add-remove-like-comment',
               meme_id: item.meme_id,
@@ -55,32 +54,32 @@ export function modalComments() {
             });
         }
         // Create an element complete
-        commentHeaderDiv
-          .append(commentHeaderCol
-            .append(commentHeaderUser)
-            .append(commentHeaderDate)
-            .append(commentReportDrdw
-              .append(commentReportDrdwBtn
-                .append(commentReportDrdwBtnText))
-              .append(commentReportDrdwUl
-                .append(commentReportDrdwLi
-                  .append(commentReportDrdwA1))
-                .append(commentReportDrdwLi
-                  .append(commentReportDrdwA2))
-                .append(commentReportDrdwLi
-                  .append(commentReportDrdwA3))
-                .append(commentReportDrdwLi
-                  .append(commentReportDrdwA4))
-                .append(commentReportDrdwLi
-                  .append(commentReportDrdwA5))))
-          ).append(commentBodyCol
-          .append(commentBodyText)
-          .append(commentBodyLike
-            .append(commentBodyLikeBtn)
-            .append(commentBodyLikeCnt))
+        headerDiv
+          .append(headerCol
+            .append(headerUser)
+            .append(headerDate)
+            .append(reportDrdw
+              .append(reportDrdwBtn
+                .append(reportDrdwBtnText))
+              .append(reportDrdwUl
+                .append(reportDrdwLi
+                  .append(reportDrdwA1))
+                .append(reportDrdwLi
+                  .append(reportDrdwA2))
+                .append(reportDrdwLi
+                  .append(reportDrdwA3))
+                .append(reportDrdwLi
+                  .append(reportDrdwA4))
+                .append(reportDrdwLi
+                  .append(reportDrdwA5))))
+          ).append(bodyCol
+          .append(bodyText)
+          .append(bodyLike
+            .append(bodyLikeBtn)
+            .append(bodyLikeCnt))
         );
         // Add element to parent
-        $('.all-comments-modal').append(commentHeaderDiv)
+        $('.all-comments-modal').append(headerDiv)
       });
 
       // send report for comment
@@ -203,8 +202,9 @@ export function modalComments() {
       // load comments with a new one
       loadComments($('#commentsModal form').attr('meme_id'));
       // add +1 to the comments count
-      let commentsCount = $('.comments-count[meme_id=' + memeId + ']');
-      commentsCount.text(parseInt(commentsCount.text()) + 1)
+      $('.comments-count[meme_id=' + memeId + ']').each(function() {
+        $(this).text(parseInt($(this).text()) + 1)
+      })
     }).fail(function () {
       console.log('Error by adding comment')
     });
