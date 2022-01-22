@@ -2,7 +2,7 @@ export function reportsForMemes() {
   // clear and add info to modal window
   $('.open-report-window-meme-btn').click(function() {
     $('#reportMemeModal form')
-      .attr('action', 'en/memes/' + $(this).attr('meme_id') + '/reports')
+      .attr('action', 'memes/' + $(this).attr('meme_id') + '/reports')
       .attr('meme_id', $(this).attr('meme_id'))
   });
 
