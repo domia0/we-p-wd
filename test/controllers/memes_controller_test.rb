@@ -8,24 +8,26 @@ class MemesControllerTest < ActionDispatch::IntegrationTest
     @user = @meme.user
     @user_not_owner = FactoryBot.create(:user_not_owner)
     @image = fixture_file_upload("first.jpg", "image/jpg")
+    @admin = FactoryBot.create(:moderator)
+    @moderator = FactoryBot.create(:admin)
   end
 
   test "should get index - admin" do
-    @user.role = 2
-    sign_in @user
-    post memes_url, params: { meme: {lang: 'de', image: @image }, tag: { "1": {name: "tag1"}, "2": {name: "tag2"}, "3": {name: "tag3"} } }
+    sign_in @admin
+    post memes_url, params: { meme: {lang: 'de', image: fixture_file_upload("first.jpg", "image/jpg") }, tag: { "1": {name: "tag1"}, "2": {name: "tag2"}, "3": {name: "tag3"} } }
     get memes_url
     assert_response :found
+    assert_redirected_to root_path
     #assert_not_nil assigns(:meme)
   end
   
 
   test "should get index - moderator" do
-    @user.role = 1
-    sign_in @user
+    sign_in @moderator
     post memes_url, params: { meme: {lang: 'de', image: @image }, tag: { "1": {name: "tag1"}, "2": {name: "tag2"}, "3": {name: "tag3"} } }
-    get memes_url
-    assert_response :found
+    assert get memes_url
+    assert_response :success
+    assert_redirected_to root_path
     #assert_not_nil assigns(:meme)
   end
 
@@ -33,13 +35,13 @@ class MemesControllerTest < ActionDispatch::IntegrationTest
     sign_in @user
     get memes_url
     post memes_url, params: { meme: {lang: 'de', image: @image }, tag: { "1": {name: "tag1"}, "2": {name: "tag2"}, "3": {name: "tag3"} } }
-    assert_response :found
+    assert_response :redirect
+    assert_redirected_to root_path
    # assert_nil assigns(:meme)
   end
 
   test "should get show - admin" do
-    @user.role = 2
-    sign_in @user
+    sign_in @admin
     post memes_url, params: { meme: {lang: 'de', image: @image }, tag: { "1": {name: "tag1"}, "2": {name: "tag2"}, "3": {name: "tag3"} } }
     get memes_url
     assert_response :found
@@ -47,8 +49,7 @@ class MemesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get show - moderator" do
-    @user.role = 1
-    sign_in @user
+    sign_in @moderator
     post memes_url, params: { meme: {lang: 'de', image: @image }, tag: { "1": {name: "tag1"}, "2": {name: "tag2"}, "3": {name: "tag3"} } }
     get memes_url
     assert_response :found
@@ -60,6 +61,7 @@ class MemesControllerTest < ActionDispatch::IntegrationTest
     post memes_url, params: { meme: {lang: 'de', image: @image }, tag: { "1": {name: "tag1"}, "2": {name: "tag2"}, "3": {name: "tag3"} } }
     get memes_url
     assert_response :found
+    assert_redirected_to root_path
     #assert_nil assigns(:meme)
   end
 
@@ -82,7 +84,7 @@ class MemesControllerTest < ActionDispatch::IntegrationTest
     @user.blocked = true
     sign_in @user
     assert_difference('Meme.count', 0) do
-      post memes_url, params: { meme: {lang: 'de', image: fixture_file_upload("first.jpg", "image/jpg") }, tag: { "1": {name: "tag1"}, "2": {name: "tag2"}, "3": {name: "tag3"} } }
+      post memes_url, params: { meme: {lang: 'de', image: @image }, tag: { "1": {name: "tag1"}, "2": {name: "tag2"}, "3": {name: "tag3"} } }
     end
     assert_response :found
   end
@@ -92,6 +94,7 @@ class MemesControllerTest < ActionDispatch::IntegrationTest
     assert_difference('Meme.count', -1) do
       delete meme_url(id: @meme.id)
     end
+    assert_response :found
   end
 
   test "should NOT destroy meme - not owner" do
@@ -100,6 +103,7 @@ class MemesControllerTest < ActionDispatch::IntegrationTest
     assert_difference('Meme.count', 0) do
       delete meme_url(id: @meme.id)
     end
+    assert_response :no_content
   end
 
   test "should destroy meme - modertor" do
@@ -108,6 +112,7 @@ class MemesControllerTest < ActionDispatch::IntegrationTest
     assert_difference('Meme.count', -1) do
       delete meme_url(id: @meme.id)
     end
+    assert_response :found
   end
 
   test "should destroy meme - admin" do
@@ -116,5 +121,6 @@ class MemesControllerTest < ActionDispatch::IntegrationTest
     assert_difference('Meme.count', -1) do
       delete meme_url(id: @meme.id)
     end
+    assert_response :found
   end
 end

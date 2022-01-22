@@ -1,4 +1,23 @@
 FactoryBot.define do
+  factory :moderator, :class => "User" do
+    email { "moderator@test.com" }
+    username { "moderator" }
+    role {"moderator"}
+    password { "password"} 
+    password_confirmation { "password" }
+    #confirmed_at { Date.today }
+  end
+
+  factory :admin, :class => "User" do
+    email { "admin@test.com" }
+    username { "admin" }
+    role {"admin"}
+    password { "password"} 
+    password_confirmation { "password" }
+    #confirmed_at { Date.today }
+  end
+
+
   factory :user_f, :class => "User" do
     email { "user_f@test.com" }
     username { "user_f" }

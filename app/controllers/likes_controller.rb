@@ -14,13 +14,15 @@ class LikesController < ApplicationController
       @comment = Comment.find(params[:comment_id])
       @like = current_user.likes.build(likeable: @comment)
     end
-    if @like.save
-      respond_to do |format|
+    respond_to do |format|
+      if @like.save
+        format.html { redirect_to root_path }
         format.json { render json: @like, location: @meme }
+      else
+        flash[:error] = "Sth. went wrong"
+        format.html { redirect_to root_path }
+        format.json { render json: @like.errors }
       end
-    else
-      flash[:error] = "Sth. went wrong"
-      redirect_to root_path
     end
   end
   
