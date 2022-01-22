@@ -1,37 +1,39 @@
-<h1> Hello Moderator </h1>
+<h1><%= t('modmin.hello_moderator') %></h1>
 
  <div class="w3-container">
-  <div><%= link_to "All Memes", memes_path %></div>
-  <h1>Reports</h1>
+  <div><%= link_to t('modmin.all_memes'), memes_path %></div>
+  <h1><%= t('modmin.all_reports') %></h1>
 </div>
 <% @reports.each do |report| %>
 <div class="w3-cell-row">
   <div class="w3-cell w3-container">
-      <h3>Report ID: <%= report.id %></h3>
+      <h3><%= t('modmin.report_id')+report.id.to_s %></h3>
       <p>
-      <div>Report Creator: ID: <%= report.user.id %> Email: <%= report.user.email %></div>
+      <div><%= t('modmin.report_creator_id')+report.user.id.to_s %></div>
+      <div><%= t('modmin.report_creator_email')+report.user.email.to_s %></div>
+      <div><%= t('modmin.reason') %> <%= report.reason %></div>
+      <div><%= t('modmin.open') %> <%= report.open %></div>
       
       <% if report.reportable.is_a? Meme %>
-        <div>Reportable ID: <%= link_to report.reportable_id, get_object_by_rep(report.reportable) %></div>
-        <div>Reportable Type: <%= report.reportable_type %></div>
+        <div><%= t('modmin.reportable_meme_id') %><%= link_to report.reportable_id, get_object_by_rep(report.reportable) %></div>
+        <div><%= t('modmin.reportable_type')+report.reportable_type.to_s %></div>
         <div><%= image_tag get_object_by_rep(report.reportable).image, style: "width: 500px; height: 400px" %>
-        <div><%= link_to 'Destroy Meme', meme_path(id: report.reportable.id), method: :delete, data: { confirm: "Are you sure?" } %>
+        <div><%= link_to t('modmin.destroy_meme'), meme_path(id: report.reportable.id), method: :delete, data: { confirm: "Are you sure?" } %>
+        <div><%= t('modmin.meme_creator_id') %><%= get_user_by_rep(report.reportable).id %></div>
       <% elsif report.reportable.is_a? Comment %></div>
-        <div>Reportable ID: <%= report.reportable_id %></div>
-        <div>Reportable Type: <%= report.reportable_type %></div>
-        <b><div>Comment Body: <%= get_object_by_rep(report.reportable).body %></div></b>
-        <div><%= link_to 'Destroy Comment', meme_comments_path(get_object_by_rep(report.reportable).meme, get_object_by_rep(report.reportable)), method: :delete, data: { confirm: "Are you sure?" } %>
+        <div><%= t('modmin.reportable_comment_id') %> <%= report.reportable_id %></div>
+        <div><%= t('modmin.reportable_comment_id') %> <%= report.reportable_type %></div>
+        <b><%= t('modmin.body') %> <%= get_object_by_rep(report.reportable).body %></div></b>
+        <div><%= link_to t('modmin.destroy_comment') , meme_comments_path(get_object_by_rep(report.reportable).meme, get_object_by_rep(report.reportable)), method: :delete, data: { confirm: "Are you sure?" } %>
+        <div><%= t('modmin.comment_creator_id') %><%= get_user_by_rep(report.reportable).id %></div>
       <% end %>
+      <div><%= t('modmin.creator_email') %> <%= get_user_by_rep(report.reportable).email %></div>
+     
 
-      <div>Reportable Type: <%= report.reportable_type %></div>
-      <div>Reason: <%= report.reason %></div>
-      <div>Open: <%= report.open %></div>
-      <div>Meme/Comment Owner: ID: <%= get_user_by_rep(report.reportable).id %> Email: <%= get_user_by_rep(report.reportable).email %></div>
-
-      <div>Meme/Comment Owner blocked: <%= get_user_by_rep(report.reportable).blocked %></div>
-      <div><%= link_to "Change Status Report", change_status_report_path(report), method: :patch %></div>
-      <div><%= link_to "Delete Report", report_path(report), method: :delete, data: { confirm: "Are you sure?" } %></div>
-      <div><%= link_to "Change Block Status User(Owner)", change_user_status_moderator_path(get_user_by_rep(report.reportable)), method: :patch %></div>
+      <div><%= t('modmin.creator_blocked') %> <%= get_user_by_rep(report.reportable).blocked %></div>
+      <div><%= link_to t('modmin.change_report_status'), change_status_report_path(report), method: :patch %></div>
+      <div><%= link_to t('modmin.destroy_report'), report_path(report), method: :delete, data: { confirm: "Are you sure?" } %></div>
+      <div><%= link_to t('modmin.change_user_status'), change_user_status_moderator_path(get_user_by_rep(report.reportable)), method: :patch %></div>
       </div>   
     </p>
   </div>
