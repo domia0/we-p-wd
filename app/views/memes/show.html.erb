@@ -1,18 +1,11 @@
-<div class="w3-container">
-  <h1>Meme</h1>
-</div>
 <div class="w3-cell-row">
   <div class="w3-cell w3-container">
     <p>
       <div><%= image_tag @meme.image, style: "width: 500px; height: 400px"  %></div>
-        <div>
-        <%= link_to 'Destroy Meme', meme_path(@meme),
-                    method: :delete,
-                    data: { confirm: "Are you sure?" } %>
-        </div>
-        <div>Language: <%= @meme.lang %><div>
-        <div>Likes: <%= @meme.likes.count%></div>
-        <div>Comments: <%= render @meme.comments %></div>
-      </p>
-    </div>
+      <div><%= link_to t('modmin.destroy_meme'), meme_path(@meme), method: :delete, data: { confirm: "Are you sure?" } %></div>
+      <div><%= t('modmin.language') %> <%= @meme.lang %><div>
+      <div><%= t('modmin.likes') %> <%= @meme.likes.count%></div>
+      <div><%= t('modmin.comments') %> <%= render @meme.comments %></div>
+    </p>
   </div>
+</div>

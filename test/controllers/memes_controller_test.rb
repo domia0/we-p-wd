@@ -15,8 +15,8 @@ class MemesControllerTest < ActionDispatch::IntegrationTest
 
 #=begin
   setup do
-    #@meme = FactoryBot.create(:meme)
-    @user = FactoryBot.create(:user_f)
+    @meme = FactoryBot.create(:meme)
+    @user = @meme.user
     @user_not_owner = FactoryBot.create(:user_not_owner)
     @image = fixture_file_upload("second.jpg", "image/jpg")
     @admin = FactoryBot.create(:moderator)
@@ -26,7 +26,7 @@ class MemesControllerTest < ActionDispatch::IntegrationTest
   test "should get index - admin" do
     sign_in @admin
     get memes_url
-    assert_equal 2, Meme.all.count
+    assert_equal 3, Meme.all.count
     assert Meme.last.image
     assert_equal "de", Meme.first.lang
     assert_response :success
@@ -45,30 +45,26 @@ class MemesControllerTest < ActionDispatch::IntegrationTest
     assert_response :redirect
     assert_redirected_to root_path
   end
-=begin
+
   test "should get show - admin" do
     sign_in @admin
-    get meme_url
-    assert_response :redirect
-    #assert_not_nil assigns(:meme)
+    get meme_url(id: @meme.id)
+    assert_response :success
   end
 
   test "should get show - moderator" do
     sign_in @moderator
-    get memes_url
-    assert_response :redirect
-    #assert_not_nil assigns(:meme)
+    get meme_url(id: @meme.id)
+    assert_response :success
   end
 
   test "should NOT get show - user" do
     sign_in @user
-    get memes_url
+    get meme_url(id: @meme.id)
     assert_response :redirect
     assert_redirected_to root_path
-    #assert_nil assigns(:meme)
   end
-=end
-=begin
+
   test "should create meme" do
     sign_in @user
     assert_difference('Meme.count') do
@@ -110,9 +106,8 @@ class MemesControllerTest < ActionDispatch::IntegrationTest
     assert_response :no_content
   end
 
-  test "should destroy meme - modertor" do
-    @user_not_owner.role = 1
-    sign_in @user_not_owner
+  test "should destroy meme - moderator" do
+    sign_in @moderator
     assert_difference('Meme.count', -1) do
       delete meme_url(id: @meme.id)
     end
@@ -120,12 +115,10 @@ class MemesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should destroy meme - admin" do
-    @user_not_owner.role = 2
-    sign_in @user_not_owner
+    sign_in @admin
     assert_difference('Meme.count', -1) do
       delete meme_url(id: @meme.id)
     end
     assert_response :redirect
   end
-=end
 end

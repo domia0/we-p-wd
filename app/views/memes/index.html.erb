@@ -1,17 +1,17 @@
 <div class="w3-container">
-  <h1>Memes</h1>
+  <h1><%= t('modmin.all_memes') %></h1>
 </div>
 <% @memes.each do |meme| %>
   <div class="w3-cell-row">
     <div class="w3-cell w3-container">
       <p>
       <div><%= image_tag meme.image %></div>
-      <div><%= link_to "Show Meme", meme_path(meme) %>
-            <%= link_to 'Destroy Meme', meme_path(id: meme.id),
+      <div><%= link_to t('modmin.show_meme'), meme_path(meme) %>
+            <%= link_to t('modmin.destroy_meme'), meme_path(id: meme.id),
               method: :delete,
-              data: { confirm: "Are you sure?" } %>
+              data: { confirm: t('modmin.delete_msg')} %>
       </div>
-      <div><h3>Comments:</h3> <%= render meme.comments %></div>
+      <div><h3><%= t('modmin.all_comments') %></h3> <%= render meme.comments %></div>
       </p>
     </div>
   </div>

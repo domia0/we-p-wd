@@ -9,17 +9,11 @@ class CustomSessionsControllerTest < ActionDispatch::IntegrationTest
   
   test "should create and destroy session" do
 
-    assert_difference('CustomSessionsControllerTest::APP_SESSIONS.count') do
-      post user_session_url, params: { user: {email: @user.email, password: 'password' } }
-    end
-    assert_response :found
+    post user_session_url, params: { user: {email: @user.email, password: 'password' } }
+    #Nur wenn ich erfolgreich eingeloggt werde, bekomme ich einen redirect
+    assert_response :redirect
+
+    delete destroy_user_session_url
+    assert_response :redirect
   end
-
-  #  assert_difference('CustomSessionsControllerTest::APP_SESSIONS.count', -1) do
-   #   delete destroy_user_session_url
-   # end
-   # assert_response :found
-  #end
-
- 
 end

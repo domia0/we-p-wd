@@ -24,7 +24,7 @@
         <div><%= t('modmin.reportable_comment_id') %> <%= report.reportable_id %></div>
         <div><%= t('modmin.reportable_comment_id') %> <%= report.reportable_type %></div>
         <b><%= t('modmin.body') %> <%= get_object_by_rep(report.reportable).body %></div></b>
-        <div><%= link_to t('modmin.destroy_comment') , meme_comments_path(get_object_by_rep(report.reportable).meme, get_object_by_rep(report.reportable)), method: :delete, data: { confirm: "Are you sure?" } %>
+        <div><%= link_to t('modmin.destroy_comment') , meme_comments_path(get_object_by_rep(report.reportable).meme, get_object_by_rep(report.reportable)), method: :delete, data: { confirm: t('modmin.delete_msg') } %>
         <div><%= t('modmin.comment_creator_id') %><%= get_user_by_rep(report.reportable).id %></div>
       <% end %>
       <div><%= t('modmin.creator_email') %> <%= get_user_by_rep(report.reportable).email %></div>

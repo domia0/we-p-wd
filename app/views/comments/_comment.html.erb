@@ -1,12 +1,12 @@
 <div class="w3-cell-row">
   <div class="w3-cell w3-container">
     <p>
-      <div>Commenter: <%= comment.user.username %></div>
-      <div>Comment: <%= comment.body %></div>
-      <div>Likes: <%= comment.likes.count%></div>
-      <div><%= link_to 'Destroy Comment', [comment.meme, comment],
+      <div><%= t('modmin.commenter') %> <%= comment.user.username %></div>
+      <div><%= t('modmin.body') %> <%= comment.body %></div>
+      <div><%= t('modmin.likes') %> <%= comment.likes.count%></div>
+      <div><%= link_to t('modmin.destroy_comment'), [comment.meme, comment],
                   method: :delete,
-                  data: { confirm: "Are you sure?" } %>
+                  data: { confirm: t('modmin.delete_msg') } %>
       </div>
     </p>
   </div>
