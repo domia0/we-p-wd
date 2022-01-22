@@ -13,7 +13,7 @@ class ModeratorsController < ApplicationController
     else
       user.update_attribute(:blocked, false)
     end
-    redirect_to "/moderators"
+    redirect_back(fallback_location: root_path)
   end 
 
 

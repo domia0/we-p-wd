@@ -1,0 +1,23 @@
+<h1> Hello Admin </h1>
+
+<div class="w3-container">
+  <div><%= link_to "All Reports", moderators_path %></div>
+  <h1>Users</h1>
+</div>
+<% @users.each do |user| %>
+<div class="w3-cell-row">
+  <div class="w3-cell w3-container">
+    <h3>User ID: <%= user.id %></h3>
+    <p>
+      <div>Username: <%= user.username %></div> 
+      <div>Email: <%= user.email %></div>
+      <div>User role: <%= user.role %></div>
+      <div>User blocked: <%= user.blocked %></div>
+      <div><%= link_to "Change User Role to User", role_to_user_admin_path(user), method: :patch %></div>
+      <div><%= link_to "Change User Role to Moderator", role_to_moderator_admin_path(user), method: :patch %></div>
+      <div><%= link_to "Change User Role to Admin", role_to_admin_admin_path(user), method: :patch %></div>
+      <div><%= link_to "Change Block Status User", change_user_status_moderator_path(user), method: :patch %></div>
+    </p>
+  </div>
+</div>
+<% end %>

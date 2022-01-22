@@ -15,9 +15,18 @@ Rails.application.routes.draw do
       resources :reports
       resources :tags
     end
+
     resources :moderators do
       member do
         patch 'change_user_status'
+      end
+    end
+
+    resources :admins do
+      member do
+        patch 'role_to_user'
+        patch 'role_to_moderator'
+        patch 'role_to_admin'
       end
     end
 
