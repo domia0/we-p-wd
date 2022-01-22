@@ -32,6 +32,12 @@ FactoryBot.define do
     association :user, factory: :user_f
   end
 
+  factory :meme2, :class => "Meme" do
+    lang { "de" }
+    image { Rack::Test::UploadedFile.new('test/fixtures/files/second.jpg', 'image/jpg') }
+    association :user, factory: :user_f
+  end
+
   factory :user_not_owner, :class => "User" do
     email { "notowner@test.com" }
     username { "notowner" }

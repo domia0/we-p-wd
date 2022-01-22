@@ -13,6 +13,7 @@ class CustomSessionsControllerTest < ActionDispatch::IntegrationTest
       post user_session_url, params: { user: {email: @user.email, password: 'password' } }
     end
     assert_response :found
+  end
 
   #  assert_difference('CustomSessionsControllerTest::APP_SESSIONS.count', -1) do
    #   delete destroy_user_session_url

@@ -17,10 +17,5 @@ meme1:
 
 meme2:
   lang: en
-  user: user2
-  tags: tag1, tag3
-
-meme3:
-  lang: en
   user: user1
-  tags: tag3
+  tags: tag1, tag3
