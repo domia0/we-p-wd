@@ -7,7 +7,7 @@ class ReportsController < ApplicationController
       @meme = Meme.find(params[:meme_id])
       reason = params[:report][:reason]
       @report = current_user.reports.build(reason: reason, open: true, reportable: @meme)
-      if !@report.save
+      unless @report.save
         flash[:error] = "Sth. went wrong"
         redirect_to root_path
       end
@@ -15,7 +15,7 @@ class ReportsController < ApplicationController
       @comment = Comment.find(params[:comment_id])
       reason = params[:report][:reason]
       @report = current_user.reports.build(reason: reason, open: true, reportable: @comment)
-      if !@report.save
+      unless @report.save
         flash[:error] = "Sth. went wrong"
         redirect_to root_path
       end
