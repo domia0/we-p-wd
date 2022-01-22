@@ -204,7 +204,7 @@ export function modalComments() {
       loadComments($('#commentsModal form').attr('meme_id'));
       // add +1 to the comments count
       let commentsCount = $('.comments-count[meme_id=' + memeId + ']');
-      commentsCount.text(+commentsCount.text() + 1)
+      commentsCount.text(parseInt(commentsCount.text()) + 1)
     }).fail(function () {
       console.log('Error by adding comment')
     });

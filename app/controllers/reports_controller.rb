@@ -21,4 +21,21 @@ class ReportsController < ApplicationController
       end
     end
   end
+
+  def destroy
+    @report = Report.find(params[:id])
+    @report.destroy
+
+    redirect_to "/moderators"
+  end 
+
+  def change_status
+    @report = Report.find(params[:id])
+    if @report.open == true
+      @report.update_attribute(:open, false)
+    else 
+      @report.update_attribute(:open, true)
+    end
+    redirect_to "/moderators"
+  end
 end

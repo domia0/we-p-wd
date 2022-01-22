@@ -11,10 +11,11 @@ class MemesCleanupJob < ApplicationJob
         memes = Tag.find_by(name: tag_element[:name]).memes
         memes.each do |meme_element|
           meme = Meme.find(meme_element[:id])
-          meme.destroy
+          if meme.destroy
+            redirect_to root_path
+          end
         end
       end
-      redirect_to root_path
     end
   end
 
