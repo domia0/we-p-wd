@@ -32,14 +32,14 @@ class ApplicationController < ActionController::Base
   end
 
   def is_admin?
-    if !current_user.admin?
+    unless current_user.admin?
       flash[:error] = "You must be logged in as an admin to access this section"
       redirect_to root_path
     end
   end
 
   def logged_in?
-    if !user_signed_in?
+    unless user_signed_in?
       flash[:error] = "You must be logged in to access this section"
       redirect_to root_path
     end
