@@ -26,7 +26,7 @@ class ReportsController < ApplicationController
     @report = Report.find(params[:id])
     @report.destroy
 
-    redirect_to "/moderators"
+    redirect_back(fallback_location: root_path)
   end 
 
   def change_status
@@ -36,6 +36,6 @@ class ReportsController < ApplicationController
     else 
       @report.update_attribute(:open, true)
     end
-    redirect_to "/moderators"
+    redirect_back(fallback_location: root_path)
   end
 end
