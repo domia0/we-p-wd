@@ -1,0 +1,143 @@
+.container-fluid.mb-4
+  .row.admin-header
+    .col-12.d-flex.justify-content-center.mb-3.mt-2
+      %div
+        %span.text-white.me-5
+          = link_to t('en'), "/en/moderators"
+        %span.text-white
+          = link_to t('de'), "/de/moderators"
+    .col-12.d-flex.justify-content-center
+      %h1
+        = t('modmin.hello_moderator')
+    .col-12.d-flex.justify-content-center.mb-3
+      %div
+        %span
+          = link_to t('modmin.all_memes'), memes_path
+    .col-12.d-flex.justify-content-center
+      %h3
+        = t('modmin.all_reports')
+
+.container.mb-4
+  .row
+    - @reports.each do |report|
+      .col-md-6.bg-white.gx-5.gy-4
+        .row.border.pb-4
+          -# Header
+          .col-12.d-flex.justify-content-center.mt-3
+            %div
+              %h3.m-0
+                = t('modmin.report_id') + report.id.to_s
+          .col-12.d-flex.justify-content-center
+            %hr.w-50
+          -# Sub-header
+          .col-12
+            %div
+              %table.table
+                %tbody
+                  %tr
+                    %td.fw-bold
+                      = t('modmin.report_creator_id')
+                    %td
+                      = report.user.id.to_s
+                  %tr
+                    %td.fw-bold
+                      = t('modmin.report_creator_email')
+                    %td
+                      = report.user.email.to_s
+                  %tr
+                    %td.fw-bold
+                      = t('modmin.reason')
+                    %td
+                      = report.reason
+                  %tr
+                    %td.fw-bold
+                      = t('modmin.open')
+                    %td
+                      - if report.open
+                        %span.text-success TRUE
+                      - else
+                        %span.text-danger FALSE
+          -# Body
+          - if report.reportable.is_a? Meme
+            .col-12
+              %div.d-flex.justify-content-center
+                %span.me-1
+                  = t('modmin.reportable_type') + report.reportable_type.to_s + ';'
+                %span
+                  = t('modmin.reportable_meme_id')
+                  = link_to report.reportable_id, get_object_by_rep(report.reportable)
+              %div
+                = image_tag get_object_by_rep(report.reportable).image, class: 'w-100'
+              %div
+                = link_to t('modmin.destroy_meme'),
+                          meme_path(id: report.reportable.id),
+                          method: :delete,
+                          class: 'btn btn-danger w-100 mt-1',
+                          data: {confirm: "Are you sure?"}
+              %ul.list-group
+                %li.list-group-item
+                  = t('modmin.meme_creator_id')
+                  = get_user_by_rep(report.reportable).id
+                %li.list-group-item
+                  = t('modmin.creator_email')
+                  = get_user_by_rep(report.reportable).email
+                %li.list-group-item
+                  = t('modmin.creator_blocked')
+                  = get_user_by_rep(report.reportable).blocked.to_s
+          - else
+            .col-12
+              %div
+                = t('modmin.reportable_comment_id') + report.reportable_id.to_s
+              %div
+                = t('modmin.reportable_comment_id') + report.reportable_type
+              %div
+                = t('modmin.body') + get_object_by_rep(report.reportable).body
+              %div
+                = link_to t('modmin.destroy_comment') ,
+                          meme_comments_path(get_object_by_rep(report.reportable).meme,
+                          get_object_by_rep(report.reportable)),
+                          method: :delete,
+                          class: 'btn btn-danger w-100 mt-1',
+                          data: {confirm: t('modmin.delete_msg')}
+              %div
+                = t('modmin.comment_creator_id') + get_user_by_rep(report.reportable).id.to_s
+              %div
+                = t('modmin.creator_email') + get_user_by_rep(report.reportable).email
+              %div
+                = t('modmin.creator_blocked') + get_user_by_rep(report.reportable).blocked.to_s
+
+          .col-12
+            %div
+              = link_to t('modmin.change_report_status'),
+                        change_status_report_path(report),
+                        method: :patch,
+                        class: 'btn btn-outline-primary w-100'
+            %div
+              = link_to t('modmin.change_user_status'),
+                        change_user_status_moderator_path(get_user_by_rep(report.reportable)),
+                        method: :patch,
+                        class: 'btn btn-outline-primary w-100'
+            %div
+              = link_to t('modmin.destroy_report'),
+                        report_path(report),
+                        method: :delete,
+                        class: 'btn btn-danger w-100',
+                        data: { confirm: "Are you sure?" }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
