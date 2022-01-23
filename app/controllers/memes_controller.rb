@@ -47,7 +47,7 @@ class MemesController < ApplicationController
     @meme = Meme.find(params[:id])
     if current_user.moderator? || current_user.admin?
       @meme.destroy 
-      redirect_to "/moderators"
+      redirect_back(fallback_location: root_path)
 		elsif current_user.id == @meme.user_id
       @meme.destroy
 			redirect_to root_path

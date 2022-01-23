@@ -9,18 +9,18 @@ class AdminsController < ApplicationController
   def role_to_user
     user = User.find(params[:id])
     user.update_attribute(:role, 0)
-    redirect_to "/admins"
+    redirect_back(fallback_location: root_path)
   end 
   
   def role_to_moderator
     user = User.find(params[:id])
     user.update_attribute(:role, 1)
-    redirect_to "/admins"
+    redirect_back(fallback_location: root_path)
   end 
 
   def role_to_admin
     user = User.find(params[:id])
     user.update_attribute(:role, 2)
-    redirect_to "/admins"
+    redirect_back(fallback_location: root_path)
   end 
 end
