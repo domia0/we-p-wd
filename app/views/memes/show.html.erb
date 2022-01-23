@@ -1,7 +1,7 @@
 <div class="w3-cell-row">>
   <div class="w3-cell w3-container">
     <p>
-      <div><%= image_tag @meme.image, style: "width: 500px; height: 400px"  %></div>
+      <div><%= image_tag @meme.image, class: 'img' %></div>
       <div><%= link_to t('modmin.destroy_meme'), meme_path(@meme), method: :delete, data: { confirm: "Are you sure?" } %></div>
       <div><%= t('modmin.language') %> <%= @meme.lang %><div>
       <div><%= t('modmin.likes') %> <%= @meme.likes.count%></div>
@@ -9,3 +9,4 @@
     </p>
   </div>
 </div>
+        

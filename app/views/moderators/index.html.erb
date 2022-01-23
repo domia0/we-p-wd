@@ -19,7 +19,7 @@
       <% if report.reportable.is_a? Meme %>
         <div><%= t('modmin.reportable_meme_id') %><%= link_to report.reportable_id, get_object_by_rep(report.reportable) %></div>
         <div><%= t('modmin.reportable_type')+report.reportable_type.to_s %></div>
-        <div><%= image_tag get_object_by_rep(report.reportable).image, style: "width: 500px; height: 400px" %>
+        <div><%= image_tag get_object_by_rep(report.reportable).image, class: 'img' %></div>
         <div><%= link_to t('modmin.destroy_meme'), meme_path(id: report.reportable.id), method: :delete, data: { confirm: "Are you sure?" } %>
         <div><%= t('modmin.meme_creator_id') %><%= get_user_by_rep(report.reportable).id %></div>
       <% elsif report.reportable.is_a? Comment %></div>
