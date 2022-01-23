@@ -1,0 +1,79 @@
+.container-fluid.mb-4
+  .row.admin-header
+    .col-12.d-flex.justify-content-center.mb-3.mt-2
+      %div
+        %span.text-white.me-5
+          = link_to t('en'), "/en/moderators"
+        %span.text-white
+          = link_to t('de'), "/de/moderators"
+    .col-12.d-flex.justify-content-center
+      %h1
+        = t('modmin.hello_admin')
+    .col-12.d-flex.justify-content-center.mb-3
+      %div
+        %span
+          = link_to link_to "All Reports", moderators_path
+    .col-12.d-flex.justify-content-center
+      %h3
+        = t('modmin.all_users')
+
+.container.mb-4
+  .row
+    - @users.each do |user|
+      .col-md-6.bg-white.gx-5.gy-4
+        .row.border.pb-4
+          -# Header
+          .col-12.d-flex.justify-content-center.mt-3
+            %div
+              %h3.m-0
+                = t('modmin.user_id') + user.id.to_s
+          .col-12.d-flex.justify-content-center
+            %hr.w-50
+          -# Sub-header
+          .col-12
+            %div
+              %table.table
+                %tbody
+                  %tr
+                    %td.fw-bold
+                      = t('modmin.username')
+                    %td
+                      = user.username
+                  %tr
+                    %td.fw-bold
+                      = t('modmin.user_email')
+                    %td
+                      = user.email
+                  %tr
+                    %td.fw-bold
+                      = t('modmin.user_role')
+                    %td
+                      = user.role
+                  %tr
+                    %td.fw-bold
+                      = t('modmin.user_blocked')
+                    %td
+                      - if user.blocked
+                        %span.text-success TRUE
+                      - else
+                        %span.text-danger FALSE
+
+          .col-12
+            .btn-group-vertical.w-100{"aria-label" => "Basic example", :role => "group"}
+              = link_to t('modmin.role_to_user'),
+                        role_to_user_admin_path(user),
+                        method: :patch,
+                        class: 'btn btn-outline-primary'
+
+              = link_to t('modmin.role_to_moderator'),
+                        role_to_moderator_admin_path(user),
+                        method: :patch,
+                        class: 'btn btn-outline-primary'
+              = link_to t('modmin.role_to_admin'),
+                        role_to_admin_admin_path(user),
+                        method: :patch,
+                        class: 'btn btn-outline-primary'
+              = link_to t('modmin.change_user_status'),
+                        change_user_status_moderator_path(user),
+                        method: :patch,
+                        class: 'btn btn-warning'

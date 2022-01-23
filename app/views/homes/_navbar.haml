@@ -44,10 +44,11 @@
                           class: "nav-link my-0 py-0",
                           "data-bs-target" => "#addMemeModal",
                           "data-bs-toggle" => "modal"
-            %li.nav-item.account-dropdown-menu
-              = link_to 'Reports',
-                         moderators_path,
-                         class: "nav-link my-0 py-0"
+            - unless @user.role == 'user'
+              %li.nav-item.account-dropdown-menu
+                = link_to 'Reports',
+                           moderators_path,
+                           class: "nav-link my-0 py-0"
             %li.nav-item.dropdown.account-dropdown-menu
               %a#navbarDropdown.nav-link.dropdown-toggle{"aria-expanded" => "false",
                                                          "data-bs-toggle" => "dropdown",
