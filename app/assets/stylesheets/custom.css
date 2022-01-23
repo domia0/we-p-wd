@@ -234,3 +234,14 @@ body {
 #footer .col-12 {
   color: white;
 }
+
+
+/* * *  Footer (index)  * * * */
+.admin-header {
+  background-color: #6785a0;
+}
+.admin-header a,
+.admin-header a:hover,
+.admin-header a:visited {
+  color: white;
+}

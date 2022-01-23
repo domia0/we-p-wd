@@ -44,12 +44,17 @@
                           class: "nav-link my-0 py-0",
                           "data-bs-target" => "#addMemeModal",
                           "data-bs-toggle" => "modal"
+            %li.nav-item.account-dropdown-menu
+              = link_to 'Reports',
+                         moderators_path,
+                         class: "nav-link my-0 py-0"
             %li.nav-item.dropdown.account-dropdown-menu
               %a#navbarDropdown.nav-link.dropdown-toggle{"aria-expanded" => "false",
                                                          "data-bs-toggle" => "dropdown",
                                                          :href => "#",
                                                          :role => "button"}
-                = t('pages.index.navbar-acc-menu')
+                -# = t('pages.index.navbar-acc-menu')
+                = @user.username
               %ul.dropdown-menu{"aria-labelledby" => "navbarDropdown", :style => "left: -3.7rem !important"}
                 %li
                   = link_to t('pages.index.navbar-acc-stat'),
