@@ -10,19 +10,19 @@ class HomesController < ApplicationController
       @memes = []
       case params[:filter]
       when "best_today"
-        sort_by_likes(Meme.where(created_at: Date.today.beginning_of_day..Date.today.end_of_day), "meme")
+        sort_by_likes(Meme.where(lang: I18n.locale, created_at: Date.today.beginning_of_day..Date.today.end_of_day), "meme")
           .each {|item| @memes.push(item["meme"])}
       when "best_week"
-        sort_by_likes(Meme.where(created_at: Date.today - 7..Date.today.end_of_day), "meme")
+        sort_by_likes(Meme.where(lang: I18n.locale, created_at: Date.today - 7..Date.today.end_of_day), "meme")
           .each {|item| @memes.push(item["meme"])}
       when "best_month"
-        sort_by_likes(Meme.where(created_at: Date.today - 30..Date.today.end_of_day), "meme")
+        sort_by_likes(Meme.where(lang: I18n.locale, created_at: Date.today - 30..Date.today.end_of_day), "meme")
           .each {|item| @memes.push(item["meme"])}
       when "best_all_time"
         sort_by_likes(Meme.all, "meme").each {|item| @memes.push(item["meme"])}
       end
     elsif params[:tag]
-      @memes = Tag.find_by(name: params[:tag]).memes
+      @memes = Tag.find_by(name: params[:tag]).memes.where(lang: I18n.locale)
     elsif params[:user]
       user_id = User.find_by(username: params[:user]).id
       @memes = Meme.where(user_id: user_id)
