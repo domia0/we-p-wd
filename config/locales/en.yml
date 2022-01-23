@@ -134,7 +134,7 @@ en:
     show_meme: 'Show Meme'
     reportable_comment_id: 'Report Comment ID: '
     comment: 'Comment'
-    all_comments: 'Alle comments'
+    all_comments: 'All comments'
     body: 'Content'
     change_report_status: 'Change status of report'
     change_user_status: 'Change user block status'
