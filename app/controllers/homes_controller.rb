@@ -47,7 +47,7 @@ class HomesController < ApplicationController
 
   def pagination(array)
     @page = params[:page] || 1
-    @limit = params[:limit] || 6
+    @limit = params[:limit] || 9
     @page = @page.to_i
     @limit = @limit.to_f
     @max_page = (array.count.to_f / @limit).ceil
