@@ -19,15 +19,15 @@ class HomesController < ApplicationController
         sort_by_likes(Meme.where(lang: I18n.locale, created_at: Date.today - 30..Date.today.end_of_day), "meme")
           .each {|item| @memes.push(item["meme"])}
       when "best_all_time"
-        sort_by_likes(Meme.all, "meme").each {|item| @memes.push(item["meme"])}
+        sort_by_likes(Meme.all.where(lang: I18n.locale), "meme").each {|item| @memes.push(item["meme"])}
       end
     elsif params[:tag]
       @memes = Tag.find_by(name: params[:tag]).memes.where(lang: I18n.locale)
     elsif params[:user]
       user_id = User.find_by(username: params[:user]).id
-      @memes = Meme.where(user_id: user_id)
+      @memes = Meme.where(lang: I18n.locale, user_id: user_id)
     else
-      @memes = Meme.all.order(created_at: :desc)
+      @memes = Meme.all.where(lang: I18n.locale).order(created_at: :desc)
     end
     prepare_statistic
     @memes = pagination(@memes)
