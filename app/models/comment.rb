@@ -5,6 +5,5 @@ class Comment < ApplicationRecord
   has_many :likes,   as: :likeable, dependent: :destroy
   has_many :reports, as: :reportable, dependent: :destroy
 
-  validates :body, presence: true
-  
+  validates :body, presence: true 
 end

@@ -7,6 +7,5 @@ class Report < ApplicationRecord
                 violence: 2,
                 pornography: 3,
                 religion: 4,
-                discrimination: 5}, _suffix: :reason
-                
+                discrimination: 5}, _suffix: :reason              
 end
