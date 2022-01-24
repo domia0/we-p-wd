@@ -46,5 +46,4 @@ class MemesController < ApplicationController
   def meme_params
     params.require(:meme).permit(:lang, :image)
   end
-
 end
