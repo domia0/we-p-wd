@@ -104,12 +104,8 @@ en:
         achievment_3_post_memes: 'post 3 memes'
         achievment_5_post_memes: 'post 5 memes'
         work_in_progess: '- Work in progress -'
-
-  error: 
-    fail: 'Something went wrong'
-    rights: 'You don't have the permission to enter this section'
-    blocked: 'You got blocked'
-    login: 'You need to login to perform this action'
+    
+  error: "Sth. went wrong"
 
   modmin:
     report_creator_id: 'Report creator ID: '
@@ -152,4 +148,3 @@ en:
     likes: 'Likes: '
     comments: 'Comments: '
     commenter: 'Commenter: '
-

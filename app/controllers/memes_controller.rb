@@ -17,7 +17,7 @@ class MemesController < ApplicationController
         @meme.tags_attr(params[:tag])
         redirect_to root_path
       else
-        flash[:error] = t('error.fail')
+        flash[:error] = t('error')
         redirect_to root_path
       end 
   end

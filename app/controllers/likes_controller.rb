@@ -19,7 +19,7 @@ class LikesController < ApplicationController
         format.html { redirect_to root_path }
         format.json { render json: @like, location: @meme }
       else
-        flash[:error] = t('error.fail')
+        flash[:error] = t('error')
         format.html { redirect_to root_path }
         format.json { render json: @like.errors }
       end
