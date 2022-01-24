@@ -8,7 +8,7 @@ class ReportsController < ApplicationController
       reason = params[:report][:reason]
       @report = current_user.reports.build(reason: reason, open: true, reportable: @meme)
       unless @report.save
-        flash[:error] = "Sth. went wrong"
+        flash[:error] = t('error.fail')
         redirect_to root_path
       end
     else
@@ -16,7 +16,7 @@ class ReportsController < ApplicationController
       reason = params[:report][:reason]
       @report = current_user.reports.build(reason: reason, open: true, reportable: @comment)
       unless @report.save
-        flash[:error] = "Sth. went wrong"
+        flash[:error] = t('error.fail')
         redirect_to root_path
       end
     end

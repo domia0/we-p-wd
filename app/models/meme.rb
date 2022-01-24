@@ -8,4 +8,15 @@ class Meme < ApplicationRecord
   has_one_attached :image
 
   validates :lang, presence: true, length: { minimum: 2, maximum: 2 }, format: { with: /de|en/, message: "only allows en or de"}
+
+  def tags_attr(tags)
+    tags.each do |t,n|
+      tag = Tag.find_by(name: n[:name])
+      if tag
+        self.tags << tag unless self.tags.exists?(tag[:id])
+      else
+        self.tags.create({name: n[:name]})
+      end 
+    end  
+  end
 end

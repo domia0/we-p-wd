@@ -105,6 +105,12 @@ en:
         achievment_5_post_memes: 'post 5 memes'
         work_in_progess: '- Work in progress -'
 
+  error: 
+    fail: 'Something went wrong'
+    rights: 'You don't have the permission to enter this section'
+    blocked: 'You got blocked'
+    login: 'You need to login to perform this action'
+
   modmin:
     report_creator_id: 'Report creator ID: '
     report_creator_email: 'Report creator email: '

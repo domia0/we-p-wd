@@ -106,6 +106,12 @@ de:
         achievment_5_post_memes: 'lade 5 Meme hoch'
         work_in_progess: '- Kommt bald :) -'
 
+  error:
+    fail: 'Etwas ging schief'
+    rights: 'Sie haben nicht die Erlaubnis für diesen Bereich'
+    blocked: 'Sie wurden geblockt'
+    login: 'Sie müssen sich einloggen um diese Aktion auszuführen'
+
   modmin:
     report_creator_id: 'Meldung Ersteller ID: '
     report_creator_email: 'Meldung Ersteller Email: '

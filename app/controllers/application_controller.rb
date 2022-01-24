@@ -26,28 +26,28 @@ class ApplicationController < ActionController::Base
   
   def is_moderator?
     unless current_user.moderator? || current_user.admin?
-      flash[:error] = "You must be logged in as a moderator to access this section"
+      flash[:error] = t('error.rights')
       redirect_to root_path
     end
   end
 
   def is_admin?
     unless current_user.admin?
-      flash[:error] = "You must be logged in as an admin to access this section"
+      flash[:error] = t('error.rights')
       redirect_to root_path
     end
   end
 
   def logged_in?
     unless user_signed_in?
-      flash[:error] = "You must be logged in to access this section"
+      flash[:error] = t('error.login')
       redirect_to root_path
     end
   end
 
   def blocked?
     if current_user.blocked
-      flash[:error] = "You are blocked!"
+      flash[:error] = t('error.blocked')
       redirect_to root_path
     end
   end

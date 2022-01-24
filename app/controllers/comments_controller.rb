@@ -8,7 +8,7 @@ class CommentsController < ApplicationController
 	  body = params[:comment][:body]
     @comment = current_user.comments.build(body: body, meme_id: @meme.id)
     if !@comment.save
-      flash[:error] = "Sth. went wrong"
+      flash[:error] = t('error.fail')
       redirect_to root_path
     end
 	end
@@ -19,7 +19,7 @@ class CommentsController < ApplicationController
 		if @comment.update(comment_params)
 		  redirect_to meme_path(@meme)
 		else
-		  flash[:error] = "Sth. went wrong"
+		  flash[:error] = t('error.fail')
       redirect_to root_path
 		end
 	end
@@ -29,11 +29,10 @@ class CommentsController < ApplicationController
 		@comment = @meme.comments.find(params[:id])
 
 		if current_user && current_user.id == @comment.user_id
-			if !@comment.destroy
-        respond_to do |format|
-          format.json { render json: @comment.errors, error: "Sth went wrong"  }
-        end
-		  end
+			unless @comment.destroy
+        flash[:error] = t('error.fail')
+        redirect_to root_path
+      end
 		end
 	end
 

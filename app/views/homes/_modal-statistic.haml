@@ -40,7 +40,7 @@
 
                 -# calculate total likes, first line of achievement
                 - likes_for_memes = 0
-                - @statistic_best_memes.each {|e| likes_for_memes += e['likes']}
+                - @statistic_best_memes.count.each {|k, v| likes_for_memes += v}
                 .col-md-4.d-flex.align-items-center
                   %i.bi.bi-trophy-fill{class: "#{'bronze' if likes_for_memes > 0}"}
                   %span.ms-2
@@ -99,7 +99,7 @@
                 = t('pages.index.statistic.best_memes')
             .col-12.d-flex.justify-content-center.mb-1.mt-1
               .row.statistic-best-memes
-                - @statistic_best_memes.map {|e| e.first.last}.each do |meme|
+                - @statistic_best_memes.each do |meme|
                   = render 'main-part-meme', meme: meme
 
             .col-12.mt-3.d-flex.justify-content-center

@@ -7,19 +7,15 @@ class HomesController < ApplicationController
     @tag = Tag.new
     
     if params[:filter]
-      @memes = []
       case params[:filter]
       when "best_today"
-        sort_by_likes(Meme.where(lang: I18n.locale, created_at: Date.today.beginning_of_day..Date.today.end_of_day), "meme")
-          .each {|item| @memes.push(item["meme"])}
+        @memes = Meme.joins(:likes).group('memes.id').order('Count(likes.id) DESC').where(lang: I18n.locale, created_at: Date.today.beginning_of_day..Date.today.end_of_day)
       when "best_week"
-        sort_by_likes(Meme.where(lang: I18n.locale, created_at: Date.today - 7..Date.today.end_of_day), "meme")
-          .each {|item| @memes.push(item["meme"])}
+        @memes = Meme.joins(:likes).group('memes.id').order('Count(likes.id) DESC').where(lang: I18n.locale, created_at: Date.today - 7..Date.today.end_of_day)
       when "best_month"
-        sort_by_likes(Meme.where(lang: I18n.locale, created_at: Date.today - 30..Date.today.end_of_day), "meme")
-          .each {|item| @memes.push(item["meme"])}
+        @memes = Meme.joins(:likes).group('memes.id').order('Count(likes.id) DESC').where(lang: I18n.locale, created_at: Date.today - 30..Date.today.end_of_day)
       when "best_all_time"
-        sort_by_likes(Meme.all.where(lang: I18n.locale), "meme").each {|item| @memes.push(item["meme"])}
+        @memes = Meme.joins(:likes).group('memes.id').order('Count(likes.id) DESC').where(lang: I18n.locale)
       end
     elsif params[:tag]
       @memes = Tag.find_by(name: params[:tag]).memes.where(lang: I18n.locale)
@@ -34,30 +30,19 @@ class HomesController < ApplicationController
   end
 
   private
-  def sort_by_likes(array, entity_name)
-    to_sort = []
-    array.each do |e|
-      new_obj = {}
-      new_obj.store(entity_name, e)
-      new_obj.store('likes', e.likes.count)
-      to_sort.push(new_obj)
-    end
-    to_sort.sort_by! {|item| item['likes']}.reverse
-  end
 
   def pagination(array)
     @page = params[:page] || 1
     @limit = params[:limit] || 6
     @page = @page.to_i
     @limit = @limit.to_f
-    @max_page = (array.count.to_f / @limit).ceil
+    @max_page = (array.length.to_f / @limit).ceil
     array[(@page -1) * @limit, @limit]
   end
 
   def prepare_statistic
     return unless current_user
-    @statistic_best_memes = []
-    @statistic_best_memes = sort_by_likes(Meme.where(user_id: @user.id).limit(5), "meme")
+    @statistic_best_memes = Meme.joins(:likes).group('memes.id').order('Count(likes.id) DESC').where(user_id: current_user.id).limit(5)
   end
 
 end
